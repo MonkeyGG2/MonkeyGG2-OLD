@@ -6,5 +6,7 @@
 /slope/Build/slope_27Sept.data.unityweb filter=lfs diff=lfs merge=lfs -text
 /slope/Build/slope_27Sept.wasm.code.unityweb filter=lfs diff=lfs merge=lfs -text
 /slope/Build/slope_27Sept.wasm.framework.unityweb filter=lfs diff=lfs merge=lfs -text
+/rick/rick.gif filter=lfs diff=lfs merge=lfs -text
+/rick/rick.mp3 filter=lfs diff=lfs merge=lfs -text
 /secret-easter-egg/rick.gif filter=lfs diff=lfs merge=lfs -text
 /secret-easter-egg/freemoney.gif filter=lfs diff=lfs merge=lfs -text
