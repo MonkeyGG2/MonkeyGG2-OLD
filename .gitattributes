@@ -9,4 +9,9 @@
 /rick/rick.gif filter=lfs diff=lfs merge=lfs -text
 /rick/rick.mp3 filter=lfs diff=lfs merge=lfs -text
 /secret-easter-egg/rick.gif filter=lfs diff=lfs merge=lfs -text
+/secret-easter-egg/rick.mp3 filter=lfs diff=lfs merge=lfs -text
+/flappybird/screencap.png filter=lfs diff=lfs merge=lfs -text
+/cookie-clicker/img/icons.png filter=lfs diff=lfs merge=lfs -text
+/cookie-clicker/img/starbg.jpg filter=lfs diff=lfs merge=lfs -text
+/cookie-clicker/main.js filter=lfs diff=lfs merge=lfs -text
 /secret-easter-egg/freemoney.gif filter=lfs diff=lfs merge=lfs -text
