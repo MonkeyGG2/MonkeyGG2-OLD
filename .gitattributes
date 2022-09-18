@@ -14,4 +14,5 @@
 /cookie-clicker/img/icons.png filter=lfs diff=lfs merge=lfs -text
 /cookie-clicker/img/starbg.jpg filter=lfs diff=lfs merge=lfs -text
 /cookie-clicker/main.js filter=lfs diff=lfs merge=lfs -text
+/flappy-bird/index.min.js filter=lfs diff=lfs merge=lfs -text
 /secret-easter-egg/freemoney.gif filter=lfs diff=lfs merge=lfs -text
