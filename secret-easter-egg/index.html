@@ -47,6 +47,7 @@
         <source src="/secret-easter-egg/freemoney.mp3" type="audio/mpeg">
       </audio>
       <script>
+        document.getElementById("ctrl").setAttribute('disabled', true);
         document.onclick = function() {  
           document.getElementById('moneymp3').play();
           document.getElementById('moneygif').style.display="block";
@@ -57,6 +58,10 @@
 
         var questions = ["do u want bitcoin?", "do u want free money?", "do u like rabbits?"];
           document.getElementById('question').innerHTML = (questions[Math.floor(Math.random() * questions.length)])
+        
+        window.onbeforeunload = function () {
+            return "Do you want to leave? I really want u to keep watching rickroll :)"
+        }
       </script>
     
     </body>
