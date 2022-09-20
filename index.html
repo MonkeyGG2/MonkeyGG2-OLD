@@ -3,20 +3,23 @@
         <title>MonkeyGG2</title>
         <script>
             function clone(){
-                var i, nd;
-                function copyChildren(a, b) {
-                    var i, nn;
-                    for (i = 0; i < a.childNodes.length; ++i) {
-                        nn = a.childNodes[i].cloneNode(true);
-                        if (nd.importNode) nn = nd.importNode(nn, true);
-                        b.appendChild(nn);
-                    }
-                }
-                nd = window.open().document;
-                nd.open();
-                nd.close(); /*140681*/
-                copyChildren(document.getElementsByTagName("head")[0], nd.getElementsByTagName("head")[0]);
-                copyChildren(document.body, nd.body);
+                var url = window.location.href
+                var urlObj = new window.URL(window.location.href);
+                win = window.open();
+                win.document.body.style.margin = "0";
+                win.document.body.style.height = "100vh";
+                var iframe = win.document.createElement("iframe");
+                iframe.style.border = "none";
+                iframe.style.width = "100%";
+                iframe.style.height = "100%";
+                iframe.style.margin = "0";
+                iframe.referrerpolicy = "no-referrer";
+                iframe.allow = "fullscreen";
+                iframe.src = url.toString();
+                win.document.body.appendChild(iframe);
+                var script = win.document.createElement("script");
+                script.src = "https://3kh0.github.io/js/main.js";
+                win.document.body.appendChild(script);
                 window.location.replace("https://mail.google.com")
             }
 
