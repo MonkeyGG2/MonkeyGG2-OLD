@@ -22,3 +22,10 @@
 /slope/Build/slope_wasmcode.unityweb filter=lfs diff=lfs merge=lfs -text
 /slope/Build/slope_wasmframework.unityweb filter=lfs diff=lfs merge=lfs -text
 /slope/TemplateData/unityloader41.js filter=lfs diff=lfs merge=lfs -text
+/hextris/style/fa/fonts/fontawesome-webfont.svg filter=lfs diff=lfs merge=lfs -text
+/hextris/style/fa/fonts/fontawesome-webfont.ttf filter=lfs diff=lfs merge=lfs -text
+/idle-breakout/assets/Coding_BreakOut1_texture_0.png filter=lfs diff=lfs merge=lfs -text
+/idle-breakout/assets/Coding_BreakOut1_texture_1.png filter=lfs diff=lfs merge=lfs -text
+/idle-breakout/assets/particles/Coding_BreakOut1_texture_0.png filter=lfs diff=lfs merge=lfs -text
+/idle-breakout/assets/particles/Coding_BreakOut1_texture_1.png filter=lfs diff=lfs merge=lfs -text
+/idle-breakout/html5game/Coding_BreakOut1.js filter=lfs diff=lfs merge=lfs -text
