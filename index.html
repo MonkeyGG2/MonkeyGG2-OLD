@@ -30,9 +30,8 @@
             }
 
             document.addEventListener('keydown', (e) => {
-                e.preventDefault();
-
                 if (e.key.toLowerCase() === 'q' && e.ctrlKey) {
+                    e.preventDefault();
                     clone()
                 }
             });
