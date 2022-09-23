@@ -2,7 +2,8 @@
   width: 100%;
   font-size: 18px;
   padding: 11px;
-  border: 1px solid #ddd;
+  border: 1px solid #36393f;
+  color: #36393f
 }
 
 #subpageList {
@@ -14,10 +15,10 @@
 #subpageList li a {
   padding: 12px;
   text-decoration: none;
-  color: black;
+  color: #36393f;
   display: block
 }
 
 #subpageList li a:hover {
-  background-color: #eee;
+  background-color: #565b65;
 }
