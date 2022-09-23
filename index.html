@@ -36,18 +36,41 @@
                 }
             });
         </script>
-    </head>    
-    <body style="background-color:black;">
-        <h1 style="color:beige">Subpages</h1>
-        <p><a href="/slope"><font color="white">Slope</font></a></p>
-        <p><a href="/chrome-dino"><font color="white">Chrome Dino</font></a></p>
-        <p><a href="/chrome-dino-hacks"><font color="white">Chrome Dino Hecks</font></a></p>
-        <p><a href="/2048"><font color="white">2048</font></a></p>
-        <p><a href="/flappy-bird"><font color="white">Flappy Bird</font></a></p>
-        <p><a href="/cookie-clicker"><font color="white">Cookie Clicker</font></a></p>
-        <p><a href="/hextris"><font color="white">Hextris</font></a></p>
-        <p><a href="/idle-breakout"><font color="white">idle breakout</font></a></p>
-        <p><a href="/secret-easter-egg"><font color="white">Free Money</font></a></p>
+    </head>
+    <body>
+        <h1>Subpages</h1>
+        <input type="text" id="searchBar" onkeyup="searchSort()" placeholder="Search...">
+
+        <ul id="subpageList">
+            <li><a href="/2048">2048</a></li>
+            <li><a href="/chrome-dino">Chrome Dino</a></li>
+            <li><a href="/chrome-dino-hacks">Chrome Dino Hecks</a></li>
+            <li><a href="/cookie-clicker">Cookie Clicker</a></li>
+            <li><a href="/slope">Slope</a></li>
+            <li><a href="/flappy-bird">Flappy Bird</a></li>
+            <li><a href="/hextris">Hextris</a></li>
+            <li><a href="/idle-breakout">Idle Breakout</a></li>
+            <li><a href="/secret-easter-egg">Free Money</a></li>
+        </ul>
         <button onclick="stoopid()" style="background-color:black;color:white;cursor:pointer;font-size:15px;border-color:SlateGray;border-radius: 32px;font-size:20px;padding:16px;border-width:5px;width:100%">Click me</button>
     </body>
+
+    <script>
+        function searchSort() {
+            var searchBar, search, list, elements;
+            searchBar = document.getElementByID("searchBar");
+            search = search.value.toLowerCase();
+            menu = document.getElementByID("subpageList");
+            elements = menu.getElementsByTagName("li");
+
+            for (i = 0; i < elements.length; i++) {
+                a = elements[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toLowerCase().indexOf(search) > -1) {
+                    elements[i].style.display = "";
+                } else {
+                    elements[i].style.display = "none"
+                }
+            }
+        }
+    </script>
 </html>
