@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Idle Breakout Savecode Generator</title>
+    <link href="/idle-breakout-save-gen/style.css" rel="stylesheet" type="text/css" />
+    <script src="/idle-breakout-save-gen/script.js"></script>
+</head>
+
+<body>
+    <h1>Idle Breakout Savecode Generator</h1>
+    <h3>--Valuables--</h3>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Level" id="level">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Money" id="money">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Gold" id="gold">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Black Bricks" id="blackbricks">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Skillpoints" id="skillpoints">
+    <br>
+    <h3>--Balls--</h3>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Basic Ball" id="basic">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Plasma Ball" id="plasma">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Sniper Ball" id="sniper">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Scatter Ball" id="scatter">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Cannon Ball" id="cannon">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Poison Ball" id="poison">
+    <br>
+    <h3>--Prestige Levels--</h3>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Level Cash Complete Bonus" id="p1">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Ball Speed Increase" id="p2">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Ball Power Multiplier" id="p3">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Unlock VAUS Laser" id="p4">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Maximum Number of Balls" id="p5">
+    <br>
+    <h3>--Number of Upgrades--</h3>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Basic Ball Speed" id="u1">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Basic Ball Power" id="u2">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Plasma Ball Range" id="u3">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Plasma Ball Power" id="u4">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Sniper Ball Speed" id="u5">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Sniper Ball Power" id="u6">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Scatter Ball Extra Balls" id="u7">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Scatter Ball Power" id="u8">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Cannon Ball Speed" id="u9">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Cannon Ball Power" id="u10">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Poison Ball Speed" id="u11">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Poison Ball Power" id="u12">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Laser(s) Power" id="u13">
+    <br>
+    <input type="number" onkeyup="getCode()" onkeydown="status()" placeholder="Click Power" id="u14">
+    <br>
+    <div id="output"></div>
+    <br>
+    <div id="status"></div>
+    <br>
+    <input type="text" onkeyup="b64toa()" placeholder="Base64 to string" id="b64">
+    <br>
+    <div id="op"></div>
+</body>
+
+</html>

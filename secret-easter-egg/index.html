@@ -38,7 +38,7 @@
     <body>
       <h1 id="question" style="margin-top:20vh;text-align: center;">if ur seeing this u prolly diabled js :(</h1>
       <div class="center">
-        <embed id="moneygif" style="display: none; height:100vmin; width:vmin" src="https://imgur.com/a/mqB3ND4"></embed>
+        <embed id="moneygif" style="display: none; height:100vmin; width:vmin" src="/secret-easter-egg/freemoney.gif"></embed>
         <button id="yes">Yes</button>
         <button id="no">No</button>
       </div>
@@ -47,6 +47,21 @@
         <source src="/secret-easter-egg/freemoney.mp3" type="audio/mpeg">
       </audio>
       <script>
+        document.onkeydown = function (e) {
+    e = e || window.event;
+
+    if (!e.ctrlKey) return;
+
+    var code = e.which || e.keyCode;
+
+    switch (code) {
+        case 87:
+            e.preventDefault();
+            e.stopPropagation();
+            break;
+    }
+};
+
         document.onclick = function() {  
           document.getElementById('moneymp3').play();
           document.getElementById('moneygif').style.display="block";
@@ -56,7 +71,12 @@
         };
 
         var questions = ["do u want bitcoin?", "do u want free money?", "do u like rabbits?"];
-          document.getElementById('question').innerHTML = (questions[Math.floor(Math.random() * questions.length)])
+          document.getElementById('question').innerHTML = (questions[Math.floor(Math.random() * questions.length)]);
+        
+        window.onbeforeunload = function (e) {\
+            e.preventDefault();
+            e.returnValue =  "Do you want to leave? I really want u to keep watching rickroll :)";
+        }
       </script>
     
     </body>
