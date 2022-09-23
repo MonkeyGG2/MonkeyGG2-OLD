@@ -1,9 +1,17 @@
+#h1 {
+  color: #dcddde;
+}
+
+#body {
+  background-color: #36393f;
+}
+
 #searchBar {
   width: 100%;
   font-size: 18px;
   padding: 11px;
   border: 1px solid #36393f;
-  color: #36393f
+  color: #36393f;
 }
 
 #subpageList {
@@ -17,7 +25,7 @@
   padding: 12px;
   text-decoration: none;
   color: #dcddde;
-  display: block
+  display: block;
 }
 
 #subpageList li a:hover {
