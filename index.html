@@ -36,6 +36,22 @@
                     clone()
                 }
             });
+            
+            function searchSort() {
+                var input, filter, ul, li, a, i;
+                input = document.getElementById("searchBar");
+                filter = input.value.toUpperCase();
+                ul = document.getElementById("subpageList");
+                li = ul.getElementsByTagName("li");
+                for (i = 0; i < li.length; i++) {
+                    a = li[i].getElementsByTagName("a")[0];
+                    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                    } else {
+                    li[i].style.display = "none";
+                    }
+                }
+            }
         </script>
     </head>
     <body>
@@ -55,23 +71,4 @@
         </ul>
         <button onclick="stoopid()" style="background-color:black;color:white;cursor:pointer;font-size:15px;border-color:SlateGray;border-radius: 32px;font-size:20px;padding:16px;border-width:5px;width:100%">Click me</button>
     </body>
-
-    <script>
-        function searchSort() {
-            var searchBar, search, list, elements;
-            searchBar = document.getElementByID("searchBar");
-            search = search.value.toLowerCase();
-            menu = document.getElementByID("subpageList");
-            elements = menu.getElementsByTagName("li");
-
-            for (i = 0; i < elements.length; i++) {
-                a = elements[i].getElementsByTagName("a")[0];
-                if (a.innerHTML.toLowerCase().indexOf(search) > -1) {
-                    elements[i].style.display = "";
-                } else {
-                    elements[i].style.display = "none"
-                }
-            }
-        }
-    </script>
 </html>
