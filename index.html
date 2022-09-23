@@ -2,10 +2,39 @@
     <head>
         <title>MonkeyGG2</title>
         <script>
+            function clone(){
+                var url = window.location.href
+                var urlObj = new window.URL(window.location.href);
+                win = window.open();
+                win.document.body.style.margin = "0";
+                win.document.body.style.height = "100vh";
+                var iframe = win.document.createElement("iframe");
+                iframe.style.border = "none";
+                iframe.style.width = "100%";
+                iframe.style.height = "100%";
+                iframe.style.margin = "0";
+                iframe.referrerpolicy = "no-referrer";
+                iframe.allow = "fullscreen";
+                iframe.src = url.toString();
+                win.document.body.appendChild(iframe);
+                var script = win.document.createElement("script");
+                script.src = "https://3kh0.github.io/js/main.js";
+                win.document.body.appendChild(script);
+                window.location.replace("https://mail.google.com")
+            }
+
             function stoopid(){
                 while(!confirm('By pressing OK I agree that "i is stoopid"')){}
                 alert('Thank you for confirming you are stoopid');
             }
+
+            document.addEventListener('keydown', (e) => {
+                e.preventDefault();
+
+                if (e.key.toLowerCase() === 'q' && e.ctrlKey) {
+                    clone()
+                }
+            });
         </script>
     </head>    
     <body style="background-color:black;">
@@ -16,6 +45,8 @@
         <p><a href="/2048"><font color="white">2048</font></a></p>
         <p><a href="/flappy-bird"><font color="white">Flappy Bird</font></a></p>
         <p><a href="/cookie-clicker"><font color="white">Cookie Clicker</font></a></p>
+        <p><a href="/hextris"><font color="white">Hextris</font></a></p>
+        <p><a href="/idle-breakout"><font color="white">idle breakout</font></a></p>
         <p><a href="/secret-easter-egg"><font color="white">Free Money</font></a></p>
         <button onclick="stoopid()" style="background-color:black;color:white;cursor:pointer;font-size:15px;border-color:SlateGray;border-radius: 32px;font-size:20px;padding:16px;border-width:5px;width:100%">Click me</button>
     </body>
