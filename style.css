@@ -1,5 +1,5 @@
 #h1 {
-  color: #dcddde
+  color: #dcddde;
 }
 
 #body {
@@ -12,6 +12,7 @@
   padding: 11px;
   border: 1px solid #36393f;
   background-color: #202225;
+  color:#dcddde;
 }
 
 #subpageList {
