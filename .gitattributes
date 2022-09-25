@@ -54,3 +54,4 @@
 /run-3/music/WormholeToSomewhere.ogg filter=lfs diff=lfs merge=lfs -text
 /run-3/text/ExploreLevels.txt filter=lfs diff=lfs merge=lfs -text
 /run-3/text/InfiniteLevels.txt filter=lfs diff=lfs merge=lfs -text
+/smart-ball/24951_smart-ball-usa.zip filter=lfs diff=lfs merge=lfs -text
