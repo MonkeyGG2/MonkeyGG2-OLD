@@ -10,7 +10,7 @@
   <script src='ruffle.js'></script>
   <script>
     var game = (new URLSearchParams(window.location.search)).get('game');
-    document.title = game.replace(/-/g,' ');
+    document.title = game.replace(/_/g,' ');
 
     var swfobject = {};
 
