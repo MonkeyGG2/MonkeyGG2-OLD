@@ -10,7 +10,7 @@
   <script src='ruffle.js'></script>
   <script>
     var game = (new URLSearchParams(window.location.search)).get('game');
-    document.title = game.replace(/_/g,' ');
+    document.title = (game.replace(/_/g,' ')).toLowerCase().split(' ').map(function(word) {return word[0].toUpperCase() + word.substr(1);}).join(' ');;
 
     var swfobject = {};
 
