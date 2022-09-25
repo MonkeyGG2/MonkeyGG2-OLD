@@ -32,3 +32,4 @@
 /flash-games/1on1soccer.swf filter=lfs diff=lfs merge=lfs -text
 /flash-games/bloonstd1.swf filter=lfs diff=lfs merge=lfs -text
 /flash-games/c2b443b5d3c1e95c719f5c7fa8f05fa4.wasm filter=lfs diff=lfs merge=lfs -text
+/flash-games/ruffle.js.map filter=lfs diff=lfs merge=lfs -text
