@@ -1,2 +1,2 @@
-- fix cookie clicker, flappy bird
+- fix cookie clicker
 add idle breakout, run games, clicker heros, ngon, eaglrcraft, snake, and minesweeper
