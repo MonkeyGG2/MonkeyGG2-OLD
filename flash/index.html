@@ -12,7 +12,7 @@
   <script>
     var game = (new URLSearchParams(window.location.search)).get('game');
     document.title = (game.replace(/_/g,' ')).toLowerCase().split(' ').map(function(word) {return word[0].toUpperCase() + word.substr(1);}).join(' ');;
-    document.querySelector('#favicon').href = `${game}.png`
+    document.querySelector('#favicon').href = `images/${game}.png`
 
     var swfobject = {};
 
