@@ -77,3 +77,8 @@
 /flash/files/run_3.swf filter=lfs diff=lfs merge=lfs -text
 /flash/files/sugar_sugar.swf filter=lfs diff=lfs merge=lfs -text
 /flash/files/the_impossible_quiz.swf filter=lfs diff=lfs merge=lfs -text
+/flash/files/duck_life.swf filter=lfs diff=lfs merge=lfs -text
+/flash/files/duck_life_2.swf filter=lfs diff=lfs merge=lfs -text
+/flash/files/ducklife_3.swf filter=lfs diff=lfs merge=lfs -text
+/flash/files/elephant_quest.swf filter=lfs diff=lfs merge=lfs -text
+/flash/files/factory_balls.swf filter=lfs diff=lfs merge=lfs -text
