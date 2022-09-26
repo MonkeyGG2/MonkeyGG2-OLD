@@ -85,3 +85,4 @@
 /flash/files/bloons_td_1.swf filter=lfs diff=lfs merge=lfs -text
 /flash/files/bloons_td_3.swf filter=lfs diff=lfs merge=lfs -text
 /flash/files/clicker_heroes.swf filter=lfs diff=lfs merge=lfs -text
+/flash/files/duck_life_3.swf filter=lfs diff=lfs merge=lfs -text
