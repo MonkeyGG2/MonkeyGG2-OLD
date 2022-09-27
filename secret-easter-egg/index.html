@@ -34,6 +34,7 @@
             font-size:300%;
           }
         </style>
+        <script type="text/javascript" src="/global.js"> </script>
     </head>
     <body>
       <h1 id="question" style="margin-top:20vh;text-align: center;">if ur seeing this u prolly diabled js :(</h1>
@@ -58,7 +59,7 @@
         var questions = ["do u want bitcoin?", "do u want free money?", "do u like rabbits?"];
           document.getElementById('question').innerHTML = (questions[Math.floor(Math.random() * questions.length)]);
         
-        window.onbeforeunload = function (e) {\
+        window.onbeforeunload = function (e) {
             e.preventDefault();
             e.returnValue =  "Do you want to leave? I really want u to keep watching rickroll :)";
         }
