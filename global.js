@@ -37,5 +37,5 @@ function clone(){
     } else if (localStorage.getItem("clone") == 'true') {
         makeclone();
     }
-}()
-
+}
+clone()
