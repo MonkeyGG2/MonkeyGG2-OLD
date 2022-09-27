@@ -1,4 +1,4 @@
-function clone(){
+function makeclone(){
     var url = window.location.href
     var urlObj = new window.URL(window.location.href);
     win = window.open();
@@ -22,7 +22,7 @@ function clone(){
 document.addEventListener('keydown', (e) => {
     if (e.key.toLowerCase() === 'q' && e.ctrlKey) {
         e.preventDefault();
-        clone()
+        makeclone()
     }
     else if (e.key.toLowerCase() === 'm' && e.ctrlKey) {
         e.preventDefault();
@@ -30,10 +30,12 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-if (localStorage.getItem("cloak") == null) {
-    localStorage.setItem("cloak", confirm("Do want auto cloak?\n\nif you don't remember you can still press ctrl q\n\nnote: we will make a settings page later where this can be changed"));
-} else if (localStorage.getItem("cloak") == 'true') {
-    alert('true');
-}
-
+function clone(){
+    if (localStorage.getItem("clone") == null) {
+        localStorage.setItem("clone", confirm("Do want auto cloak?\n\nif you don't remember you can still press ctrl q\n\nnote: we will make a settings page later where this can be changed"));
+        clone();
+    } else if (localStorage.getItem("clone") == 'true') {
+        makeclone();
+    }
+}()
 
