@@ -1,5 +1,5 @@
 function makeclone(){
-    if(!(window.top=="about:blank")){
+    if(!(window.top.location.href=="about:blank")){
         var url = window.location.href
         var urlObj = new window.URL(window.location.href);
         win = window.open();
