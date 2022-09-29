@@ -98,3 +98,10 @@
 /tunnel-rush/games/tunnel-rush/tunnel_rush_v9memory.unityweb filter=lfs diff=lfs merge=lfs -text
 /tunnel-rush/games/tunnel-rush/tunnel_rush_v9wasmcode.unityweb filter=lfs diff=lfs merge=lfs -text
 /tunnel-rush/games/tunnel-rush/tunnel_rush_v9wasmframework.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/UnityLoader.js filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/nohack_tunnel_rush_v9wasmframework.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/tunnel_rush_v9code.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/tunnel_rush_v9data.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/tunnel_rush_v9memory.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/tunnel_rush_v9wasmcode.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/tunnel_rush_v9wasmframework.unityweb filter=lfs diff=lfs merge=lfs -text
