@@ -91,3 +91,10 @@
 /rooftop-snipers/js/rooftop-snipers.asm.code.unityweb filter=lfs diff=lfs merge=lfs -text
 /rooftop-snipers/js/rooftop-snipers.asm.memory.unityweb filter=lfs diff=lfs merge=lfs -text
 /rooftop-snipers/js/rooftop-snipers.data.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/games/tunnel-rush/UnityLoader.js filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/games/tunnel-rush/nohack_tunnel_rush_v9wasmframework.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/games/tunnel-rush/tunnel_rush_v9code.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/games/tunnel-rush/tunnel_rush_v9data.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/games/tunnel-rush/tunnel_rush_v9memory.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/games/tunnel-rush/tunnel_rush_v9wasmcode.unityweb filter=lfs diff=lfs merge=lfs -text
+/tunnel-rush/games/tunnel-rush/tunnel_rush_v9wasmframework.unityweb filter=lfs diff=lfs merge=lfs -text
