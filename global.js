@@ -14,9 +14,6 @@ function makeclone(){
         iframe.allow = "fullscreen";
         iframe.src = url.toString();
         win.document.body.appendChild(iframe);
-        var script = win.document.createElement("script");
-        script.src = "https://3kh0.github.io/js/main.js";
-        win.document.body.appendChild(script);
         window.location.replace("https://mail.google.com")
     }
 }
