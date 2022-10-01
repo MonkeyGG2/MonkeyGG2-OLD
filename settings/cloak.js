@@ -18,11 +18,11 @@ if (currentCloak == null) {
 
 function switchCloak(e) {
     if (e.target.checked) {
-        localStorage.setItem("theme", "light");
+        localStorage.setItem("clone", "true");
         messageBox.textContent = "Enabled";
     }
     else {
-        localStorage.setItem("theme", "dark");
+        localStorage.setItem("clone", "false");
         messageBox.textContent = "Disabled";
     }    
 }
