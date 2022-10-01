@@ -9,8 +9,11 @@ if (currentTheme == null) {
     if (currentTheme == "light") {
         toggleSwitch.checked = true;
     }
-    else {
+    else if (currentTheme == "dark") {
         toggleSwitch.checked = false;
+    }
+    else {
+        return;
     }
 }
 
