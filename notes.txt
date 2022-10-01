@@ -1,2 +1,6 @@
+- fix cookie clicker
 add run games, clicker heros, ngon, eaglrcraft, snake, and minesweeper
-add light mode/dark mode toggle feature
+
+whya re you looking at this
+
+make settings? expand on ctrl q&m
