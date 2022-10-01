@@ -11,6 +11,7 @@
     </script>
     <link href="./style.css" rel="stylesheet"/>
     <link href="/slider.css" rel="stylesheet"/>
+    <link href="./cloakslider.css" rel="stylesheet"/>
     <script text="text/javascript" src="/global.js"></script>
     <title>MonkeyGG2 Settings</title>
 </head>
@@ -22,12 +23,20 @@
 
     <h2>Light/Dark Mode Switch</h2>
     <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
+        <label class="theme-switch" for="themebox">
+            <input type="checkbox" id="themebox" />
             <div class="slider round"></div>
         </label>
     </div>
 
     <h2>Auto Cloak</h2>
+    <div class="cloak-switch-wrapper">
+        <label class="cloak-switch" for="cloakbox">
+            <input type="checkbox" id="cloakbox"/>
+            <div class="cloak-slider round"></div>
+        </label>
+        <em id="cloak-status"></em>
+    </div>
     <script text="text/javascript" src="/themeSwitch.js"></script>
+    <script text="text/javascript" src="./cloak.js"></script>
  </body>

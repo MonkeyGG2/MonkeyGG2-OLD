@@ -1,4 +1,4 @@
-const toggleSwitch = document.getElementById("checkbox")
+const themeSwitch = document.getElementById("themebox")
 const currentTheme = localStorage.getItem("theme");
 
 if (currentTheme == null) {
@@ -7,14 +7,12 @@ if (currentTheme == null) {
     document.documentElement.setAttribute("data-theme", currentTheme);
     
     if (currentTheme == "light") {
-        toggleSwitch.checked = true;
+        themeSwitch.checked = true;
     }
     else if (currentTheme == "dark") {
-        toggleSwitch.checked = false;
+        themeSwitch.checked = false;
     }
-    else {
-        return;
-    }
+    else {}
 }
 
 function switchTheme(e) {
@@ -28,4 +26,4 @@ function switchTheme(e) {
     }    
 }
 
-toggleSwitch.addEventListener('change', switchTheme, false);
+themeSwitch.addEventListener('change', switchTheme, false);
