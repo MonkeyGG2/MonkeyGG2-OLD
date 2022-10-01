@@ -24,7 +24,8 @@ function addbutton(){
     button.id="go-back";
     button.onclick=function(){window.location.href='/';};
     button.style="z-index:5000;position: absolute;top:2%;left:2%;cursor:move;";
-    elmnt = document.getElementById("go-back")
+    document.body.appendChild(button);
+    elmnt = document.getElementById("go-back");
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.getElementById(elmnt.id + "header")) {
         // if present, the header is where you move the DIV from:
@@ -63,7 +64,6 @@ function addbutton(){
         document.onmouseup = null;
         document.onmousemove = null;
     }
-    document.body.appendChild(button);
 }
 
 if (localStorage.getItem("clone") == null) {
