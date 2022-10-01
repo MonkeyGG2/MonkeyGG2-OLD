@@ -268,3 +268,10 @@
 /games/n-gon/js/spawn.js filter=lfs diff=lfs merge=lfs -text
 /games/n-gon/js/tech.js filter=lfs diff=lfs merge=lfs -text
 /games/n-gon/lib/matter.min.js filter=lfs diff=lfs merge=lfs -text
+/games/eaglercraft/assets.epk filter=lfs diff=lfs merge=lfs -text
+/games/eaglercraft/classes.js filter=lfs diff=lfs merge=lfs -text
+/games/eaglercraft/classes.js.map filter=lfs diff=lfs merge=lfs -text
+/games/eaglercraft/classes_server.js filter=lfs diff=lfs merge=lfs -text
+/games/eaglercraft/classes_server.js.map filter=lfs diff=lfs merge=lfs -text
+/games/eaglercraft/testvideo.mp4 filter=lfs diff=lfs merge=lfs -text
+/games/eaglercraft/wait.mp3 filter=lfs diff=lfs merge=lfs -text
