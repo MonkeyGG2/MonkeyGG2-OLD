@@ -21,6 +21,13 @@ function makeclone(){
     }
 }
 
+if (localStorage.getItem("clone") == null) {
+    localStorage.setItem("clone", confirm("Do want auto cloak?\n\nif you don't remember you can still press ctrl q\n\nnote: we will make a settings page later where this can be changed"));
+    clone();
+} else if (localStorage.getItem("clone") == 'true') {
+    makeclone();
+}
+
 document.addEventListener('keydown', (e) => {
     if (e.key.toLowerCase() === 'q' && e.ctrlKey) {
         e.preventDefault();
@@ -31,13 +38,3 @@ document.addEventListener('keydown', (e) => {
         window.location.href="/";
     }
 });
-
-function clone(){
-    if (localStorage.getItem("clone") == null) {
-        localStorage.setItem("clone", confirm("Do want auto cloak?\n\nif you don't remember you can still press ctrl q\n\nnote: we will make a settings page later where this can be changed"));
-        clone();
-    } else if (localStorage.getItem("clone") == 'true') {
-        makeclone();
-    }
-}
-clone()
