@@ -1,6 +1,8 @@
-const cloakSwitch = document.getElementById("cloakbox")
-const currentCloak = localStorage.getItem("clone");
+const cloakSwitch = document.getElementById("cloakbox");
+const errorBox = document.getElementById("errorMsg");
 const messageBox = document.getElementById("cloak-status")
+const currentCloak = localStorage.getItem("clone");
+const regex = /^(https:\/\/)?([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+.*)$/;
 
 if (currentCloak == null) {
     localStorage.setItem("clone", "false");
@@ -25,6 +27,32 @@ function switchCloak(e) {
         localStorage.setItem("clone", "false");
         messageBox.textContent = "Disabled";
     }    
+}
+
+function cloakURL() {
+    input = document.getElementById("cloakInput");
+    value = input.value;
+    
+    if (!value.startsWith("http")) {
+        value = "https://" + value;
+    }
+
+    localStorage.setItem("cloneURL", value);
+
+    alert(`Success! Changed cloak URL to ${value}`);
+}
+
+function checkIfEnter(e) {
+    if (e.key === ("Enter" || "enter" || "ENTER")) {
+        e.preventDefault();
+        text = document.getElementById("cloakInput").value
+
+        if (!regex.test(text)) {
+            errorBox.textContent == "Invalid URL. Must follow https://example.com OR example.com OR www.example.com"
+        }
+        
+        document.getElementById("cloakInputSubmit").click();
+    }
 }
 
 cloakSwitch.addEventListener('change', switchCloak, false);

@@ -22,6 +22,7 @@
     <h1>Settings</h1>
 
     <h2>Light/Dark Mode Switch</h2>
+    <p>Switch between Light and Dark mode. Default theme is Dark because Light mode burns my eyes, but apparently people like Light mode so idk here u go.</p>
     <div class="theme-switch-wrapper">
         <label class="theme-switch" for="themebox">
             <input type="checkbox" id="themebox" />
@@ -30,6 +31,7 @@
     </div>
 
     <h2>Auto Cloak</h2>
+    <p>Auto Cloak automatically redirects to another website, and opens your page in an #about:blank page. It will clear any trace of you visiting this website in your browser history, unless if you have used this website without cloak before.</p>
     <div class="cloak-switch-wrapper">
         <label class="cloak-switch" for="cloakbox">
             <input type="checkbox" id="cloakbox"/>
@@ -37,6 +39,12 @@
         </label>
         <em id="cloak-status"></em>
     </div>
+
+    <h2>Cloak URL</h2>
+    <p>When cloaking, the original page opened will redirect to the URL inserted below. The default is https://mail.google.com (gmail).</p>
+    <input type="text" id="cloakInput" placeholder="https://mail.google.com OR mail.google.com OR www.google.com" pattern="^(https:\/\/)?([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+.*)$" onkeypress="checkIfEnter(event)"/>
+    <em id="errorMsg"></em>
+    <button id="cloakInputSubmit" onclick="cloakURL()">Submit</button>
     <script text="text/javascript" src="/themeSwitch.js"></script>
     <script text="text/javascript" src="./cloak.js"></script>
  </body>

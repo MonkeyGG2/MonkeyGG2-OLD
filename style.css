@@ -44,7 +44,7 @@ h2 a:hover {
 }
 
 #searchBar {
-  width: 100%;
+  width: 99%;
   font-family: var(--main-font);
   font-size: 18px;
   padding: 11px;
