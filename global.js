@@ -14,7 +14,7 @@ function makeclone(){
         iframe.allow = "fullscreen";
         iframe.src = url.toString();
         win.document.body.appendChild(iframe);
-        window.location.replace("https://mail.google.com")
+        window.location.replace(localStorage.getItem("cloneURL"))
     }
 }
 
@@ -64,6 +64,10 @@ function addbutton(){
         document.onmouseup = null;
         document.onmousemove = null;
     }
+}
+
+if (localStorage.getItem("cloneURL") == null) {
+    localStorage.setItem("cloneURL", "https://mail.google.com")
 }
 
 if (localStorage.getItem("clone") == null) {
