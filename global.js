@@ -20,55 +20,32 @@ function makeclone(){
 }
 
 function addbutton(){
-    const button = document.createElement("button");
-    button.innerText = "Back";
-    button.id="go-back";
-    button.onclick=function(){window.location.href='/';};
-    button.style="z-index:5000;position: absolute;top:2%;left:2%;cursor:pointer;";
-    document.body.appendChild(button);
-    elmnt = document.getElementById("go-back");
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        // if present, the header is where you move the DIV from:
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-        // otherwise, move the DIV from anywhere inside the DIV:
-        elmnt.onmousedown = dragMouseDown;
-    }
+    const btn = document.createElement("button");
+    btn.innerText = "Back";
+    btn.id="go-back";
+    btn.onclick=function(){window.location.href='/';};
+    btn.style="cursor: pointer; z-index: 9999; border-radius: 0 290486px 290486px 0; color: #000; height: 50px; padding: 19px 10px; border: none; background: #1ec2e5;";
+    const tab = document.createElement("button");
+    tab.id="tab";
+    tab.style="background-color:blue;border-radius: 290486px 0 0 290486px;cursor: pointer; z-index: 9999; color: #000; height: 50px; padding: 19px 10px; border: none;";
+    tab.style.width="15px";
+    document.body.appendChild(tab);
+    document.body.appendChild(btn);
 
-    function dragMouseDown(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
+    function drag(e) {
+    tab.style.transform = `translate(${e.pageX - 20}px, ${e.pageY - 10}px)`;
+    btn.style.transform = `translate(${e.pageX - 20}px, ${e.pageY - 10}px)`;
     }
-
-    function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // set the element's new position:
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
+    tab.addEventListener("mousedown", () =>
+    document.addEventListener("mousemove", drag)
+    );
+    tab.addEventListener("mouseup", () =>
+    document.removeEventListener("mousemove", drag)
+    );
 }
 
 if (localStorage.getItem("cloneURL") == null) {
-    localStorage.setItem("cloneURL", "https://mail.google.com")
+    localStorage.setItem("cloneURL", "https://mail.google.com");
 }
 
 if (localStorage.getItem("clone") == null) {
@@ -76,6 +53,10 @@ if (localStorage.getItem("clone") == null) {
     clone();
 } else if (localStorage.getItem("clone") == 'true') {
     makeclone();
+}
+
+if (!(window.location.href=="/")){
+    addbutton()
 }
 
 document.addEventListener('keydown', (e) => {
