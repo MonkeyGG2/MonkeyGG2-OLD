@@ -39,7 +39,9 @@ function cloakURL() {
 
     localStorage.setItem("cloneURL", value);
 
-    alert(`Success! Changed cloak URL to ${value}`);
+    if (confirm(`Success! Changed cloak URL to ${value}. Do you want to cloak now?`)) {
+        makeclone()
+    }
 }
 
 function checkIfEnter(e) {
@@ -50,7 +52,7 @@ function checkIfEnter(e) {
         if (!regex.test(text)) {
             errorBox.textContent == "Invalid URL. Must follow https://example.com OR example.com OR www.example.com"
         }
-        
+
         document.getElementById("cloakInputSubmit").click();
     }
 }
