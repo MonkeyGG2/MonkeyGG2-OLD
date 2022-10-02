@@ -14,15 +14,12 @@
     <title>Tunnel Rush</title>
     <link rel="shortcut icon" href="style/favicon.ico">
     <link rel="stylesheet" href="style/style.css">
-	<script src="/adinLoader.js"></script>
 	<script src="UnityLoader.js"></script>
     <script src="UnityProgress.js"></script>
     <script>
       var gameInstance = UnityLoader.instantiate("gameContainer", "build.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
     </script>
-      <button>
-        <a href="https://monkeygg2.codeberg.page">Back</a>
-     </button>   
+      <script text="text/javascript" src="/global.js" defer></script>
   </head>
   <body>
     <div class="webgl-content">

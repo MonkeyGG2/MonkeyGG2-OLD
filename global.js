@@ -24,10 +24,12 @@ function addbutton(){
     btn.innerText = "Back";
     btn.id="go-back";
     btn.onclick=function(){window.location.href='/';};
-    btn.style="cursor: pointer; z-index: 9999; border-radius: 0 290486px 290486px 0; color: #000; height: 50px; padding: 19px 10px; border: none; background: #1ec2e5;";
+
+    btn.style.cssText= "box-sizing:inherit;position:absolute;z-index:9999;left:0;width:75px;height:50px;border-radius:0290486px290486px0;color:#000;padding:010px;line-height:50px;min-height:50px;border:none;border-bottom:3pxsolid#b5b5b5;will-change:transform;animation:bounceY2s.5s;transition:transform.5scubic-bezier(.55,0,.1,1);display:flex;align-items:center;justify-content:center;background:#1ec2e5;top:51px;"
+
     const tab = document.createElement("button");
     tab.id="tab";
-    tab.style="background-color:blue;border-radius: 290486px 0 0 290486px;cursor: pointer; z-index: 9999; color: #000; height: 50px; padding: 19px 10px; border: none;";
+    tab.style.cssText = "background-color:blue;border-radius: 290486px 0 0 290486px;cursor: pointer; z-index: 9999; color: #000; height: 50px; padding: 19px 10px; border: none;";
     tab.style.width="15px";
     document.body.appendChild(tab);
     document.body.appendChild(btn);
