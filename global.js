@@ -56,13 +56,13 @@ if (localStorage.getItem("clone") == null) {
 }
 
 if (!(window.location.href=="/")){
-    addbutton()
+    addbutton();
 }
 
 document.addEventListener('keydown', (e) => {
     if (e.key.toLowerCase() === 'q' && e.ctrlKey) {
         e.preventDefault();
-        makeclone()
+        makeclone();
     }
     else if (e.key.toLowerCase() === 'm' && e.ctrlKey) {
         e.preventDefault();
