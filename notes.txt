@@ -1,6 +1,19 @@
-- fix cookie clicker
-add run games, clicker heros, ngon, eaglrcraft, snake, and minesweeper
+add run games, clicker heros, snake, and minesweeper
 
 whya re you looking at this
 
-make settings? expand on ctrl q&m
+make settings (done gg) expand on ctrl q&m
+
+tab flood short cut?
+
+mask favicon and document.title in settings?
+
+auto del setting?
+
+catigorys for games or maybe descriptions or maybe images
+
+sort by, like a dropdown filters, chage it to a-z, z-a, catigory, new, old etc
+
+comments?
+
+OH and 404
