@@ -1,7 +1,6 @@
 function makeclone(){
-    if(!(window.top.location.href=="about:blank")){
-        var url = window.location.href
-        var urlObj = new window.URL(window.location.href);
+    if((window.top.location.href!="about:blank")){
+        var url = window.location.href;
         win = window.open();
         win.document.body.style.margin = "0";
         win.document.body.style.height = "100vh";
@@ -21,12 +20,13 @@ function makeclone(){
 }
 
 function askclone(){
-    if (confirm("Would you like to clone now?")){
-        if(!(window.top.location.href=="about:blank")){
-            makeclone()
+  if (confirm("Would you like to clone now?")){
+        if((window.top.location.href!="about:blank")){
+            makeclone();
         }else{
-            alert("You are already in an about:blank page")
+            alert("You are already in an about:blank page");
         }
+  	}
 }
 
 if (localStorage.getItem("cloneURL") == null) {
