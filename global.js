@@ -107,8 +107,7 @@ function addBtnHome(){
     document.getElementsByTagName('body')[0].appendChild(e);
 }
 
-if (window.location.href != "/") {
-    console.log(window.location.href);
+if (window.location.href != "https://monkeygg2.codeberg.page/") {
     window.addEventListener('load', function() {
         addCss();
         addBtnHome();
