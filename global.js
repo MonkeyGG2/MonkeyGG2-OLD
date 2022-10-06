@@ -185,8 +185,6 @@ function returnHome(){
         return;
     }
     location.href = "/";
-        alert('test');
-        window.close();
 }
 
 function askclone(){
