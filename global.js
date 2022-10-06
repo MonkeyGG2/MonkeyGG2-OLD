@@ -14,7 +14,6 @@ function makeclone(){
         iframe.src = url.toString();
         win.document.body.appendChild(iframe);
         window.location.replace(localStorage.getItem("cloneURL"));
-<<<<<<< HEAD
     }
 }
 
@@ -177,7 +176,6 @@ function returnHome(){
         return;
     }
     location.href = "/";
-=======
         alert('test');
         window.close();
     }
@@ -191,7 +189,6 @@ function askclone(){
             alert("You are already in an about:blank page");
         }
   	}
->>>>>>> a6b8bbef7f1c08cefe4250d1a7d21f6d2736c8b4
 }
 
 if (localStorage.getItem("cloneURL") == null) {
@@ -199,21 +196,12 @@ if (localStorage.getItem("cloneURL") == null) {
 }
 
 if (localStorage.getItem("clone") == null) {
-<<<<<<< HEAD
     localStorage.setItem("clone", confirm("Do want auto cloak?\n\nif you don't remember you can still press ctrl q"));
     clone();
-=======
-    localStorage.setItem("clone", confirm("Do want auto cloak?\n\nif you don't remember you can still press ctrl q\n\nnote: you can always change this and more in settings"));
-    askclone();
->>>>>>> a6b8bbef7f1c08cefe4250d1a7d21f6d2736c8b4
 } else if (localStorage.getItem("clone") == 'true') {
     makeclone();
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a6b8bbef7f1c08cefe4250d1a7d21f6d2736c8b4
 document.addEventListener('keydown', (e) => {
     if (e.key.toLowerCase() === 'q' && e.ctrlKey) {
         e.preventDefault();
