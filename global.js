@@ -25,7 +25,6 @@ function cloak(){
     link.href = 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico';
     e.getElementsByTagName('head')[0].appendChild(link);
     e.title = "Inbox (69) - Gmail";
-    }
 }
 
 function addCss(){
