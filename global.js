@@ -74,7 +74,7 @@ function addCss(){
     }
 
     button.in-game-button:not(hover) {
-        transform: translateX(-40px)
+        transform: translateX(-32px)
     }
 
     button.in-game-button:hover {
