@@ -15,35 +15,168 @@ function makeclone(){
         iframe.src = url.toString();
         win.document.body.appendChild(iframe);
         window.location.replace(localStorage.getItem("cloneURL"));
-        window.close();
     }
 }
 
-function addbutton(){
-    const btn = document.createElement("button");
-    btn.innerText = "Back";
-    btn.id="go-back";
-    btn.onclick=function(){window.location.href='/';};
-
-    btn.style.cssText= "box-sizing:inherit;position:absolute;z-index:9999;left:0;width:75px;height:50px;border-radius:0290486px290486px0;color:#000;padding:010px;line-height:50px;min-height:50px;border:none;border-bottom:3pxsolid#b5b5b5;will-change:transform;animation:bounceY2s.5s;transition:transform.5scubic-bezier(.55,0,.1,1);display:flex;align-items:center;justify-content:center;background:#1ec2e5;top:51px;"
-
-    const tab = document.createElement("button");
-    tab.id="tab";
-    tab.style.cssText = "background-color:blue;border-radius: 290486px 0 0 290486px;cursor: pointer; z-index: 9999; color: #000; height: 50px; padding: 19px 10px; border: none;";
-    tab.style.width="15px";
-    document.body.appendChild(tab);
-    document.body.appendChild(btn);
-
-    function drag(e) {
-    tab.style.transform = `translate(${e.pageX - 20}px, ${e.pageY - 10}px)`;
-    btn.style.transform = `translate(${e.pageX - 20}px, ${e.pageY - 10}px)`;
+function addCss(){
+    const e = document.createElement('style');
+    e.innerHTML = `
+    button.in-game-button {
+        position: absolute;
+        z-index: 9999;
+        top: 61px;
+        left: 0;
+        width: 75px;
+        height: 50px;
+        background: #fff;
+        border-radius: 0 290486px 290486px 0;
+        color: #000;
+        padding: 0 10px;
+        line-height: 50px;
+        min-height: 50px;
+        border: none;
+        border-bottom: 3px solid #b5b5b5;
+        will-change: transform;
+        animation: bounceY 2s .5s;
+        transition: transform .5s cubic-bezier(.55,0,.1,1);
+        display: flex;
+        align-items: center;
+        justify-content: center
     }
-    tab.addEventListener("mousedown", () =>
-    document.addEventListener("mousemove", drag)
-    );
-    tab.addEventListener("mouseup", () =>
-    document.removeEventListener("mousemove", drag)
-    );
+    
+    button.in-game-button svg {
+        pointer-events: none;
+        color: #b5b5b5;
+        margin-right: .625rem;
+        display: inline-block
+    }
+    
+    button.in-game-button img {
+        pointer-events: none;
+        width: 30px
+    }
+    
+    button.in-game-button:active {
+        background: #1ec2e5
+    }
+    
+    button.in-game-button[attr-active=true] {
+        transform: translateX(0)
+    }
+
+    button.in-game-button:not(hover) {
+        transform: translateX(-40px)
+    }
+
+    button.in-game-button:hover {
+        transform: translateX(0px)
+    }
+    
+    @media(max-height: 350px) and (orientation:landscape) {
+        button.in-game-button[attr-active=true] {
+            transform:translateX(-75px)
+        }
+    }
+    
+    button.in-game-button[attr-snapped=true] svg {
+        display: none
+    }
+    
+    button.in-game-button[attr-snapped=true] img {
+        transform: translate(-5px)
+    }
+    `;  
+    document.getElementsByTagName('head')[0].appendChild(e);
+}
+function addBtnHome(){
+    var e = document.createElement('button');
+    e.className = 'in-game-button';
+    e.id = 'inGame';
+    e.innerHTML = `
+    <svg class="svg-inline--fa fa-chevron-left fa-w-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path></svg><!-- <i class="fas fa-chevron-left"></i> Font Awesome fontawesome.com -->
+    <img src="/home.png" width="36" height="36" alt="Logo">`;
+    document.getElementsByTagName('body')[0].appendChild(e);
+}
+
+if (window.location.href != "/") {
+    console.log(window.location.href)
+    window.addEventListener('load', function() {
+        addCss();
+        addBtnHome();
+        var btn = document.getElementById("inGame");
+        btn.addEventListener("click", returnHome);
+        dragElement(document.getElementById("inGame"));
+        
+    });
+
+    var hold = false;
+    var click = 0;
+}
+function openInfo(){
+    var  e = document.getElementById("post");
+    console.log(window.hold);
+    if(window.hold == true){
+        return;
+    }
+    if(!e.classList.contains("open")){
+        console.log(1);
+        e.classList.add('open');
+    } else {
+        e.classList.remove('open');
+    }
+    window.hold = false;
+
+}
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id)) {
+        document.getElementById(elmnt.id).onmousedown = dragMouseDown;
+    } else {
+        elmnt.onmousedown = dragMouseDown;
+        
+    
+    
+}
+
+function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+}
+
+function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    window.click = 1;
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+
+}
+
+function closeDragElement() {
+
+    document.onmouseup = null;
+    document.onmousemove = null;
+
+    if(window.click == 1){
+        window.hold = true;
+        window.click = 0;
+    }
+    setTimeout(function (){ window.hold = false}, 100);
+}
+}
+function returnHome(){
+    if(window.hold == true){
+        return;
+    }
+    location.href = "/";
 }
 
 if (localStorage.getItem("cloneURL") == null) {
@@ -51,14 +184,10 @@ if (localStorage.getItem("cloneURL") == null) {
 }
 
 if (localStorage.getItem("clone") == null) {
-    localStorage.setItem("clone", confirm("Do want auto cloak?\n\nif you don't remember you can still press ctrl q\n\nnote: we will make a settings page later where this can be changed"));
+    localStorage.setItem("clone", confirm("Do want auto cloak?\n\nif you don't remember you can still press ctrl q"));
     clone();
 } else if (localStorage.getItem("clone") == 'true') {
     makeclone();
-}
-
-if (!(window.location.href=="/")){
-    addbutton();
 }
 
 document.addEventListener('keydown', (e) => {
