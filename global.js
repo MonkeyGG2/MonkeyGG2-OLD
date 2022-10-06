@@ -192,7 +192,7 @@ function returnHome(){
 
 function askclone(){
   if (confirm("Would you like to clone now?")){
-        if((window.top.location.href!="about:blank")){
+        if((window.top.location.href!=="about:blank")){
             makeclone();
         }else{
             alert("You are already in an about:blank page");
