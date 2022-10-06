@@ -17,6 +17,17 @@ function makeclone(){
     }
 }
 
+function cloak(){
+    var e = window.top.document;
+    var link = e.querySelector("link[rel*='icon']") || document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico';
+    e.getElementsByTagName('head')[0].appendChild(link);
+    e.title = "Inbox (69) - Gmail";
+    }
+}
+
 function addCss(){
     const e = document.createElement('style');
     e.innerHTML = `
@@ -98,7 +109,7 @@ function addBtnHome(){
 }
 
 if (window.location.href != "/") {
-    console.log(window.location.href)
+    console.log(window.location.href);
     window.addEventListener('load', function() {
         addCss();
         addBtnHome();
@@ -178,7 +189,6 @@ function returnHome(){
     location.href = "/";
         alert('test');
         window.close();
-    }
 }
 
 function askclone(){
@@ -196,7 +206,7 @@ if (localStorage.getItem("cloneURL") == null) {
 }
 
 if (localStorage.getItem("clone") == null) {
-    localStorage.setItem("clone", confirm("Do want auto cloak?\n\nif you don't remember you can still press ctrl q"));
+    localStorage.setItem("clone", confirm("Do want auto clone?\n\nif you don't remember you can still press ctrl q"));
     clone();
 } else if (localStorage.getItem("clone") == 'true') {
     makeclone();
