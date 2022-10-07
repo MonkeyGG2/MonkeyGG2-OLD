@@ -219,6 +219,6 @@ document.addEventListener('keydown', (e) => {
     }
     else if (e.key.toLowerCase() === 'c' && e.ctrlKey) {
         e.preventDefault();
-        cloak()
+        cloak();
     }
 });
