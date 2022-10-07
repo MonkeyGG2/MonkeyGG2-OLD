@@ -203,18 +203,22 @@ if (localStorage.getItem("cloneURL") == null) {
 
 if (localStorage.getItem("clone") == null) {
     localStorage.setItem("clone", confirm("Do want auto clone?\n\nif you don't remember you can still press ctrl q"));
-    clone();
+    askclone();
 } else if (localStorage.getItem("clone") == 'true') {
     makeclone();
 }
 
 document.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 'q' && e.ctrlKey) {
+    if (e.key.toLowerCase() === 'b' && e.ctrlKey) {
         e.preventDefault();
         makeclone();
     }
-    else if (e.key.toLowerCase() === 'm' && e.ctrlKey) {
+    else if (e.key.toLowerCase() === 'h' && e.ctrlKey) {
         e.preventDefault();
         window.location.href="/";
+    }
+    else if (e.key.toLowerCase() === 'c' && e.ctrlKey) {
+        e.preventDefault();
+        cloak()
     }
 });
