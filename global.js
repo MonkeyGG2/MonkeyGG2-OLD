@@ -37,14 +37,14 @@ function addCss(){
         left: 0;
         width: 75px;
         height: 50px;
-        background: #fff;
+        background: var(--hover-color);
         border-radius: 0 290486px 290486px 0;
         color: #000;
         padding: 0 10px;
         line-height: 50px;
         min-height: 50px;
         border: none;
-        border-bottom: 3px solid #b5b5b5;
+        border-bottom: 3px solid var(--font-color);
         will-change: transform;
         animation: bounceY 2s .5s;
         transition: transform .5s cubic-bezier(.55,0,.1,1);
@@ -55,7 +55,7 @@ function addCss(){
     
     button.in-game-button svg {
         pointer-events: none;
-        color: #b5b5b5;
+        color: var(--font-color);
         margin-right: .625rem;
         display: inline-block
     }
@@ -66,7 +66,7 @@ function addCss(){
     }
     
     button.in-game-button:active {
-        background: #1ec2e5
+        background: #aaa
     }
     
     button.in-game-button[attr-active=true] {
@@ -188,7 +188,7 @@ function returnHome(){
 }
 
 function askclone(){
-  if (confirm("Would you like to clone now?")){
+  if (confirm("Would you like to cloak now?")){
         if((window.top.location.href!=="about:blank")){
             makeclone();
         }else{
