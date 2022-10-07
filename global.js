@@ -17,7 +17,7 @@ function makeclone(){
     }
 }
 
-function cloak(){
+function mask(){
     var e = window.top.document;
     var link = e.querySelector("link[rel*='icon']") || document.createElement('link');
     link.type = 'image/x-icon';
@@ -207,18 +207,18 @@ if (localStorage.getItem("clone") == null) {
 } else if (localStorage.getItem("clone") == 'true') {
     makeclone();
 }
-
+// c = clone, b = back, m = mask
 document.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 'b' && e.ctrlKey) {
+    if (e.key.toLowerCase() === 'c' && e.ctrlKey) {
         e.preventDefault();
         makeclone();
     }
-    else if (e.key.toLowerCase() === 'h' && e.ctrlKey) {
+    else if (e.key.toLowerCase() === 'b' && e.ctrlKey) {
         e.preventDefault();
         window.location.href="/";
     }
-    else if (e.key.toLowerCase() === 'c' && e.ctrlKey) {
+    else if (e.key.toLowerCase() === 'm' && e.ctrlKey) {
         e.preventDefault();
-        cloak();
+        mask();
     }
 });
