@@ -50,7 +50,11 @@ function checkIfEnter(e) {
         text = document.getElementById("cloakInput").value
 
         if (!regex.test(text)) {
-            errorBox.textContent == "Invalid URL. Must follow https://example.com OR example.com OR www.example.com"
+            return errorBox.textContent == "Invalid URL. Must follow https://example.com OR example.com OR www.example.com"
+        }
+
+        if (text.startsWith("https://monkeygg2") || text.startsWith("monkeygg2")) {
+            return errorBox.textContent == "Please do not use this website as the URL"
         }
 
         document.getElementById("cloakInputSubmit").click();
