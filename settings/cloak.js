@@ -53,7 +53,7 @@ function checkIfEnter(e) {
             return errorBox.textContent == "Invalid URL. Must follow https://example.com OR example.com OR www.example.com"
         }
 
-        if (text.startsWith("https://monkeygg2") || text.startsWith("monkeygg2")) {
+        if (text.startsWith("https://monkeygg2" || "https://metagg2") || text.startsWith("monkeygg2" || "metagg2")) {
             return errorBox.textContent == "Please do not use this website as the URL"
         }
 
