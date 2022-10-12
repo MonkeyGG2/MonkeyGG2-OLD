@@ -12,8 +12,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
      crossorigin="anonymous"></script>
     <link href="./style.css" rel="stylesheet"/>
-    <link href="/slider.css" rel="stylesheet"/>
-    <link href="./cloakslider.css" rel="stylesheet"/>
+    <link href="./slider.css" rel="stylesheet"/>
     <script text="text/javascript" src="/global.js" defer></script>
     <title>MonkeyGG2 Settings</title>
 </head>
@@ -26,8 +25,8 @@
 
     <h2>Light/Dark Mode Switch</h2>
     <p>Switch between Light and Dark mode. Default theme is Dark because Light mode burns my eyes, but apparently people like Light mode so idk here u go.</p>
-    <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="themebox">
+    <div class="switch-wrapper">
+        <label class="switch" for="themebox">
             <input type="checkbox" id="themebox" />
             <div class="slider round"></div>
         </label>
@@ -35,10 +34,10 @@
 
     <h2>Auto Cloak</h2>
     <p>Auto Cloak automatically redirects to another website and opens your page in an #about:blank page. It will clear any trace of you visiting this website in your browser history, unless if you have used this website without cloak before, or if you close the original tab too early.</p>
-    <div class="cloak-switch-wrapper">
-        <label class="cloak-switch" for="cloakbox">
+    <div class="switch-wrapper">
+        <label class="switch" for="cloakbox">
             <input type="checkbox" id="cloakbox"/>
-            <div class="cloak-slider round"></div>
+            <div class="slider round"></div>
         </label>
         <em id="cloak-status"></em>
     </div>
@@ -48,6 +47,5 @@
     <input type="text" id="cloakInput" placeholder="https://mail.google.com OR mail.google.com OR www.google.com" pattern="^(https:\/\/)?([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+.*)$" onkeypress="checkIfEnter(event)"/>
     <em id="errorMsg"></em>
     <button id="cloakInputSubmit" onclick="cloakURL()">Submit</button>
-    <script text="text/javascript" src="/themeSwitch.js"></script>
-    <script text="text/javascript" src="./cloak.js"></script>
+    <script text="text/javascript" src="./settings.js"></script>
  </body>
