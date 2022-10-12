@@ -107,7 +107,7 @@ function addBtnHome(){
     document.getElementsByTagName('body')[0].appendChild(e);
 }
 
-if (window.location.href != "https://monkeygg2.codeberg.page/") {
+if (window.location.pathname != "/") {
     window.addEventListener('load', function() {
         addCss();
         addBtnHome();
@@ -215,7 +215,7 @@ document.addEventListener('keydown', (e) => {
     }
     else if (e.key.toLowerCase() === 'b' && e.ctrlKey) {
         e.preventDefault();
-        window.location.href="/";
+        returnHome()
     }
     else if (e.key.toLowerCase() === 'm' && e.ctrlKey) {
         e.preventDefault();

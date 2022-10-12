@@ -1,4 +1,4 @@
-.cloak-switch-wrapper {
+.switch-wrapper {
     display: flex;
     align-items: center;
 }
@@ -7,18 +7,18 @@
     color: var(--font-color);
 }
 
-.cloak-switch {
+.switch {
     display: inline-block;
     height: 34px;
     position: relative;
     width: 60px;
 }
 
-.cloak-switch input {
+.switch input {
     display:none;
 }
 
-.cloak-slider {
+.slider {
     background-color: var(--second-bg-color);
     bottom: 0;
     cursor: pointer;
@@ -29,7 +29,7 @@
     transition: .4s;
 }
 
-.cloak-slider:before {
+.slider:before {
     background-color: #fff;
     bottom: 4px;
     content: "";
@@ -40,19 +40,19 @@
     width: 26px;
 }
 
-input:checked + .cloak-slider {
+input:checked + .slider {
     background-color: var(--second-bg-color);
 }
 
-input:checked + .cloak-slider:before {
+input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-.cloak-slider.round {
+.slider.round {
     border-radius: 34px;
 }
 
-.cloak-slider.round:before {
+.slider.round:before {
     border-radius: 50%;
 }
 
