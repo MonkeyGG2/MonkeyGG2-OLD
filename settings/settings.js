@@ -1,4 +1,4 @@
-const toggleSwitch = document.getElementById("checkbox")
+const toggleSwitch = document.getElementById("themebox")
 const currentTheme = localStorage.getItem("theme");
 
 const cloakSwitch = document.getElementById("cloakbox");
