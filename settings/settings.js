@@ -1,3 +1,6 @@
+const toggleSwitch = document.getElementById("checkbox")
+const currentTheme = localStorage.getItem("theme");
+
 const cloakSwitch = document.getElementById("cloakbox");
 const errorBox = document.getElementById("errorMsg");
 const messageBox = document.getElementById("cloak-status")
@@ -18,6 +21,19 @@ if (currentCloak == null) {
     else {}
 }
 
+if (currentTheme == null) {
+    localStorage.setItem("theme", "dark");
+} else {
+    document.documentElement.setAttribute("data-theme", currentTheme);
+    
+    if (currentTheme == "light") {
+        toggleSwitch.checked = true;
+    }
+    else {
+        toggleSwitch.checked = false;
+    }
+}
+
 function switchCloak(e) {
     if (e.target.checked) {
         localStorage.setItem("clone", "true");
@@ -26,6 +42,17 @@ function switchCloak(e) {
     else {
         localStorage.setItem("clone", "false");
         messageBox.textContent = "Disabled";
+    }    
+}
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem("theme", "light");
+    }
+    else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem("theme", "dark")
     }    
 }
 
@@ -62,3 +89,5 @@ function checkIfEnter(e) {
 }
 
 cloakSwitch.addEventListener('change', switchCloak, false);
+
+toggleSwitch.addEventListener('change', switchTheme, false);
