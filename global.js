@@ -202,8 +202,9 @@ if (localStorage.getItem("cloneURL") == null) {
 }
 
 if (localStorage.getItem("clone") == null) {
-    localStorage.setItem("clone", confirm("Do want auto clone?\n\nif you don't remember you can still press ctrl q"));
-    askclone();
+    var eee = confirm("Do want auto clone?\n\nif you don't remember you can still press ctrl q");
+    localStorage.setItem("clone", eee);
+    if (eee){askclone()}
 } else if (localStorage.getItem("clone") == 'true') {
     makeclone();
 }
