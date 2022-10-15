@@ -422,3 +422,8 @@
 /games/flash/files/fleeing_the_complex.swf filter=lfs diff=lfs merge=lfs -text
 /games/flash/files/infiltrating_the_airship.swf filter=lfs diff=lfs merge=lfs -text
 /games/flash/files/stealing_the_diamond.swf filter=lfs diff=lfs merge=lfs -text
+/games/flash/files/riddle_school.swf filter=lfs diff=lfs merge=lfs -text
+/games/flash/files/riddle_school_3.swf filter=lfs diff=lfs merge=lfs -text
+/games/flash/files/riddle_school_4.swf filter=lfs diff=lfs merge=lfs -text
+/games/flash/files/riddle_school_5.swf filter=lfs diff=lfs merge=lfs -text
+/games/flash/files/riddle_transfer.swf filter=lfs diff=lfs merge=lfs -text
