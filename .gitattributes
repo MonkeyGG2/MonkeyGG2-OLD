@@ -433,3 +433,4 @@
 /games/flash/images/riddle_school_5.png filter=lfs diff=lfs merge=lfs -text
 /there-is-no-game/index.html filter=lfs diff=lfs merge=lfs -text
 /games/there-is-no-game/index.html filter=lfs diff=lfs merge=lfs -text
+/favicon.ico filter=lfs diff=lfs merge=lfs -text
