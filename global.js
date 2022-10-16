@@ -125,7 +125,7 @@ function addBtnHome(){
     document.getElementsByTagName('body')[0].appendChild(e);
 }
 
-if (window.location.href != "https://monkeygg2.codeberg.page/") {
+if (window.location.pathname != "/") {
     window.addEventListener('load', function() {
         addCss();
         addBtnHome();
@@ -220,8 +220,9 @@ if (localStorage.getItem("cloneURL") == null) {
 }
 
 if (localStorage.getItem("clone") == null) {
-    localStorage.setItem("clone", confirm("Do want auto clone?\n\nif you don't remember you can still press ctrl q"));
-    askclone();
+    var eee = confirm("Do want auto clone?\n\nif you don't remember you can still press ctrl q");
+    localStorage.setItem("clone", eee);
+    if (eee){askclone()}
 } else if (localStorage.getItem("clone") == 'true') {
     makeclone();
 }
@@ -233,7 +234,7 @@ document.addEventListener('keydown', (e) => {
     }
     else if (e.key.toLowerCase() === 'b' && e.ctrlKey) {
         e.preventDefault();
-        window.location.href="/";
+        returnHome()
     }
     else if (e.key.toLowerCase() === 'm' && e.ctrlKey) {
         e.preventDefault();
