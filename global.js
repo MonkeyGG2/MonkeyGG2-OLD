@@ -30,6 +30,24 @@ function mask(){
 function addCss(){
     const e = document.createElement('style');
     e.innerHTML = `
+    :root {
+        --bg-color: #2f3136;
+        --second-bg-color: #202225;
+        --font-color: #dcddde;
+        --block-color: #36393f;
+        --hover-color: #565b65;
+        --main-font: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        --second-font: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      }
+      
+      [data-theme="light"] {
+        --bg-color: #e4e5f1;
+        --second-bg-color: #9394a5;
+        --font-color: #202225;
+        --block-color: #dcddde;
+        --hover-color: #fafafa;
+      }
+      
     button.in-game-button {
         position: absolute;
         z-index: 9999;
