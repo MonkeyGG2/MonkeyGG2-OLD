@@ -431,3 +431,4 @@
 /games/flash/files/riddle_school_2.swf filter=lfs diff=lfs merge=lfs -text
 /games/flash/images/riddle_school_4.png filter=lfs diff=lfs merge=lfs -text
 /games/flash/images/riddle_school_5.png filter=lfs diff=lfs merge=lfs -text
+/there-is-no-game/index.html filter=lfs diff=lfs merge=lfs -text
