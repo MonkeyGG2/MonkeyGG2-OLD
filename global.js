@@ -241,3 +241,8 @@ document.addEventListener('keydown', (e) => {
         mask();
     }
 });
+
+favicon = document.createElement("link");
+favicon.rel = "icon";
+favicon.type = "image/x-icon";
+favicon.href = "/favicon.ico";
