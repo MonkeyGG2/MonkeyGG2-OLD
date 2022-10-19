@@ -434,3 +434,4 @@
 /there-is-no-game/index.html filter=lfs diff=lfs merge=lfs -text
 /games/there-is-no-game/index.html filter=lfs diff=lfs merge=lfs -text
 /favicon.ico filter=lfs diff=lfs merge=lfs -text
+/games/flash/files/creative_kill_chamber.swf filter=lfs diff=lfs merge=lfs -text
