@@ -557,3 +557,4 @@
 /games/stickman-hook/bundle.js filter=lfs diff=lfs merge=lfs -text
 /games/stickman-hook/poki.js filter=lfs diff=lfs merge=lfs -text
 /games/stickman-hook/poki2.js filter=lfs diff=lfs merge=lfs -text
+/games/stickman-hook/fonts/Odin-Rounded-Bold.ttf filter=lfs diff=lfs merge=lfs -text
