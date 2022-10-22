@@ -554,3 +554,6 @@
 /games/friday-night-funkin/assets/sounds/thunder_1.mp3 filter=lfs diff=lfs merge=lfs -text
 /games/friday-night-funkin/assets/sounds/thunder_2.mp3 filter=lfs diff=lfs merge=lfs -text
 /games/friday-night-funkin/assets/sounds/train_passes.mp3 filter=lfs diff=lfs merge=lfs -text
+/games/stickman-hook/bundle.js filter=lfs diff=lfs merge=lfs -text
+/games/stickman-hook/poki.js filter=lfs diff=lfs merge=lfs -text
+/games/stickman-hook/poki2.js filter=lfs diff=lfs merge=lfs -text
