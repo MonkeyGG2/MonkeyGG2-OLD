@@ -561,3 +561,8 @@
 /games/stickman-hook/images/1f8794216bbd48e1185deeeafd38e37f-CHAR_AngelStick.png filter=lfs diff=lfs merge=lfs -text
 /games/stickman-hook/images/3e903b257d861f09cba9b42a601309c2-CHAR_Classic.png filter=lfs diff=lfs merge=lfs -text
 /games/stickman-hook/images/34b2b8621726d53802db6f864b49cd90-CHAR_TikiMan.png filter=lfs diff=lfs merge=lfs -text
+/games/1v1-lol/UnityLoader.js filter=lfs diff=lfs merge=lfs -text
+/games/1v1-lol/firebase-auth.js filter=lfs diff=lfs merge=lfs -text
+/games/1v1-lol/firebase-firestore.js filter=lfs diff=lfs merge=lfs -text
+/games/1v1-lol/rc.data.unityweb filter=lfs diff=lfs merge=lfs -text
+/games/1v1-lol/rc.wasm.code.unityweb filter=lfs diff=lfs merge=lfs -text
