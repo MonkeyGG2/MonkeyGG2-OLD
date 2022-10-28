@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="description" content="Collect edges and shoot other players to gain more edges..." />
+	<meta name="keywords" content="gons.io, gons, io game, web game">
+    <title>Gons.io</title>
+	
+	<meta property="og:url" content="http://gons.io" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Gons.io" />
+	<meta property="og:description" content="Gons.io throws you into a map where you must shoot to survive. Collect edges and shoot other players to gain more edges as you approach circular perfection." />
+	<meta property="og:image" content="http://gons.io/Blobium/gonsio_share.png" />
+	
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="stylesheet" href="Blobium/style.css">
+	
+	<script>
+		function getParameterByName(name, url) {
+		    if (!url) url = window.location.href;
+		    name = name.replace(/[\[\]]/g, "\\$&");
+		    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		        results = regex.exec(url);
+		    if (!results) return null;
+		    if (!results[2]) return '';
+		    return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+
+		if (window!=window.top && getParameterByName("ini")!="yep") 
+		{
+			window.location.replace('http://gons.io/?ini=yep');
+		}
+			
+	</script>
+	
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-46822014-4', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	
+    
+    <script src="Blobium/bileeunayre.js"></script>  
+	<script src="Blobium/cursorChanger.js"></script>  
+
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+		var gameInstance = UnityLoader.instantiate("gameContainer", "Build/livev0_4_1a.json", {
+			onProgress: UnityProgress,
+			Module: {
+				onRuntimeInitialized: function() { UnityProgress(gameInstance, "complete") }
+			}
+		});
+    </script>
+	<script src="Blobium/smoothAsGravy.js"></script>
+	<script>
+		if(/(android)/i.test(navigator.userAgent))
+		{
+			window.location.replace('https://play.google.com/store/apps/details?id=com.samhgames.gonsio');
+		}
+		else if(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream)
+		{
+			window.location.replace('http://itunes.apple.com/app/id1275805632?mt=8');
+		}
+		else if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+			window.location.replace('http://gons.io/mobile.html');
+		}
+	</script>
+	<script src="Blobium/inplay.js"></script>  
+	<script src="Blobium/credits.js"></script>  
+  </head>
+  <body>
+	<div id="preroll"></div>
+    <div id="gameContainer" style="width: 100%; height: 100%"></div>
+	<img id="loading" src="Blobium/spinner.png" width="256" height="256">
+	<p id="percent">0%</p>
+	<div id="centerlink">
+		<a href="http://www.addictinggames.com/" id="gameslink" target="_blank" rel="nofollow">More Free Games</a>
+	</div>
+  </body>
+</html>

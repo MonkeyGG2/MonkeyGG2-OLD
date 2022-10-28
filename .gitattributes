@@ -566,3 +566,12 @@
 /games/1v1-lol/firebase-firestore.js filter=lfs diff=lfs merge=lfs -text
 /games/1v1-lol/rc.data.unityweb filter=lfs diff=lfs merge=lfs -text
 /games/1v1-lol/rc.wasm.code.unityweb filter=lfs diff=lfs merge=lfs -text
+/games/breaklock/assets/ios-startup/startup-1080x1920.png filter=lfs diff=lfs merge=lfs -text
+/games/breaklock/assets/ios-startup/startup-640x1136.png filter=lfs diff=lfs merge=lfs -text
+/games/breaklock/assets/ios-startup/startup-750x1334.png filter=lfs diff=lfs merge=lfs -text
+/games/breaklock/assets/vectors/cover.svg filter=lfs diff=lfs merge=lfs -text
+/games/breaklock/package-lock.json filter=lfs diff=lfs merge=lfs -text
+/games/gons-io/6654dacc-b7e6-4091-900a-4d191d93054c filter=lfs diff=lfs merge=lfs -text
+/games/gons-io/Build/UnityLoader.js filter=lfs diff=lfs merge=lfs -text
+/games/gons-io/Build/livev0_4_1a.data.unityweb filter=lfs diff=lfs merge=lfs -text
+/games/gons-io/Build/livev0_4_1a.wasm.code.unityweb filter=lfs diff=lfs merge=lfs -text
