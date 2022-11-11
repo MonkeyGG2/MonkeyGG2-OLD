@@ -205,27 +205,16 @@ function returnHome(){
     location.href = "/";
 }
 
-function askclone(){
-  if (confirm("Would you like to cloak now?")){
-        if((window.top.location.href!=="about:blank")){
-            makeclone();
-        }else{
-            alert("You are already in an about:blank page");
-        }
-  	}
-}
-
 if (localStorage.getItem("cloneURL") == null) {
     localStorage.setItem("cloneURL", "https://mail.google.com");
 }
 
 if (localStorage.getItem("clone") == null) {
-    var eee = confirm("Do want auto clone?\n\nif you don't remember you can still press ctrl q");
-    localStorage.setItem("clone", eee);
-    if (eee){askclone()}
-} else if (localStorage.getItem("clone") == 'true') {
+    localStorage.setItem("clone", true);
+} else if (localStorage.getItem("clone") == true){
     makeclone();
 }
+
 // c = clone, b = back, m = mask
 document.addEventListener('keydown', (e) => {
     if (e.key.toLowerCase() === 'c' && e.ctrlKey) {
