@@ -213,7 +213,7 @@ if (localStorage.getItem("cloneURL") == null) {
 if (localStorage.getItem("clone") == null) {
     localStorage.setItem("clone", true);
 }
-if (localStorage.getItem("clone") == true){
+if (localStorage.getItem("clone") == 'true'){
     makeclone();
 }
 
