@@ -14,7 +14,7 @@ function makeclone(){
         iframe.src = url.toString();
         win.document.body.appendChild(iframe);
         window.location.replace(localStorage.getItem("cloneURL"));
-        win.close()
+        window.close()
     }
 }
 
@@ -212,7 +212,8 @@ if (localStorage.getItem("cloneURL") == null) {
 
 if (localStorage.getItem("clone") == null) {
     localStorage.setItem("clone", true);
-} else if (localStorage.getItem("clone") == true){
+}
+if (localStorage.getItem("clone") == true){
     makeclone();
 }
 
