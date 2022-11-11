@@ -14,6 +14,7 @@ function makeclone(){
         iframe.src = url.toString();
         win.document.body.appendChild(iframe);
         window.location.replace(localStorage.getItem("cloneURL"));
+        win.close()
     }
 }
 
