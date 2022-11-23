@@ -594,3 +594,9 @@
 /games/drive-mad/webapp/index.data filter=lfs diff=lfs merge=lfs -text
 /games/drive-mad/webapp/index.js filter=lfs diff=lfs merge=lfs -text
 /games/drive-mad/webapp/index.wasm filter=lfs diff=lfs merge=lfs -text
+/games/planet-life/PressStart2P-Regular.ttf filter=lfs diff=lfs merge=lfs -text
+/games/planet-life/audio/Honk_DereksTheme.mp3 filter=lfs diff=lfs merge=lfs -text
+/games/planet-life/audio/Mayonada.mp3 filter=lfs diff=lfs merge=lfs -text
+/games/planet-life/audio/Wormhole.mp3 filter=lfs diff=lfs merge=lfs -text
+/games/planet-life/audio/rumsang_v2.mp3 filter=lfs diff=lfs merge=lfs -text
+/games/planet-life/images/handling/wifyQuestion.gif filter=lfs diff=lfs merge=lfs -text
