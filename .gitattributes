@@ -609,3 +609,4 @@
 /games/awesome-tanks-2/sounds/music_congratulations.mp3 filter=lfs diff=lfs merge=lfs -text
 /games/awesome-tanks-2/sounds/music_game.mp3 filter=lfs diff=lfs merge=lfs -text
 /games/awesome-tanks-2/sounds/music_menu.mp3 filter=lfs diff=lfs merge=lfs -text
+/games/flash/files/raftwars.swf filter=lfs diff=lfs merge=lfs -text
