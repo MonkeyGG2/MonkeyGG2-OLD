@@ -50,6 +50,7 @@ function addCss(){
       }
       
     button.in-game-button {
+        cursor: pointer;
         position: absolute;
         z-index: 9999;
         top: 61px;
