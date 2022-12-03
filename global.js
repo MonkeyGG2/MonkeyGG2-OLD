@@ -23,9 +23,9 @@ function mask(){
     var link = e.querySelector("link[rel*='icon']") || document.createElement('link');
     link.type = 'image/x-icon';
     link.rel = 'shortcut icon';
-    link.href = 'https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico';
+    link.href = localStorage.getItem("maskURL");
     e.getElementsByTagName('head')[0].appendChild(link);
-    e.title = "Inbox (69) - Gmail";
+    e.title = localStorage.getItem("maskTitle");
 }
 
 function addCss(){
@@ -215,6 +215,22 @@ if (localStorage.getItem("clone") == null) {
 }
 if (localStorage.getItem("clone") == 'true'){
     makeclone();
+}
+
+if (localStorage.getItem("maskURL") == null) {
+    localStorage.setItem("maskURL", "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png");
+}
+
+if (localStorage.getItem("maskTitle") == null) {
+    localStorage.setItem("maskTitle", "My Drive - Google Drive");
+}
+
+if (localStorage.getItem("mask") == null) {
+    localStorage.setItem("mask", false);
+}
+
+if (localStorage.getItem("mask") == 'true'){
+    mask();
 }
 
 // c = clone, b = back, m = mask

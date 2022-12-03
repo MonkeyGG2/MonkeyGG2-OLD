@@ -35,7 +35,7 @@ p {
     color: var(--font-color);
 }
 
-#cloakInput {
+#cloakInput, #maskImageInput,  #maskTitleInput{
     width: 99%;
     font-family: var(--main-font);
     font-size: 18px;
@@ -45,7 +45,7 @@ p {
     color: var(--font-color);
   }
 
-  #cloakInputSubmit {
+  #cloakInputSubmit, #maskTitleInputSubmit, #maskImageInputSubmit {
   appearance: none;
   background-color: var(--block-color);
   border: 1px solid rgba(27, 31, 35, .15);

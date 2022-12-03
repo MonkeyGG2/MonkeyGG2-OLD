@@ -1,14 +1,15 @@
 const toggleSwitch = document.getElementById("themebox")
 const currentTheme = localStorage.getItem("theme");
-
+const maskSwitch = document.getElementById("maskbox");
 const cloakSwitch = document.getElementById("cloakbox");
 const errorBox = document.getElementById("errorMsg");
 const messageBox = document.getElementById("cloak-status")
 const currentCloak = localStorage.getItem("clone");
+const currentMask = localStorage.getItem("mask");
 const regex = /^(https:\/\/)?([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+.*)$/;
 
 if (currentCloak == null) {
-    localStorage.setItem("clone", "false");
+    localStorage.setItem("clone", "true");
 } else {    
     if (currentCloak == "true") {
         cloakSwitch.checked = true;
@@ -16,6 +17,20 @@ if (currentCloak == null) {
     }
     else if (currentCloak == "false") {
         cloakSwitch.checked = false;
+        messageBox.textContent = "Disabled";
+    }
+    else {}
+}
+
+if (currentMask == null) {
+    localStorage.setItem("mask", "false");
+} else {    
+    if (currentMask == "true") {
+        maskSwitch.checked = true;
+        messageBox.textContent = "Enabled";
+    }
+    else if (currentMask == "false") {
+        maskSwitch.checked = false;
         messageBox.textContent = "Disabled";
     }
     else {}
@@ -45,6 +60,15 @@ function switchCloak(e) {
     }    
 }
 
+function switchMask(e) {
+    if (e.target.checked) {
+        localStorage.setItem("mask", "true");
+    }
+    else {
+        localStorage.setItem("mask", "false");
+    }    
+}
+
 function switchTheme(e) {
     if (e.target.checked) {
         document.documentElement.setAttribute('data-theme', 'light');
@@ -65,13 +89,29 @@ function cloakURL() {
     }
 
     localStorage.setItem("cloneURL", value);
-
-    if (confirm(`Success! Changed cloak URL to ${value}. Do you want to cloak now?`)) {
-        makeclone()
-    }
+    makeclone()
 }
 
-function checkIfEnter(e) {
+function maskURL() {
+    input = document.getElementById("maskImageInput");
+    value = input.value;
+    
+    if (!value.startsWith("http")) {
+        value = "https://" + value;
+    }
+
+    localStorage.setItem("maskURL", value);
+    mask()
+}
+
+function maskTitle() {
+    input = document.getElementById("maskTitleInput");
+    value = input.value;
+    localStorage.setItem("maskTitle", value);
+    mask()
+}
+
+function checkIfEnter(e, fish) {
     if (e.key === ("Enter" || "enter" || "ENTER")) {
         e.preventDefault();
         text = document.getElementById("cloakInput").value
@@ -91,3 +131,5 @@ function checkIfEnter(e) {
 cloakSwitch.addEventListener('change', switchCloak, false);
 
 toggleSwitch.addEventListener('change', switchTheme, false);
+
+maskSwitch.addEventListener('change', switchMask, false);
