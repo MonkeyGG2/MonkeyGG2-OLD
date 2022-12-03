@@ -7,6 +7,14 @@
     color: var(--font-color);
 }
 
+#mask-status {
+    color: var(--font-color);
+}
+
+#cloak-status {
+    color: var(--font-color);
+}
+
 .switch {
     display: inline-block;
     height: 34px;
