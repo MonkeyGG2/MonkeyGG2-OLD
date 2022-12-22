@@ -94,3 +94,9 @@ h2 a:hover {
 .closebtn:hover {
   color: black;
 }
+
+#contact span {
+  color: var(--font-color);
+  font-family: var(--main-font);
+  padding-bottom: 10px;
+}
