@@ -1,0 +1,337 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+#mainContainer {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
+}
+
+#mainContainerBg {
+    position: absolute;
+    z-index: -1;
+    margin: 0 calc(-1 * env(safe-area-inset-right)) 0 calc(-1 * env(safe-area-inset-left));
+    transform: scale(1.1); /* used to remove white fade at the edges of screen */
+    width: 100vw;
+    height: 100vh;
+    background: url("../images/menuBGTile.png"), #496486;
+    background-size: 10%;
+    background-repeat: repeat;
+    background-blend-mode: multiply;
+    filter: blur(4px);
+}
+
+#leftContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+#gameContainer {
+    display: flex;
+}
+
+#gameCanvas {
+    width: 100vw; /* initial value */
+    height: 100vh; /* initial value */
+}
+
+#btmContainer {
+    display: none; /* initially hidden then if enabled set to flex */
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+}
+
+#btmAdPlaceholder {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+#btmAdPlaceholderBg {
+    background-color: #00000030;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(4px);
+    z-index: -1;
+}
+
+#btmAdResText{
+    color: white;
+    font-size: 40px;
+    font-family: 'Baloo 2';
+    filter: drop-shadow(2px 2px 0px #2050A9);
+}
+
+#btmAdBlockerContainer
+{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+#btmAdBlockerImg {
+    max-height: 90%;
+    margin-right: 20px;
+}
+
+#btmAdBlockerText {
+    color: white;
+    font-family: 'Baloo 2';
+    font-size: 35px;
+    filter: drop-shadow(2px 2px 0px #2050A9);
+}
+
+#rightContainer {
+    display: none; /* initially hidden then if enabled set to flex */
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+}
+
+#rightAdPlaceholder {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+#rightAdPlaceholderBg {
+    background-color: #00000030;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(4px);
+    z-index: -1;
+}
+
+#rightAdBlockerContainer
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 100%;
+}
+
+#rightAdBlockerImg {
+    max-width: 100%;
+}
+
+#rightAdBlockerText {
+    color: white;
+    font-family: 'Baloo 2';
+    font-size: 30px;
+    filter: drop-shadow(2px 2px 0px #2050A9);
+    line-height: 1;
+    text-align: center;
+}
+
+#rightAdResText{
+    color: white;
+    font-size: 40px;
+    font-family: 'Baloo 2';
+    filter: drop-shadow(2px 2px 0px #2050A9);
+}
+
+/* #adContainerDeath {
+    display: none;
+    --shown_display: flex;
+    position: absolute;
+    z-index: 100;
+    bottom: 0px;
+    width: 100vw;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;			
+} */
+
+#adContainerDeath {
+    display: none;
+    --shown_display: flex;
+    position: absolute;
+    /* border: 1px solid red; */
+    z-index: 100;
+    bottom: 0px;
+    width: 100vw;
+    height: fit-content;
+    align-items: center;
+    justify-content: end; /* updated on the fly to center for mobile */
+}
+
+#adContainerMainMenu {
+    display: none;
+    --shown_display: block;
+    position: absolute;
+    transform-origin: right top;
+    transform: translate(0px, -50%);
+    /* border: 1px solid red; */
+    z-index: 100;
+    top: 50%;
+    right: 10px;
+    width: auto;
+    height: auto;
+}
+
+@media screen and (max-width: 600px) {
+    #smashkarts-io_300x250 {
+        /* border: 1px solid blue; */
+        display: none;
+    }
+}
+
+
+/* #adContainerWin {
+     display: none;
+    --shown_display: block;
+     position: absolute;
+    transform-origin: right top;
+    transform: translate(0px, -50%); 			
+     z-index: 100;
+    top: 50%;
+     right: 10px;
+     width: auto;
+     height: auto;
+} */
+
+#adContainerWin {
+    display: none;
+    --shown_display: block;
+    position: absolute;
+    transform-origin: right bottom;
+    /* border: 1px solid red; */
+    z-index: 100;
+    bottom: 10px;
+    right: 10px;
+    width: auto;
+    height: auto;
+}
+
+#pw-video-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none; /* default to hidden */
+}
+
+#pw-video-placeholder {
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    #smashkarts-io_300x250_2 {
+        /* border: 1px solid blue; */
+        display: none;
+    }
+}
+
+/* try to handle mobile dialog */
+canvas+* {
+    z-index: 2;
+}
+
+.logo {
+    display: block;
+    max-width: 90%;
+    max-height: 40vh;
+}
+
+.progress {
+    margin: 1.5em;
+    border: 2px solid;
+    width: 25vw;
+    display: none;
+}
+
+.progress .full {
+    margin: 2px;
+    background: white;
+    height: 1em;
+    transform-origin: top left;
+}
+
+#loader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #1b70f0;
+    background-image: url("../images/overlay.png"), url("../images/menuBGTile.png");
+    background-size: cover, 13vw;
+    background-repeat: no-repeat, repeat;
+}
+
+.spinner {
+    position: absolute;
+    left: 2vw;
+    bottom: 2vh;
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #3498db;
+    border-radius: 50%;
+    width: 10vh;
+    height: 10vh;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* for all screens */
+#rotate-landscape {
+    display: none;
+}
+
+/* only when orientation is in portrait mode */
+@media all and (orientation:portrait) {
+    #rotate-landscape {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        display: block;
+        background: #1b70f0;
+        background-image: url("../images/overlay.png"), url("../images/menuBGTile.png");
+        background-size: cover, 13vw;
+        background-repeat: no-repeat, repeat;
+    }
+}
+
+.center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+}
