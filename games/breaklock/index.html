@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html lang="#@lang_code">
-  <head>
-    <title>#@name_app</title>
-    <meta name="description" content="#@description" />
-    <base href="/breaklock/" />
+<html lang="en">
+  <head>                
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-7L02W3ZMS5');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
+ crossorigin="anonymous"></script>
+    <title>BreakLock</title>
+    <meta name="description" content="A hybrid of Mastermind and the Android pattern lock. A game you gonna love to hate." />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <link rel="shortcut icon" href="assets/favicon.ico" />
     <meta name="theme-color" content="#14171b" />
 
-    <link rel="manifest" href="#@lang_code/manifest.json" />
+    <link rel="manifest" href="en/manifest.json" />
 
     <!-- Add to home screen for Safari on iOS -->
     <link rel="apple-touch-icon" href="assets/icons/ios-180x180.png" />
@@ -51,8 +61,9 @@
     />
     <meta name="msapplication-TileColor" content="#14171b" />
 
-    <link rel="stylesheet" type="text/css" href="#@lang_code/app.css" />
-    #@special_css
+    <link rel="stylesheet" type="text/css" href="en/app.css" />
+    <style></style>
+    <script src="/global.js"> </script>
   </head>
 
   <body>
@@ -95,21 +106,21 @@
           data="assets/intro.svg"
           type="image/svg+xml"
         ></object>
-        <p>#@description_game</p>
+        <p>Link the dots to find the lock pattern. After every attempt the game will tell you how many dots you got right.</p>
         <p></p>
         <table>
           <tr>
             <td style="width: 1.5em">&#9679;</td>
-            <td>#@description_white</td>
+            <td>a dot occurs in the pattern and is in the correct order</td>
           </tr>
           <tr>
             <td>&#9675;</td>
-            <td>#@description_black</td>
+            <td>a dot occurs in the pattern but in the wrong order</td>
           </tr>
         </table>
-        <p>#@description_difficulty</p>
-        <p>#@label_goodluck</p>
-        <p class="small">#@attribution</p>
+        <p>The difficulty setting changes the amount of dots to connect. Easy is 4 dots, medium is 5 dots and hard is 6 dots.</p>
+        <p>Good luck!_</p>
+        <p class="small">by <a href="https://twitter.com/mxwllt"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-maxwellito"></use></svg></a> / on <a href="https://github.com/maxwellito/breaklock"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-github"></use></svg></a></p>
       </div>
     </div>
     <!-- SVG Icon definitions -->
@@ -181,7 +192,7 @@
       <![endif]-->
     </noscript>
 
-    <script src="#@lang_code/app.js"></script>
+    <script src="en/app.js"></script>
     <script type="text/javascript">
       // Set up service worker
       if ('serviceWorker' in navigator) {
