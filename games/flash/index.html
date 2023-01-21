@@ -1,17 +1,16 @@
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Raft Wars</title>
-    <link id="favicon" rel="shortcut icon" type="image/png" href="/" />
-    <link rel="shortcut icon" type="image/x-icon" href="raftwars.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flash Player</title>
+    <link id="favicon" rel="shortcut icon" type="image/png" href="/">
   </head>
   <body>
     <div id="ruffle" width="100%" height="100%"></div>
     <script src="ruffle.js"></script>
     <script>
       var game = (new URLSearchParams(window.location.search)).get('game');
-      document.title = (game.replace(/-/g,' ')).toLowerCase().split(' ').map(function(word) {return word[0].toUpperCase() + word.substr(1);}).join(' ');;
-      document.querySelector('#favicon').href = `images/${game}.png`
+      document.title = (game.replace(/-/g,' ')).toLowerCase().split(' ').map(function(word) {return word[0].toUpperCase() + word.substr(1);}).join(' ');
+      document.querySelector('#favicon').href = `images/${game}.png`;
 
       window.RufflePlayer = window.RufflePlayer || {};
       window.addEventListener("load", (event) => {
