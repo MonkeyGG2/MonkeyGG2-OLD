@@ -28,6 +28,14 @@
     margin: 0px;
   }
 
+  ul {
+    color: var(--font-color);
+    font-family: var(--main-font);
+    text-align: center;
+    font-size: 5vw;
+    margin: 0px;
+  }
+
   h5 {
     font-size: 200%;
     margin: 0px;
@@ -96,11 +104,29 @@
     color: var(--bg-color);
   }
 
+  .column a{
+    text-decoration: none;
+  }
+  
   .card:hover {
     background-color: var(--font-color);
     width: 99%;
   }
 
-  a {
-    text-decoration: none;
+  button{
+    margin-top: 25px;
+    background-color:black;
+    color:white;
+    cursor:pointer;
+    font-size:5vh;
+    border-color:SlateGray;
+    border-radius: 32px;
+    font-size: 5vh;
+    padding:16px;
+    width: 100%
+}
+
+  button:hover{
+      background-color: gray;
+      color:black;
   }
