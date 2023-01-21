@@ -13,10 +13,15 @@
             </script>
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
          crossorigin="anonymous"></script>
-            <title>Cat Ninja</title>
+            <title>Flash Player</title>
+            <link id="favicon" rel="shortcut icon" type="image/png" href="/">
             <link rel="stylesheet" href="style.css">
             <script>
-                var fish = window.location.href + "cat-ninja.swf";
+                var game = (new URLSearchParams(window.location.search)).get('game');
+                document.title = (game.replace(/-/g,' ')).toLowerCase().split(' ').map(function(word) {return word[0].toUpperCase() + word.substr(1);}).join(' ');
+                document.querySelector('#favicon').href = `images/${game}.png`;
+
+                var fish = window.location.href.split('?')[0] + `files/${game}.swf`;
                 var gameConfig = {
                     swfUrl: fish
                 }
