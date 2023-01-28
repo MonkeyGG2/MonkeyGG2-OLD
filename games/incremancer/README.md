@@ -1,2 +1,0 @@
-# Incremancer
-Idle Necromancer Game
