@@ -16,6 +16,17 @@
     --block-color: #dcddde;
     --hover-color: #fafafa;
   }
+
+  html {
+    overflow: scroll;
+    scrollbar-width: none;
+  }
+  
+  ::-webkit-scrollbar {
+      width: 0px;
+      height: 0px;
+      background: transparent;
+  }
   
   body {
     background-color: var(--bg-color);
