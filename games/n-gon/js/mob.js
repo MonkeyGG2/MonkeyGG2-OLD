@@ -62,6 +62,8 @@ const mobs = {
             if (!whom.shield && !whom.isShielded && whom.alive) {
                 if (tech.isIceMaxHealthLoss && whom.health > 0.65 && whom.damageReduction > 0) whom.health = 0.66
                 if (tech.isIceKill && whom.health < 0.34 && whom.damageReduction > 0 && whom.alive) {
+                    // whom.death();
+                    whom.damage(Infinity);
                     simulation.drawList.push({
                         x: whom.position.x,
                         y: whom.position.y,
@@ -83,7 +85,6 @@ const mobs = {
                         color: "rgb(0,100,255)",
                         time: 16
                     });
-                    whom.death();
                 }
                 if (whom.isBoss) cycles = Math.floor(cycles * 0.25)
                 let i = whom.status.length
@@ -341,12 +342,6 @@ const mobs = {
                     this.seePlayer.position.y = player.position.y;
                 }
             },
-            // alwaysSeePlayerIfRemember() {
-            //     if (!m.isCloak && this.seePlayer.recall) {
-            //         this.seePlayer.position.x = player.position.x;
-            //         this.seePlayer.position.y = player.position.y;
-            //     }
-            // },
             seePlayerByHistory(depth = 30) { //depth max 60?  limit of history
                 if (!(simulation.cycle % this.seePlayerFreq)) {
                     if (Matter.Query.ray(map, this.position, this.playerPosRandomY()).length === 0 && !m.isCloak) {
@@ -1136,20 +1131,22 @@ const mobs = {
             },
             damage(dmg, isBypassShield = false) {
                 if ((!this.isShielded || isBypassShield) && this.alive) {
-                    dmg *= tech.damageFromTech()
-                    //mobs specific damage changes
-                    if (tech.isFarAwayDmg) dmg *= 1 + Math.sqrt(Math.max(500, Math.min(3000, this.distanceToPlayer())) - 500) * 0.0067 //up to 33% dmg at max range of 3000
-                    dmg *= this.damageReduction
-                    //energy and heal drain should be calculated after damage boosts
-                    if (tech.energySiphon && dmg !== Infinity && this.isDropPowerUp && m.immuneCycle < m.cycle) m.energy += Math.min(this.health, dmg) * tech.energySiphon
-                    if (tech.healthDrain && dmg !== Infinity && this.isDropPowerUp && Math.random() < tech.healthDrain * Math.min(this.health, dmg)) {
-                        powerUps.spawn(m.pos.x + 20 * (Math.random() - 0.5), m.pos.y + 20 * (Math.random() - 0.5), "heal");
+                    if (dmg !== Infinity) {
+                        dmg *= tech.damageFromTech()
+                        //mobs specific damage changes
+                        if (tech.isFarAwayDmg) dmg *= 1 + Math.sqrt(Math.max(500, Math.min(3000, this.distanceToPlayer())) - 500) * 0.0067 //up to 33% dmg at max range of 3000
+                        dmg *= this.damageReduction
+                        //energy and heal drain should be calculated after damage boosts
+                        if (tech.energySiphon && dmg !== Infinity && this.isDropPowerUp && m.immuneCycle < m.cycle) m.energy += Math.min(this.health, dmg) * tech.energySiphon
+                        if (tech.healthDrain && dmg !== Infinity && this.isDropPowerUp && Math.random() < tech.healthDrain * Math.min(this.health, dmg)) {
+                            powerUps.spawn(m.pos.x + 20 * (Math.random() - 0.5), m.pos.y + 20 * (Math.random() - 0.5), "heal");
+                        }
+                        dmg /= Math.sqrt(this.mass)
                     }
-                    dmg /= Math.sqrt(this.mass)
                     this.health -= dmg
                     //this.fill = this.color + this.health + ')';
                     this.onDamage(dmg); //custom damage effects
-                    if ((this.health < 0.05 || isNaN(this.health)) && this.alive) this.death();
+                    if ((this.health < 0.01 || isNaN(this.health)) && this.alive) this.death();
                 }
             },
             onDamage() {
@@ -1190,11 +1187,27 @@ const mobs = {
             leaveBody: true,
             isDropPowerUp: true,
             death() {
+                if (tech.collidePowerUps && Math.random() < tech.collidePowerUps && this.isDropPowerUp) powerUps.randomize(this.position) //needs to run before onDeath spawns power ups
                 this.onDeath(this); //custom death effects
                 this.removeConsBB();
                 this.alive = false; //triggers mob removal in mob[i].replace(i)
 
                 if (this.isDropPowerUp) {
+                    if (this.isSoonZombie) { //spawn zombie on death
+                        this.leaveBody = false;
+                        let count = 5 //delay spawn cycles
+                        let cycle = () => {
+                            if (count > 0) {
+                                if (m.alive) requestAnimationFrame(cycle);
+                                if (!simulation.paused && !simulation.isChoosing) {
+                                    count--
+                                }
+                            } else {
+                                spawn.zombie(this.position.x, this.position.y, this.radius, this.vertices.length, this.fill) // zombie(x, y, radius, sides, color)
+                            }
+                        }
+                        requestAnimationFrame(cycle);
+                    }
                     if (tech.iceIXOnDeath && this.isSlowed) {
                         for (let i = 0, len = 2 * Math.sqrt(Math.min(this.mass, 25)) * tech.iceIXOnDeath; i < len; i++) b.iceIX(3, Math.random() * 2 * Math.PI, this.position)
                     }
@@ -1225,25 +1238,25 @@ const mobs = {
                         //     }); //wrapping in animation frame prevents errors, probably
                         // }
                     }
-                    if (tech.isEnergyLoss) m.energy *= 0.75;
+                    if (tech.isEnergyLoss) m.energy *= 0.8;
                     powerUps.spawnRandomPowerUp(this.position.x, this.position.y);
                     m.lastKillCycle = m.cycle; //tracks the last time a kill was made, mostly used in simulation.checks()
                     mobs.mobDeaths++
 
                     if (Math.random() < tech.sporesOnDeath) {
+                        const amount = Math.min(25, Math.floor(2 + this.mass * (0.5 + 0.5 * Math.random())))
                         if (tech.isSporeFlea) {
-                            const len = Math.min(25, Math.floor(2 + this.mass * (0.5 + 0.5 * Math.random()))) / 2
+                            const len = amount / 2
                             for (let i = 0; i < len; i++) {
                                 const speed = 10 + 5 * Math.random()
                                 const angle = 2 * Math.PI * Math.random()
                                 b.flea(this.position, { x: speed * Math.cos(angle), y: speed * Math.sin(angle) })
                             }
                         } else if (tech.isSporeWorm) {
-                            const len = Math.min(25, Math.floor(2 + this.mass * (0.5 + 0.5 * Math.random()))) / 2
+                            const len = amount / 2
                             for (let i = 0; i < len; i++) b.worm(this.position)
                         } else {
-                            const len = Math.min(25, Math.floor(2 + this.mass * (0.5 + 0.5 * Math.random())))
-                            for (let i = 0; i < len; i++) b.spore(this.position)
+                            for (let i = 0; i < amount; i++) b.spore(this.position)
                         }
                     } else if (tech.isExplodeMob) {
                         b.explosion(this.position, Math.min(700, Math.sqrt(this.mass + 6) * (30 + 60 * Math.random())))
@@ -1252,12 +1265,12 @@ const mobs = {
                     }
                     if (tech.isBotSpawnerReset) {
                         for (let i = 0, len = bullet.length; i < len; i++) {
-                            if (bullet[i].botType && bullet[i].endCycle !== Infinity) bullet[i].endCycle = simulation.cycle + 840 //14 seconds
+                            if (bullet[i].botType && bullet[i].endCycle !== Infinity) bullet[i].endCycle = simulation.cycle + 780 //13 seconds
                         }
                     }
                     if (Math.random() < tech.botSpawner) {
                         b.randomBot(this.position, false)
-                        bullet[bullet.length - 1].endCycle = simulation.cycle + 840 //14 seconds
+                        bullet[bullet.length - 1].endCycle = simulation.cycle + 780 //13 seconds
                         this.leaveBody = false; // no body since it turned into the bot
                     }
                     if (tech.isAddRemoveMaxHealth) {
