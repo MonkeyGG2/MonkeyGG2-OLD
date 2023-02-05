@@ -17,9 +17,9 @@ jobs:
 
     - name: Read file contents
       id: read_file
-      uses: andstor/file-reader-action@v1
+      uses: juliangruber/read-file-action@v1.1.6
       with:
-        path: "forks.txt"
+        path: ./forks.txt
 
     - name: Get latest version of each fork
       run: |
