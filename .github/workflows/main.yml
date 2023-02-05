@@ -1,54 +1,40 @@
-name: Sort Forks
+name: Update forks
 
 on:
-  push:
   schedule:
-    - cron:  '0 0 * * *'
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
 
 jobs:
-  sort-forks:
+  update_forks:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x, 16.x]
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
-    
-    - name: Read Forks
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Get latest version of each fork
       run: |
-        const fs = require("fs");
-        let forks = fs.readFileSync("forks.txt", "utf-8").split("\n");
-        forks = forks.filter(Boolean);
+        while IFS='' read -r line || [[ -n "$line" ]]; do
+          version=$(curl -sL $line/version.txt)
+          echo "$version $line" >> temp_forks.txt
+        done < forks.txt
       
-    - name: Get versions
+    - name: Sort forks by version number
       run: |
-        const axios = require("axios");
-        let promises = [];
-        for (const fork of forks) {
-          promises.push(axios.get(`${fork}/version.txt`));
-        }
-        const results = await Promise.all(promises);
-        const versions = results.map(result => result.data);
-
-    - name: Sort Forks
-      run: |
-        const compare = (a, b) => {
-          if (a.version === b.version) {
-            return a.fork < b.fork ? -1 : 1;
-          }
-          return a.version > b.version ? -1 : 1;
-        };
-        const sortedForks = forks.map((fork, i) => ({ fork, version: versions[i] })).sort(compare);
-        const sortedForksUrls = sortedForks.map(fork => fork.fork);
-
-    - name: Update Forks
-      run: |
-        fs.writeFileSync("forks.txt", sortedForksUrls.join("\n"));
+        sort -V temp_forks.txt > sorted_forks.txt
+        mv sorted_forks.txt forks.txt
+        rm temp_forks.txt
+        
+    - name: Commit and push changes
+      uses: actions/github-script@0.11.0
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Github Actions"
+          git add forks.txt
+          git commit -m "Update forks list"
+          git push origin main
