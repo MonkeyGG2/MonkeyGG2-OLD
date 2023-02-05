@@ -50,7 +50,7 @@ var inst = { };
 function poki_loadbar(ctx, width, height, total, current, image) {
     if (window.PokiSDK) { // if you have your own loadbar, just copy this block in there
         if (window.PokiSDK_loadState == 0) {
-            window.PokiSDK_loadState = 1;
+            window.PokiSDK_isLoading = 1;
             PokiSDK.gameLoadingStart();
         }
         PokiSDK.gameLoadingProgress({ percentageDone: current/total });
@@ -125,3 +125,13 @@ function poki_loadbar(ctx, width, height, total, current, image) {
     ctx.fillStyle = barForegroundColor;
     ctx.fillRect(barInnerLeft, barInnerTop, barLoadedWidth, barInnerHeight);
 }
+///~
+function poki_get_team_raw() {
+	return PokiSDK.getURLParam('team');
+}
+
+function poki_set_team_raw(team) {
+	return window.parent.postMessage({type: 'RetroBowl_teamSwitch', content: { team }}, '*');
+}
+
+
