@@ -15,18 +15,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Read file contents
-      id: read_file
-      uses: juliangruber/read-file-action@v1.1.6
-      with:
-        path: ./forks.txt
-
     - name: Get latest version of each fork
       run: |
         while IFS='' read -r line || [[ -n "$line" ]]; do
           version=$(curl -sL $line/version.txt)
           echo "$version $line" >> temp_forks.txt
-        done < steps.read_file.outputs.contents
+        done < forks.txt
       
     - name: Sort forks by version number
       run: |
