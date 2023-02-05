@@ -1,0 +1,40 @@
+name: Update forks
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
+
+jobs:
+  update_forks:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Get latest version of each fork
+      run: |
+        while IFS='' read -r line || [[ -n "$line" ]]; do
+          version=$(curl -sL $line/version.txt)
+          echo "$version $line" >> temp_forks.txt
+        done < forks.txt
+      
+    - name: Sort forks by version number
+      run: |
+        sort -V temp_forks.txt > sorted_forks.txt
+        mv sorted_forks.txt forks.txt
+        rm temp_forks.txt
+        
+    - name: Commit and push changes
+      uses: actions/github-script@v6.4.0
+      with:
+        github-token: ${{ secrets.TOKEN }}
+        script: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Github Actions"
+          git add forks.txt
+          git commit -m "Update forks list"
+          git push origin main
