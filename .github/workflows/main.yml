@@ -18,9 +18,10 @@ jobs:
     - name: Get latest version of each fork
       run: |
         version=$(curl -sL $line/version.txt | grep -Eo '^[0-9]+\.[0-9]+\.[0-9]+')
-        if [[ $version =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+        if [ $? -eq 0 ]; then
           echo "$version $line" >> temp_forks.txt
-        fi
+        else
+          echo "" >> temp_forks.txt
         done < forks.txt
       
     - name: Sort forks by version number
