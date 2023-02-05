@@ -19,7 +19,7 @@ jobs:
       run: |
         while IFS='' read -r line || [[ -n "$line" ]]; do
           version=$(curl -sL $line/version.txt)
-          echo "$version $line" >> temp_forks.txt
+          echo "$line" >> temp_forks.txt
         done < forks.txt
       
     - name: Sort forks by version number
