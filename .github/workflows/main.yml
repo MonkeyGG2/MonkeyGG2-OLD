@@ -29,9 +29,9 @@ jobs:
         rm temp_forks.txt
         
     - name: Commit and push changes
-      uses: actions/github-script@0.11.0
+      uses: actions/github-script@6
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.TOKEN }}
         script: |
           git config --local user.email "action@github.com"
           git config --local user.name "Github Actions"
