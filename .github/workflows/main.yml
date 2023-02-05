@@ -18,8 +18,11 @@ jobs:
     - name: Get latest version of each fork
       run: |
         while IFS='' read -r line || [[ -n "$line" ]]; do
-          version=$(curl -sL $line/version.txt)
-          echo "$line" >> temp_forks.txt
+          response=$(curl -sL -w "%{http_code}" $line/version.txt -o /dev/null)
+          if [ $response -eq 200 ]; then
+            version=$(cat version.txt)
+            echo "$line" >> temp_forks.txt
+          fi
         done < forks.txt
       
     - name: Sort forks by version number
