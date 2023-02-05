@@ -1,0 +1,45 @@
+name: Sort Forks
+
+on:
+  push:
+  schedule:
+    - cron:  '0 0 * * *'
+
+jobs:
+  sort-forks:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Read Forks
+      run: |
+        const fs = require("fs");
+        let forks = fs.readFileSync("forks.txt", "utf-8").split("\n");
+        forks = forks.filter(Boolean);
+      
+    - name: Get versions
+      run: |
+        const axios = require("axios");
+        let promises = [];
+        for (const fork of forks) {
+          promises.push(axios.get(`${fork}/version.txt`));
+        }
+        const results = await Promise.all(promises);
+        const versions = results.map(result => result.data);
+
+    - name: Sort Forks
+      run: |
+        const compare = (a, b) => {
+          if (a.version === b.version) {
+            return a.fork < b.fork ? -1 : 1;
+          }
+          return a.version > b.version ? -1 : 1;
+        };
+        const sortedForks = forks.map((fork, i) => ({ fork, version: versions[i] })).sort(compare);
+        const sortedForksUrls = sortedForks.map(fork => fork.fork);
+
+    - name: Update Forks
+      run: |
+        fs.writeFileSync("forks.txt", sortedForksUrls.join("\n"));
