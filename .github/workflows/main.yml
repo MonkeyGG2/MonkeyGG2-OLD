@@ -28,8 +28,12 @@ jobs:
         # loop through the urls
         for url in "${urls[@]}"; do
           # get the version number
-          version=$(curl -s "${url}/version.txt" 2> /dev/null || echo "0.0.0")
+          version=$(curl -s "${url}/version.txt" 2> /dev/null | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+')
 
+          # default to 0.0.0 if the version is not found
+          if [ -z "$version" ]; then
+            version="0.0.0"
+          fi
           # add the url and version to the sorted array
           sorted+=("$version $url")
         done
@@ -40,11 +44,13 @@ jobs:
         # write the sorted array to sorted.txt
         printf "%s\n" "${sorted[@]}" > sorted.txt
         
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: sorted.txt
-        path: sorted.txt
+    - name: Push changes
+      run:
+        git config user.email "github-actions"
+        git config user.name "Github Actions"
+        git add sorted.txt
+        git commit -m "sorted forks"
+        git push
         
     - name: Debugging
       run: |
