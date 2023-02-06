@@ -15,12 +15,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Sort Forks
-      uses: actions/upload-artifact@v3
-      with:
-        name: sorted.txt
-        path: sorted.txt
-
     - name: Run shell script
       run: |
         #!/bin/bash
@@ -45,3 +39,14 @@ jobs:
 
         # write the sorted array to sorted.txt
         printf "%s\n" "${sorted[@]}" > sorted.txt
+        
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: sorted.txt
+        path: sorted.txt
+        
+    - name: Debugging
+      run: |
+        echo "Current working directory: $(pwd)"
+        ls -al
