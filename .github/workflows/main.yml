@@ -17,33 +17,30 @@ jobs:
 
     - name: Run shell script
       run: |
-        #!/bin/bash
+        # Function to compare version numbers
+        version_gt() {
+          test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1";
+        }
 
-        # read the contents of forks.txt into an array
-        readarray -t urls < forks.txt
+        # Array to store the version numbers
+        versions=()
 
-        # initialize an empty array to store the sorted data
-        declare -a sorted
+        # Read each line from the forks.txt file
+        while read -r line; do
+          # Get the version number from the URL
+          version=$(curl -LSs "$line/version.txt" | grep "[0-9]\.[0-9]\.[0-9]" || echo "0.0.0")
+          # Add the version number to the array
+          versions+=( "$version" )
+        done < forks.txt
 
-        # loop through the urls
-        for url in "${urls[@]}"; do
-          # get the version number
-          version=$(curl -s "${url}/version.txt" 2> /dev/null | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+')
+        # Sort the version numbers in the array
+        sorted=( $(printf '%s\n' "${versions[@]}" | sort -Vr) )
 
-          # default to 0.0.0 if the version is not found
-          if [ -z "$version" ]; then
-            version="0.0.0"
-          fi
-          # add the url and version to the sorted array
-          sorted+=("$version $url")
-        done
-
-        # sort the sorted array by version and then alphabetically
-        IFS=$'\n' sorted=($(sort -V <<<"${sorted[*]}"))
-
-        # write the sorted array to sorted.txt
-        printf "%s\n" "${sorted[@]}" > sorted.txt
-        
+        # Print to sorted.txt
+        :>sorted.txt
+        for ver in "${sorted[@]}"; do
+          echo "$ver" >> sorted.txt
+        done        
     - name: Push changes
       run:
         git config user.email "github-actions"
