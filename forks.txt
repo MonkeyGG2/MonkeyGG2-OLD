@@ -1,156 +1,156 @@
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 1.0 https://monkeygg2.github.io
- eror 404 page not found
- eror 404 page not found
- eror 404 page not found
- eror 404 page not found
- eror 404 page not found
-     const wiseness = ["did u know u can press ctrl c to cloak","u can press ctrl m to mask", "press ctrl b to go back to the home page"]
-     const wiseness = ["did u know u can press ctrl c to cloak","u can press ctrl m to mask", "press ctrl b to go back to the home page"]
-     const wiseness = ["did u know u can press ctrl c to cloak","u can press ctrl m to mask", "press ctrl b to go back to the home page"]
-     const wiseness = ["did u know u can press ctrl c to cloak","u can press ctrl m to mask", "press ctrl b to go back to the home page"]
-     const wiseness = ["did u know u can press ctrl c to cloak","u can press ctrl m to mask", "press ctrl b to go back to the home page"]
-     function wisedom(){
-     function wisedom(){
-     function wisedom(){
-     function wisedom(){
-     function wisedom(){
-      crossorigin="anonymous"></script>
-      crossorigin="anonymous"></script>
-      crossorigin="anonymous"></script>
-      crossorigin="anonymous"></script>
-      crossorigin="anonymous"></script>
-         alert(wiseness[Math.floor(Math.random() * wiseness.length)])
-         alert(wiseness[Math.floor(Math.random() * wiseness.length)])
-         alert(wiseness[Math.floor(Math.random() * wiseness.length)])
-         alert(wiseness[Math.floor(Math.random() * wiseness.length)])
-         alert(wiseness[Math.floor(Math.random() * wiseness.length)])
-         function gtag(){dataLayer.push(arguments);}
-         function gtag(){dataLayer.push(arguments);}
-         function gtag(){dataLayer.push(arguments);}
-         function gtag(){dataLayer.push(arguments);}
-         function gtag(){dataLayer.push(arguments);}
-         gtag('config', 'G-7L02W3ZMS5');
-         gtag('config', 'G-7L02W3ZMS5');
-         gtag('config', 'G-7L02W3ZMS5');
-         gtag('config', 'G-7L02W3ZMS5');
-         gtag('config', 'G-7L02W3ZMS5');
-         gtag('js', new Date());
-         gtag('js', new Date());
-         gtag('js', new Date());
-         gtag('js', new Date());
-         gtag('js', new Date());
-         window.dataLayer = window.dataLayer || [];
-         window.dataLayer = window.dataLayer || [];
-         window.dataLayer = window.dataLayer || [];
-         window.dataLayer = window.dataLayer || [];
-         window.dataLayer = window.dataLayer || [];
-         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
-         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
-         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
-         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
-         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
-         <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
-         <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
-         <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
-         <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
-         <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
-         <script>
-         <script>
-         <script>
-         <script>
-         <script>
-         <!-- Google tag (gtag.js) -->
-         <!-- Google tag (gtag.js) -->
-         <!-- Google tag (gtag.js) -->
-         <!-- Google tag (gtag.js) -->
-         <!-- Google tag (gtag.js) -->
-         </script>
-         </script>
-         </script>
-         </script>
-         </script>
-     <script src="/global.js"> </script>
-     <script src="/global.js"> </script>
-     <script src="/global.js"> </script>
-     <script type="text/javascript" src="/global.js"> </script>
-     <script type="text/javascript" src="/global.js"> </script>
-     <title>eror 404</title>
-     <title>eror 404</title>
-     <title>eror 404</title>
-     <title>eror 404</title>
-     <title>eror 404</title>
-     }
-     }
-     }
-     }
-     }
- <a href="/">homepag</a>
- <a href="/">homepag</a>
- <a href="/">homepag</a>
- <a href="/">homepag</a>
- <a href="/">homepag</a>
- <br>
- <br>
- <br>
- <br>
- <br>
- <button onclick="wisedom()">button of wisedom</button>
- <button onclick="wisedom()">button of wisedom</button>
- <button onclick="wisedom()">button of wisedom</button>
- <button onclick="wisedom()">button of wisedom</button>
- <button onclick="wisedom()">button of wisedom</button>
- <head>                
- <head>                
- <head>                
- <head>                
- <head>                
- <html>
- <html>
- <html>
- <html>
- <html>
- <script>
- <script>
- <script>
- <script>
- <script>
- <!DOCTYPE html>
- <!DOCTYPE html>
- <!DOCTYPE html>
- <!DOCTYPE html>
- <!DOCTYPE html>
- </head>
- </head>
- </head>
- </head>
- </head>
- </html> https://evilmonke.codeberg.page
- </html> https://hershybar123.codeberg.page/
- </html> https://masterfish999.codeberg.page
- </html> https://monkeygg2.codeberg.page
- </html> https://monkeygg2.netlify.app
- </script>
- </script>
- </script>
- </script>
- </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  1.0 https://monkeygg2.github.io
+  eror 404 page not found
+  eror 404 page not found
+  eror 404 page not found
+  eror 404 page not found
+  eror 404 page not found
+      const wiseness = ["did u know u can press ctrl c to cloak","u can press ctrl m to mask", "press ctrl b to go back to the home page"]
+      const wiseness = ["did u know u can press ctrl c to cloak","u can press ctrl m to mask", "press ctrl b to go back to the home page"]
+      const wiseness = ["did u know u can press ctrl c to cloak","u can press ctrl m to mask", "press ctrl b to go back to the home page"]
+      const wiseness = ["did u know u can press ctrl c to cloak","u can press ctrl m to mask", "press ctrl b to go back to the home page"]
+      const wiseness = ["did u know u can press ctrl c to cloak","u can press ctrl m to mask", "press ctrl b to go back to the home page"]
+      function wisedom(){
+      function wisedom(){
+      function wisedom(){
+      function wisedom(){
+      function wisedom(){
+       crossorigin="anonymous"></script>
+       crossorigin="anonymous"></script>
+       crossorigin="anonymous"></script>
+       crossorigin="anonymous"></script>
+       crossorigin="anonymous"></script>
+          alert(wiseness[Math.floor(Math.random() * wiseness.length)])
+          alert(wiseness[Math.floor(Math.random() * wiseness.length)])
+          alert(wiseness[Math.floor(Math.random() * wiseness.length)])
+          alert(wiseness[Math.floor(Math.random() * wiseness.length)])
+          alert(wiseness[Math.floor(Math.random() * wiseness.length)])
+          function gtag(){dataLayer.push(arguments);}
+          function gtag(){dataLayer.push(arguments);}
+          function gtag(){dataLayer.push(arguments);}
+          function gtag(){dataLayer.push(arguments);}
+          function gtag(){dataLayer.push(arguments);}
+          gtag('config', 'G-7L02W3ZMS5');
+          gtag('config', 'G-7L02W3ZMS5');
+          gtag('config', 'G-7L02W3ZMS5');
+          gtag('config', 'G-7L02W3ZMS5');
+          gtag('config', 'G-7L02W3ZMS5');
+          gtag('js', new Date());
+          gtag('js', new Date());
+          gtag('js', new Date());
+          gtag('js', new Date());
+          gtag('js', new Date());
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer = window.dataLayer || [];
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
+          <script>
+          <script>
+          <script>
+          <script>
+          <script>
+          <!-- Google tag (gtag.js) -->
+          <!-- Google tag (gtag.js) -->
+          <!-- Google tag (gtag.js) -->
+          <!-- Google tag (gtag.js) -->
+          <!-- Google tag (gtag.js) -->
+          </script>
+          </script>
+          </script>
+          </script>
+          </script>
+      <script src="/global.js"> </script>
+      <script src="/global.js"> </script>
+      <script src="/global.js"> </script>
+      <script type="text/javascript" src="/global.js"> </script>
+      <script type="text/javascript" src="/global.js"> </script>
+      <title>eror 404</title>
+      <title>eror 404</title>
+      <title>eror 404</title>
+      <title>eror 404</title>
+      <title>eror 404</title>
+      }
+      }
+      }
+      }
+      }
+  <a href="/">homepag</a>
+  <a href="/">homepag</a>
+  <a href="/">homepag</a>
+  <a href="/">homepag</a>
+  <a href="/">homepag</a>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <button onclick="wisedom()">button of wisedom</button>
+  <button onclick="wisedom()">button of wisedom</button>
+  <button onclick="wisedom()">button of wisedom</button>
+  <button onclick="wisedom()">button of wisedom</button>
+  <button onclick="wisedom()">button of wisedom</button>
+  <head>                
+  <head>                
+  <head>                
+  <head>                
+  <head>                
+  <html>
+  <html>
+  <html>
+  <html>
+  <html>
+  <script>
+  <script>
+  <script>
+  <script>
+  <script>
+  <!DOCTYPE html>
+  <!DOCTYPE html>
+  <!DOCTYPE html>
+  <!DOCTYPE html>
+  <!DOCTYPE html>
+  </head>
+  </head>
+  </head>
+  </head>
+  </head>
+  </html> https://evilmonke.codeberg.page
+  </html> https://hershybar123.codeberg.page/
+  </html> https://masterfish999.codeberg.page
+  </html> https://monkeygg2.codeberg.page
+  </html> https://monkeygg2.netlify.app
+  </script>
+  </script>
+  </script>
+  </script>
+  </script>
