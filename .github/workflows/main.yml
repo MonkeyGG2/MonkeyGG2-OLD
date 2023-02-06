@@ -15,27 +15,33 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Get latest version of each fork
+    - name: Sort Forks
+      uses: actions/upload-artifact@v2
+      with:
+        name: sorted.txt
+        path: sorted.txt
+
+    - name: Run shell script
       run: |
-        while IFS='' read -r line || [[ -n "$line" ]]; do
-        version=$(curl -sL $line/version.txt | grep -Eo '^[0-9]+\.[0-9]+\.[0-9]+')
-        if [ $? -eq 0 ]; then
-          echo "$version $line" >> temp_forks.txt
-        else
-          echo "" >> temp_forks.txt
-        fi
-        done < forks.txt
-      
-    - name: Sort forks by version number
-      run: |
-        sort -V temp_forks.txt > sorted_forks.txt
-        mv sorted_forks.txt forks.txt
-        rm temp_forks.txt
-        
-    - name: Commit and push changes
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add forks.txt
-        git commit -m "sorted"
-        git push
+        #!/bin/bash
+
+        # read the contents of forks.txt into an array
+        readarray -t urls < forks.txt
+
+        # initialize an empty array to store the sorted data
+        declare -a sorted
+
+        # loop through the urls
+        for url in "${urls[@]}"; do
+          # get the version number
+          version=$(curl -s "${url}/version.txt" 2> /dev/null || echo "0.0.0")
+
+          # add the url and version to the sorted array
+          sorted+=("$version $url")
+        done
+
+        # sort the sorted array by version and then alphabetically
+        IFS=$'\n' sorted=($(sort -V <<<"${sorted[*]}"))
+
+        # write the sorted array to sorted.txt
+        printf "%s\n" "${sorted[@]}" > sorted.txt
