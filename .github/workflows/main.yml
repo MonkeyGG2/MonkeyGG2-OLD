@@ -42,7 +42,7 @@ jobs:
           echo "$ver" >> sorted.txt
         done        
     - name: Push changes
-      run:
+      run: |
         git config user.email "github-actions"
         git config user.name "Github Actions"
         git add sorted.txt
