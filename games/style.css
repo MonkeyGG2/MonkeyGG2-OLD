@@ -57,13 +57,28 @@ h2 a:hover {
 }
 
 #searchBar {
-  width: 99%;
+  width: 74%;
   font-family: var(--main-font);
   font-size: 18px;
   padding: 11px;
   border: 1px solid var(--block-color);
   background-color: var(--second-bg-color);
   color: var(--font-color);
+}
+
+#randomButton {
+  width: 24%;
+  font-family: var(--main-font);
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid var(--block-color);
+  background-color: var(--second-bg-color);
+  color: var(--font-color);
+}
+
+#randomButton:hover {
+  cursor: pointer;
+  background-color: var(--hover-color);
 }
 
 #subpageList {
