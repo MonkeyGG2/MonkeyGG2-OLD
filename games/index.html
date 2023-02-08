@@ -38,6 +38,14 @@
                     }
                 }
             }
+            function randomGame() {
+                var games = document.getElementById("subpageList").getElementsByTagName("li");
+                var links = []
+                for (let i = 0; i < games.length; i++) {
+                    links.push((games[i].getElementsByTagName("a")[0].href))
+                }
+                window.location.href = links[Math.floor(Math.random()*links.length)];
+            }
         </script>
         
         <script src="/global.js"> </script>
@@ -52,6 +60,7 @@
         </div>
         <h1>Games</h1>
         <input type="text" id="searchBar" oninput="searchSort()" onload="searchSort()" placeholder="Search...">
+        <button id="randomButton" onclick="randomGame()">Random Game</button>
 
         <ul id="subpageList">
             <li><a href="https://discord.gg/yPYyZ78qCB">NEW - Discord</a></li>
