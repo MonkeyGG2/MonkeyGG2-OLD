@@ -57,7 +57,8 @@ h2 a:hover {
 }
 
 #searchBar {
-  width: 74%;
+  margin: 0px;
+  width: 74vw;
   font-family: var(--main-font);
   font-size: 18px;
   padding: 11px;
@@ -67,7 +68,8 @@ h2 a:hover {
 }
 
 #randomButton {
-  width: 24%;
+  margin: 0px;
+  width: 24vw;
   font-family: var(--main-font);
   font-size: 18px;
   padding: 11px;
