@@ -1,19 +1,12 @@
-add run games, clicker heros, snake, and minesweeper, drive mad? p.craft? maptriod?
+add run games, clicker heros, snake, and minesweeper, big tower tiny square games, and johnny upgrade
+scuba bear, another gentalmans adv, abandoned submachine
 
-whya re you looking at this
-
-make settings (done gg) expand on ctrl q&m
+on hovor maybe a describtive box comes from above to show and img, description, creator, and similar games (for games page)
 
 tab flood short cut?
-
-mask favicon and document.title in settings?
-
-auto del setting?
 
 catigorys for games or maybe descriptions or maybe images
 
 sort by, like a dropdown filters, chage it to a-z, z-a, catigory, new, old etc
 
 comments?
-
-OH and 404 css
