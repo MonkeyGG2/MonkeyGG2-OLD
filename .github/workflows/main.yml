@@ -15,26 +15,41 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Get latest version of each fork
+    - name: Run shell script
       run: |
-        while IFS='' read -r line || [[ -n "$line" ]]; do
-          version=$(curl -sL $line/version.txt)
-          echo "$version $line" >> temp_forks.txt
+        # Function to compare version numbers
+        version_gt() {
+          test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1";
+        }
+
+        # Array to store the version numbers
+        versions=()
+
+        # Read each line from the forks.txt file
+        while read -r line; do
+          # Get the version number from the URL
+          version=$(curl -LSs "$line/version.txt" | grep "[0-9]\.[0-9]\.[0-9]" || echo "0.0.0")
+          # Add the version number to the array
+          versions+=( "$version" )
         done < forks.txt
-      
-    - name: Sort forks by version number
+
+        # Sort the version numbers in the array
+        sorted=( $(printf '%s\n' "${versions[@]}" | sort -Vr) )
+
+        # Print to sorted.txt
+        :>sorted.txt
+        for ver in "${sorted[@]}"; do
+          echo "$ver" >> sorted.txt
+        done        
+    - name: Push changes
       run: |
-        sort -V temp_forks.txt > sorted_forks.txt
-        mv sorted_forks.txt forks.txt
-        rm temp_forks.txt
+        git config user.email "github-actions"
+        git config user.name "Github Actions"
+        git add sorted.txt
+        git commit -m "sorted forks"
+        git push
         
-    - name: Commit and push changes
-      uses: actions/github-script@v6.4.0
-      with:
-        github-token: ${{ secrets.TOKEN }}
-        script: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "Github Actions"
-          git add forks.txt
-          git commit -m "Update forks list"
-          git push origin main
+    - name: Debugging
+      run: |
+        echo "Current working directory: $(pwd)"
+        ls -al
