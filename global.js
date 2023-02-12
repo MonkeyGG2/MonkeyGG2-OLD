@@ -279,6 +279,54 @@ document.addEventListener('keydown', (e) => {
             search.select();
         }
     }
+    else if (e.key.toLowerCase() === 'v' && e.ctrlKey) {
+        e.preventDefault();
+        if (document.getElementById("screen-overlay")){
+            var element = document.getElementById("screen-overlay"); 
+            element.parentNode.removeChild(element);
+        }else{
+            var a, b, c;
+            c = "https://www.bing.com/";
+            b = document.createElement("iframe");
+            b.setAttribute("src", c);
+            b.setAttribute("id", "screen-overlay");
+            b.setAttribute("style", "position: fixed; width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999999999; background-color: #fff;");
+            a=document.getElementsByTagName("body")[0];
+            a.appendChild(b);
+        }
+    }
+    else if (e.key.toLowerCase() === 'a' && e.ctrlKey) {
+        e.preventDefault();
+        DELAY = 0.1;
+        var autoClickerStyleElement = document.createElement("style");
+        autoClickerStyleElement.innerHTML = "*{cursor: crosshair !important;}";
+        document.body.appendChild(autoClickerStyleElement);
+
+        function addClicker(e) {
+        if (!e.isTrusted) {
+            return;
+        }
+        if (e.target.classList.contains("auto-clicker-target")) {
+            e.target.classList.remove("auto-clicker-target");
+        } else {
+            e.target.classList.add("auto-clicker-target");
+        }
+        document.body.removeChild(autoClickerStyleElement);
+        document.body.removeEventListener("click", addClicker);
+        e.preventDefault();
+        autoClick(e.target);
+        }
+
+        function autoClick(element) {
+        if (element.classList.contains("auto-clicker-target")) {
+            element.click();
+            setTimeout(function() {
+            autoClick(element);
+            }, DELAY);
+        }
+        }
+        document.body.addEventListener("click", addClicker, 0);
+    }
 });
 if (!document.getElementsByTagName("link")) {
     favicon = document.createElement("link");
