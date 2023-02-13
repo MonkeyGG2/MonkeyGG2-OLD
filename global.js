@@ -152,7 +152,7 @@ function addBtnRefresh() {
     document.getElementsByTagName('body')[0].appendChild(e);
 }
 
-if (window.location.pathname != "/") {
+if (window.location.pathname != "/games/") {
     window.addEventListener('load', function() {
         addCss();
         addBtnHome();
@@ -218,7 +218,7 @@ function returnHome(){
     if(window.hold == true){
         return;
     }
-    location.href = "/";
+    location.href = "/games";
 }
 
 function refreshPage() {

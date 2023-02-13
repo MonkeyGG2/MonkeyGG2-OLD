@@ -21,20 +21,23 @@
     <script src="ruffle.js"></script>
     <script>
       var game = (new URLSearchParams(window.location.search)).get('game');
-      document.title = (game.replace(/-/g,' ')).toLowerCase().split(' ').map(function(word) {return word[0].toUpperCase() + word.substr(1);}).join(' ');
-      document.querySelector('#favicon').href = `images/${game}.png`;
+      if (game){
+        document.title = (game.replace(/-/g,' ')).toLowerCase().split(' ').map(function(word) {return word[0].toUpperCase() + word.substr(1);}).join(' ');
+        document.querySelector('#favicon').href = `images/${game}.png`;
 
-      window.RufflePlayer = window.RufflePlayer || {};
-      window.addEventListener("load", (event) => {
-        const ruffle = window.RufflePlayer.newest();
-        const player = ruffle.createPlayer();
-        const container = document.getElementById("ruffle");
-        player.id = "player";
-        player.style.width = "100%";
-        player.style.height = "100%";
-        container.appendChild(player);
-        player.load(`files/${game}.swf`);
-      });
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("load", (event) => {
+          const ruffle = window.RufflePlayer.newest();
+          const player = ruffle.createPlayer();
+          const container = document.getElementById("ruffle");
+          player.id = "player";
+          player.style.width = "100%";
+          player.style.height = "100%";
+          container.appendChild(player);
+          player.load(`files/${game}.swf`);
+        });
+      }
+      
     </script>
   </body>
 </html>
