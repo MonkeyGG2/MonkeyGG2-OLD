@@ -35,7 +35,7 @@ function playerOnGroundCheck(event) {
                 //sets a hard land where player stays in a crouch for a bit and can't jump
                 //crouch is forced in groundControl below
                 const momentum = player.velocity.y * player.mass //player mass is 5 so this triggers at 26 down velocity, unless the player is holding something
-                if (momentum > 130) {
+                if (momentum > tech.hardLanding) {
                     m.doCrouch();
                     m.yOff = m.yOffWhen.jump;
                     m.hardLandCD = m.cycle + Math.min(momentum / 6.5 - 6, 40)
@@ -109,7 +109,7 @@ function collisionChecks(event) {
                         let dmg = Math.min(Math.max(0.025 * Math.sqrt(mob[k].mass), 0.05), 0.3) * simulation.dmgScale; //player damage is capped at 0.3*dmgScale of 1.0
                         if (m.isCloak) dmg *= 0.75
                         mob[k].foundPlayer();
-                        if (tech.isRewindAvoidDeath && m.energy > 0.66 && dmg > 0.01) { //CPT reversal runs in m.damage, but it stops the rest of the collision code here too
+                        if (tech.isRewindAvoidDeath && (m.energy + 0.05) > Math.min(0.95, m.maxEnergy) && dmg > 0.01) { //CPT reversal runs in m.damage, but it stops the rest of the collision code here too
                             m.damage(dmg);
                             return
                         }

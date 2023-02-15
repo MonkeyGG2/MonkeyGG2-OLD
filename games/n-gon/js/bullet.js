@@ -286,7 +286,7 @@ const b = {
     fireCDscale: 1,
     setFireCD() {
         b.fireCDscale = tech.fireRate * tech.slowFire * tech.researchHaste * tech.aimDamage
-        if (m.fieldMode === 6) b.fireCDscale *= 0.75
+        if (m.fieldMode === 6) b.fireCDscale *= 0.8
         if (tech.isFastTime) b.fireCDscale *= 0.5
         if (tech.isFireRateForGuns) b.fireCDscale *= Math.pow(0.82, Math.max(0, b.inventory.length - 1))
         if (tech.isFireMoveLock) b.fireCDscale *= 0.55
@@ -3751,7 +3751,7 @@ const b = {
         bullet[me] = Bodies.polygon(where.x, where.y, 12, radius, b.fireAttributes(dir, false));
         Composite.add(engine.world, bullet[me]); //add bullet to world
         Matter.Body.setVelocity(bullet[me], velocity);
-        Matter.Body.setDensity(bullet[me], 0.0008 + 0.0008 * tech.superHarm);
+        Matter.Body.setDensity(bullet[me], 0.0008 + 0.0009 * tech.superHarm);
         bullet[me].endCycle = simulation.cycle + Math.floor(300 + 90 * Math.random());
         bullet[me].minDmgSpeed = 0;
         bullet[me].restitution = 1;
@@ -3761,7 +3761,7 @@ const b = {
                 this.force.y += this.mass * 0.0012;
                 if (Matter.Query.collides(this, [player]).length) {
                     this.endCycle = 0
-                    let dmg = 0.02 * this.mass * tech.superHarm
+                    let dmg = 0.015 * this.mass * tech.superHarm
                     m.damage(dmg);
                     simulation.drawList.push({ //add dmg to draw queue
                         x: this.position.x,
@@ -6377,23 +6377,23 @@ const b = {
                                         mob[j].force.x += 0.01 * (Math.random() - 0.5) * mob[j].mass
                                         mob[j].force.y += 0.01 * (Math.random() - 0.5) * mob[j].mass
                                     }
-                                    if (!mob[j].isShielded) {
-                                        Matter.Body.setVelocity(mob[j], { //friction
-                                            x: mob[j].velocity.x * 0.95,
-                                            y: mob[j].velocity.y * 0.95
-                                        });
-                                        //draw vibes
-                                        let vertices = mob[j].vertices;
-                                        const vibe = 50 + mob[j].radius * 0.15
-                                        ctx.moveTo(vertices[0].x + vibe * (Math.random() - 0.5), vertices[0].y + vibe * (Math.random() - 0.5));
-                                        for (let k = 1; k < vertices.length; k++) {
-                                            ctx.lineTo(vertices[k].x + vibe * (Math.random() - 0.5), vertices[k].y + vibe * (Math.random() - 0.5));
-                                        }
-                                        ctx.lineTo(vertices[0].x + vibe * (Math.random() - 0.5), vertices[0].y + vibe * (Math.random() - 0.5));
-                                        //damage
-                                        mob[j].locatePlayer();
-                                        mob[j].damage(damage / Math.sqrt(mob[j].radius));
+                                    // if (!mob[j].isShielded) {
+                                    Matter.Body.setVelocity(mob[j], { //friction
+                                        x: mob[j].velocity.x * 0.95,
+                                        y: mob[j].velocity.y * 0.95
+                                    });
+                                    //draw vibes
+                                    let vertices = mob[j].vertices;
+                                    const vibe = 50 + mob[j].radius * 0.15
+                                    ctx.moveTo(vertices[0].x + vibe * (Math.random() - 0.5), vertices[0].y + vibe * (Math.random() - 0.5));
+                                    for (let k = 1; k < vertices.length; k++) {
+                                        ctx.lineTo(vertices[k].x + vibe * (Math.random() - 0.5), vertices[k].y + vibe * (Math.random() - 0.5));
                                     }
+                                    ctx.lineTo(vertices[0].x + vibe * (Math.random() - 0.5), vertices[0].y + vibe * (Math.random() - 0.5));
+                                    //damage
+                                    mob[j].locatePlayer();
+                                    mob[j].damage(damage / Math.sqrt(mob[j].radius));
+                                    // }
                                     if (tech.isPhononWave && this.phononWaveCD < m.cycle) {
                                         this.phononWaveCD = m.cycle + 8 * (1 + this.waves[i].resonanceCount)
                                         this.waves.push({
@@ -7110,7 +7110,10 @@ const b = {
             },
             doStream() {},
             fireStream() {
-                const spread = (input.down ? 0.04 : 0.3) * (Math.random() - 0.5)
+                const spread = (input.down ?
+                    0.04 * (Math.random() - 0.5) + 0.09 * Math.sin(m.cycle * 0.12) :
+                    0.23 * (Math.random() - 0.5) + 0.15 * Math.sin(m.cycle * 0.12)
+                )
                 const radius = 5 + 8 * Math.random() + (tech.isAmmoFoamSize && this.ammo < 300) * 12
                 const SPEED = (input.down ? 1.2 : 1) * Math.max(2, 14 - radius * 0.25)
                 const dir = m.angle + 0.15 * (Math.random() - 0.5)
@@ -7162,7 +7165,10 @@ const b = {
                 }
             },
             fireCharges() {
-                const spread = (input.down ? 0.04 : 0.3) * (Math.random() - 0.5)
+                const spread = (input.down ?
+                    0.04 * (Math.random() - 0.5) + 0.09 * Math.sin(m.cycle * 0.12) :
+                    0.23 * (Math.random() - 0.5) + 0.15 * Math.sin(m.cycle * 0.12)
+                )
                 const radius = 5 + 8 * Math.random() + (tech.isAmmoFoamSize && this.ammo < 300) * 12
                 const SPEED = (input.down ? 1.2 : 1) * Math.max(2, 14 - radius * 0.25)
                 const dir = m.angle + 0.15 * (Math.random() - 0.5)

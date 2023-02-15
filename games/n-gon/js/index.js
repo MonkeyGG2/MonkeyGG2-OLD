@@ -54,7 +54,7 @@ const cat = {
     phased: 0x100000000,
 }
 
-const color = { //light
+let color = { //light
     // background: "#ddd", // used instead:  document.body.style.backgroundColor
     block: "rgba(140,140,140,0.85)",
     blockS: "#222",
@@ -335,7 +335,7 @@ const build = {
 <span style="float: right;">press ${input.key.pause} to resume</span> 
 <br>
 <br><strong class='color-d'>damage</strong>: ${((tech.damageFromTech())).toPrecision(4)} &nbsp; &nbsp; difficulty: ${((m.dmgScale)).toPrecision(4)}
-<br><strong class='color-defense'>defense</strong>: ${tech.isEnergyHealth  ? (1-Math.pow(m.harmReduction(), 0.1)).toPrecision(5) : (1-m.harmReduction()).toPrecision(5) } &nbsp; &nbsp; difficulty: ${(1/simulation.dmgScale).toPrecision(4)}
+<br><strong class='color-defense'>defense</strong>: ${tech.isEnergyHealth  ? (1-Math.pow(m.harmReduction(), 0.13)).toPrecision(5) : (1-m.harmReduction()).toPrecision(5) } &nbsp; &nbsp; difficulty: ${(1/simulation.dmgScale).toPrecision(4)}
 <br><strong><em>fire rate</em></strong>: ${((1-b.fireCDscale)*100).toFixed(b.fireCDscale < 0.1 ? 2 : 0)}%
 ${tech.duplicationChance() ?  `<br><strong class='color-dup'>duplication</strong>: ${(tech.duplicationChance()*100).toFixed(0)}%`: ""}
 ${m.coupling ? `<br><strong class='color-coupling'>coupling</strong>: ${(m.coupling).toFixed(2)} &nbsp; <span style = 'font-size:90%;'>`+m.couplingDescription()+"</span>": ""}
@@ -358,13 +358,13 @@ ${simulation.isCheating ? "<br><br><em>lore disabled</em>": ""}
 </span></div>`;
         // deaths: ${mobs.mobDeaths} &nbsp;
         if (tech.isPauseSwitchField && !simulation.isChoosing) {
-            const style = localSettings.isHideImages ? `style="height:auto;"` : `style="background-image: url('img/field/${m.fieldUpgrades[m.fieldMode].name}${m.fieldMode === 0 ? Math.floor(Math.random()*10) : ""}.webp');"`
+            const style = localSettings.isHideImages ? `style="height:auto;"` : `style="background-image: url('img/field/${m.fieldUpgrades[m.fieldMode].name}${m.fieldMode === 0 ? m.fieldUpgrades[0].imageNumber : ""}.webp');"`
             text += `<div class="pause-grid-module card-background" id ="pause-field" ${style} >
                     <div class="card-text" style = "animation: fieldColorCycle 1s linear infinite alternate;">
                     <div class="grid-title"><div class="circle-grid field"></div> &nbsp; ${build.nameLink(m.fieldUpgrades[m.fieldMode].name)}</div>
                     ${m.fieldUpgrades[m.fieldMode].description}</div> </div>`
         } else {
-            const style = localSettings.isHideImages ? `style="height:auto;"` : `style="background-image: url('img/field/${m.fieldUpgrades[m.fieldMode].name}${m.fieldMode === 0 ? Math.floor(Math.random()*10) : ""}.webp');"`
+            const style = localSettings.isHideImages ? `style="height:auto;"` : `style="background-image: url('img/field/${m.fieldUpgrades[m.fieldMode].name}${m.fieldMode === 0 ? m.fieldUpgrades[0].imageNumber : ""}.webp');"`
             text += `<div class="pause-grid-module card-background" id ="pause-field" ${style} >
                     <div class="card-text">
                     <div class="grid-title"><div class="circle-grid field"></div> &nbsp; ${build.nameLink(m.fieldUpgrades[m.fieldMode].name)}</div>
@@ -380,7 +380,7 @@ ${simulation.isCheating ? "<br><br><em>lore disabled</em>": ""}
                     <div class="grid-title"><div class="circle-grid gun"></div> &nbsp; ${build.nameLink(b.guns[b.inventory[i]].name)} - <span style="font-size:100%;font-weight: 100;">${b.guns[b.inventory[i]].ammo}</span></div>
                     ${b.guns[b.inventory[i]].description}</div> </div>`
         }
-
+        text += `<div class="pause-grid-module pause-console" style = "background-color: rgba(255,255,255,0.3);">${document.getElementById("text-log").innerHTML}</div>` //show last in game console message
         let el = document.getElementById("pause-grid-left")
         el.style.display = "grid"
         el.innerHTML = text
@@ -412,7 +412,7 @@ ${simulation.isCheating ? "<br><br><em>lore disabled</em>": ""}
                 // } else {
                 //     text += `<div class="pause-grid-module" id ="${i}-pause-tech" onclick="powerUps.pauseEjectTech(${i})" ${style}><div class="grid-title"><div class="circle-grid tech"></div> &nbsp; ${tech.tech[i].link} ${techCountText}</div>${tech.tech[i].descriptionFunction ? tech.tech[i].descriptionFunction() :tech.tech[i].description}</div></div>`
                 // }
-                const style = (localSettings.isHideImages || tech.tech[i].isJunk) ? `style="height:auto;"` : `style = "background-image: url('img/${tech.tech[i].name}.webp');"`
+                const style = (localSettings.isHideImages || tech.tech[i].isJunk || tech.tech[i].isLore) ? `style="height:auto;"` : `style = "background-image: url('img/${tech.tech[i].name}.webp');"`
                 const techCountText = tech.tech[i].count > 1 ? `(${tech.tech[i].count}x)` : "";
                 if (tech.tech[i].isNonRefundable) {
                     text += `<div class="pause-grid-module" id ="${i}-pause-tech"  style = "border: 0px; opacity:0.5; font-size: 60%; line-height: 130%; margin: 1px; padding: 6px;"><div class="grid-title">${tech.tech[i].link} ${techCountText}</div>${tech.tech[i].descriptionFunction ? tech.tech[i].descriptionFunction() :tech.tech[i].description}</div></div>`
@@ -424,6 +424,9 @@ ${simulation.isCheating ? "<br><br><em>lore disabled</em>": ""}
                 } else if (tech.tech[i].isGunTech) {
                     text += `<div id="${i}-pause-tech" class="pause-grid-module card-background ${ejectClass}" onclick="powerUps.pauseEjectTech(${i})" ${style}>`
                     text += build.gunTechText(i) + "</div>"
+                } else if (tech.tech[i].isSkin) {
+                    text += `<div id="${i}-pause-tech" class="pause-grid-module card-background ${ejectClass}" onclick="powerUps.pauseEjectTech(${i})" ${style}>`
+                    text += build.skinTechText(i) + "</div>"
                 } else {
                     text += `<div id="${i}-pause-tech" class="pause-grid-module card-background ${ejectClass}" onclick="powerUps.pauseEjectTech(${i})" ${style}>`
                     text += build.techText(i) + "</div>"
@@ -441,6 +444,11 @@ ${simulation.isCheating ? "<br><br><em>lore disabled</em>": ""}
         document.getElementById("field").style.display = "none"
         document.getElementById("health").style.display = "none"
         document.getElementById("health-bg").style.display = "none"
+
+        //show in game console
+        // document.getElementById("text-log").style.display = "inline"
+        simulation.lastLogTime = m.cycle //hide in game console
+
     },
     unPauseGrid() {
         document.getElementById("tech").style.display = "inline"
@@ -465,6 +473,14 @@ ${simulation.isCheating ? "<br><br><em>lore disabled</em>": ""}
     techText(i) {
         return `<div class="card-text" >
         <div class="grid-title" ><div class="circle-grid tech"></div> &nbsp; ${build.nameLink(tech.tech[i].name)} ${tech.tech[i].count > 1 ? `(${tech.tech[i].count}x)` : ""}</div>
+        ${tech.tech[i].descriptionFunction ? tech.tech[i].descriptionFunction() :tech.tech[i].description}</div>`
+    },
+    skinTechText(i) {
+        return `<div class="card-text"> <div class="grid-title">
+        <span style="position:relative;">
+            <div class="circle-grid-skin"></div>
+            <div class="circle-grid-skin-eye"></div>
+        </span> &nbsp; &nbsp; &nbsp;&nbsp; ${build.nameLink(tech.tech[i].name)} ${tech.tech[i].count > 1 ? `(${tech.tech[i].count}x)` : ""}</div>
         ${tech.tech[i].descriptionFunction ? tech.tech[i].descriptionFunction() :tech.tech[i].description}</div>`
     },
     gunTechText(i) {
@@ -560,6 +576,9 @@ ${simulation.isCheating ? "<br><br><em>lore disabled</em>": ""}
                     } else if (tech.tech[i].isJunk) {
                         techID.innerHTML = build.junkTechText(i)
                         // `<div class="grid-title"><div class="circle-grid junk"></div> &nbsp; ${tech.tech[i].link} ${techCountText}</div>${tech.tech[i].descriptionFunction ? tech.tech[i].descriptionFunction() : tech.tech[i].description}</div>`
+                    } else if (tech.tech[i].isSkin) {
+                        techID.classList.remove('experiment-grid-hide');
+                        techID.innerHTML = build.skinTechText(i)
                     } else {
                         techID.innerHTML = build.techText(i)
                     }
@@ -583,6 +602,8 @@ ${simulation.isCheating ? "<br><br><em>lore disabled</em>": ""}
                         techID.innerHTML = build.gunTechText(i)
                     } else if (tech.tech[i].isJunk) {
                         techID.innerHTML = build.junkTechText(i)
+                    } else if (tech.tech[i].isSkin) {
+                        techID.innerHTML = build.skinTechText(i)
                     } else {
                         techID.innerHTML = build.techText(i)
                     }
@@ -629,7 +650,7 @@ ${simulation.isCheating ? "<br><br><em>lore disabled</em>": ""}
 </div>`
         const hideStyle = `style="height:auto; border: none; background-color: transparent;"`
         for (let i = 0, len = m.fieldUpgrades.length; i < len; i++) {
-            const style = localSettings.isHideImages ? hideStyle : `style="background-image: url('img/field/${m.fieldUpgrades[i].name}${i === 0 ? Math.floor(Math.random()*10) : ""}.webp');"`
+            const style = localSettings.isHideImages ? hideStyle : `style="background-image: url('img/field/${m.fieldUpgrades[i].name}${i === 0 ? m.fieldUpgrades[0].imageNumber : ""}.webp');"`
             //original
             // text += powerUps.fieldText(i, `build.choosePowerUp(this,${i},'field')`)
             // text += `<div id ="field-${i}" class="experiment-grid-module" onclick="build.choosePowerUp(this,${i},'field')"><div class="grid-title"><div class="circle-grid field"></div> &nbsp; ${build.nameLink(m.fieldUpgrades[i].name)}</div> ${m.fieldUpgrades[i].description}</div>`
@@ -656,12 +677,15 @@ ${simulation.isCheating ? "<br><br><em>lore disabled</em>": ""}
                     text += `<div id="tech-${i}" class="experiment-grid-module card-background experiment-grid-disabled" ${style}>`
                     // text += `<div id="tech-${i}" class="experiment-grid-module card-background experiment-grid-disabled" onclick="build.choosePowerUp(${i},'tech')" ${style}>`
                 }
-                if (tech.tech[i].isJunk) {
-                    text += build.junkTechText(i)
+
+                if (tech.tech[i].isFieldTech) {
+                    text += build.fieldTechText(i)
                 } else if (tech.tech[i].isGunTech) {
                     text += build.gunTechText(i)
-                } else if (tech.tech[i].isFieldTech) {
-                    text += build.fieldTechText(i)
+                } else if (tech.tech[i].isSkin) {
+                    text += build.skinTechText(i)
+                } else if (tech.tech[i].isJunk) {
+                    text += build.junkTechText(i)
                 } else {
                     text += build.techText(i)
                 }
@@ -1642,7 +1666,7 @@ if (!localSettings.isHideImages) {
         for (let i = 0, len = b.guns.length; i < len; i++) urls.push("img/gun/" + b.guns[i].name + ".webp")
         for (let i = 1, len = m.fieldUpgrades.length; i < len; i++) urls.push("img/field/" + m.fieldUpgrades[i].name + ".webp")
         for (let i = 0, len = tech.tech.length; i < len; i++) {
-            if (!tech.tech[i].isJunk) urls.push("img/" + tech.tech[i].name + ".webp")
+            if (!tech.tech[i].isJunk && !tech.tech[i].isLore) urls.push("img/" + tech.tech[i].name + ".webp")
         }
         let images = new Array()
         for (let i = 0; i < urls.length; i++) {
