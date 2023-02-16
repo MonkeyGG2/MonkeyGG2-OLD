@@ -14,3 +14,5 @@ comments?
 also auto sync fork and a way to get your game progress across Forks 
 
 alert("you are not on the latest version play the latest games at https://monkeygg2.github.io/")
+
+add settings into misc
