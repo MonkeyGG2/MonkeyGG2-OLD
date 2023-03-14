@@ -154,12 +154,13 @@ summary {
     border: 1px #333 solid;
 }
 
-#flex-center{
+#flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
 }
+
 #choose-grid {
     position: absolute;
     top: 50%;
@@ -178,9 +179,12 @@ summary {
     opacity: 0;
     transition: opacity 0.25s linear;
     overflow: auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
+
 #choose-grid::-webkit-scrollbar {
     display: none;
 }
@@ -194,13 +198,14 @@ summary {
 .choose-grid-module:hover {
     background-color: var(--hover-card-color);
 }
+
 .choose-grid-module:hover .card-text {
     background-color: var(--hover-card-color);
 }
 
 .research-select {
     float: right;
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 .pause-grid {
@@ -217,12 +222,14 @@ summary {
 
 #pause-grid-right {
     position: absolute;
-    top:-2px;
-    right:-4px;
+    top: -2px;
+    right: -4px;
     overflow: auto;
     max-height: 100vh;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
     padding: 1px;
 }
 
@@ -232,13 +239,16 @@ summary {
 
 #pause-grid-left {
     position: absolute;
-    top:-2px;
-    left:-4px;
+    top: -2px;
+    left: -4px;
     overflow: auto;
     max-height: 100vh;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
+
 .pause-console {
     padding: 10px;
     margin: 5px;
@@ -274,9 +284,12 @@ summary {
     /* bottom: 0px; */
     z-index: 10;
     font-size: 1.3em;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
+
 #experiment-grid::-webkit-scrollbar {
     display: none;
 }
@@ -302,18 +315,18 @@ summary {
     background-color: var(--card-color);
 }
 
-.experiment-start-box{
+.experiment-start-box {
     background-color: var(--card-color);
     /* font-size: 1em; */
-    position: sticky; 
-    top:0; 
-    z-index: 10; 
-    align-self: start; 
-    width: 195px; 
-    line-height: 170%; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    align-self: start;
+    width: 195px;
+    line-height: 170%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     border: 2px #333 solid;
     border-top: 0px;
@@ -321,22 +334,22 @@ summary {
     border-top-left-radius: 0px;
     /* border-bottom-left-radius: 0px; */
     border-top-right-radius: 0px;
-    padding:0.2em 0px;  
+    padding: 0.2em 0px;
     height: 190px;
-    box-shadow: 8px 8px 7px rgba(0,0,50,0.15);
+    box-shadow: 8px 8px 7px rgba(0, 0, 50, 0.15);
 }
 
 .card-background {
-    height:340px; 
+    height: 340px;
     background-size: contain;
-    background-repeat: no-repeat; 
-    display: flex; 
-    justify-content:flex-end;
-    flex-direction: column;  
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
 }
 
 .card-text {
-    background-color: rgba(255,255,255,1); 
+    background-color: rgba(255, 255, 255, 1);
     padding: 0.5em 1em;
     border: 1px solid #444;
     margin-top: -1px;
@@ -344,6 +357,7 @@ summary {
     font-size: 0.92em;
     min-height: 88px;
 }
+
 .cancel-card {
     text-align: center;
     font-size: 1.1em;
@@ -356,9 +370,11 @@ summary {
     line-height: 160%;
     background-color: var(--card-color);
 }
+
 .cancel-card:hover {
     background-color: var(--hover-card-color);
 }
+
 .research-card {
     font-size: 1.1em;
     font-weight: 100;
@@ -369,6 +385,7 @@ summary {
     line-height: 160%;
     background-color: var(--card-color);
 }
+
 .research-card:hover {
     background-color: var(--hover-card-color);
 }
@@ -376,36 +393,54 @@ summary {
 
 /* keeps 5 columns at 1440px */
 @media (min-width: 1710px) and (max-width: 1950px) {
-    .experiment-grid-module, .choose-grid-module, .pause-grid-module {
+
+    .experiment-grid-module,
+    .choose-grid-module,
+    .pause-grid-module {
         line-height: 143%;
         font-size: 0.68em;
     }
-    #experiment-grid, #choose-grid, .pause-grid{
+
+    #experiment-grid,
+    #choose-grid,
+    .pause-grid {
         grid-template-columns: repeat(auto-fit, 340px);
     }
-    .card-background{
-        height:290px; 
+
+    .card-background {
+        height: 290px;
     }
+
     .card-text {
         min-height: 75px;
     }
 }
+
 /* (min-width: 30em) and (max-width: 80em) */
 @media (max-width: 1709px) {
-    .experiment-grid-module, .choose-grid-module, .pause-grid-module {
+
+    .experiment-grid-module,
+    .choose-grid-module,
+    .pause-grid-module {
         line-height: 139%;
         font-size: 0.58em;
     }
-    #experiment-grid, #choose-grid, .pause-grid{
+
+    #experiment-grid,
+    #choose-grid,
+    .pause-grid {
         grid-template-columns: repeat(auto-fit, 285px);
     }
-    .card-background{
-        height:240px; 
+
+    .card-background {
+        height: 240px;
     }
+
     .card-text {
         min-height: 64px;
     }
 }
+
 /* keeps 4 columns at 1440px */
 /* @media (1500px <= width < 1950px) {
     .experiment-grid-module, .choose-grid-module, .pause-grid-module {
@@ -441,21 +476,27 @@ summary {
 .experiment-grid-module:hover .card-text {
     background-color: var(--hover-card-color);
 }
-.build-tech-selected .card-text{
+
+.build-tech-selected .card-text {
     background-color: hsl(253, 100%, 84%);
 }
+
 .build-tech-selected.experiment-grid-module:hover .card-text {
     background-color: hsl(253, 100%, 81%);
 }
-.build-gun-selected .card-text{
+
+.build-gun-selected .card-text {
     background-color: hsl(218, 100%, 81%);
 }
+
 .build-gun-selected.experiment-grid-module:hover .card-text {
     background-color: hsl(218, 100%, 76%);
 }
-.build-field-selected .card-text{
+
+.build-field-selected .card-text {
     background-color: hsl(193, 100%, 75%);
 }
+
 .build-field-selected.experiment-grid-module:hover .card-text {
     background-color: hsl(193, 100%, 68%);
 }
@@ -512,9 +553,112 @@ summary {
     transition: opacity 1s;
 }
 
+#damage-bar {
+    position: absolute;
+    /* top: 1px;
+    left: 15px;
+    height: 7px;
+    width: 0px;
+    transition: width 0.3s linear; */
+    top: 16px;
+    right: 4px;
+    height: 0px;
+    width: 7px;
+    transition: height 0.15s linear;
+    opacity: 1;
+    z-index: 2;
+    pointer-events: none;
+    background-color: rgb(255, 55, 95);
+    /* border-bottom: 1.5px solid #701; */
+    /* border-right: 1.5px solid #701; */
+    display: none;
+}
+
+#defense-bar {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    height: 7px;
+    width: 0px;
+    transition: width 0.3s linear;
+    opacity: 1;
+    z-index: 2;
+    pointer-events: none;
+    background-color: #fff;
+    border-right: 1.5px solid #777;
+    display: none;
+}
+#health {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    height: 20px;
+    width: 0px;
+    transition: width 1s ease-out;    z-index: 2;
+    pointer-events: none;
+    background-color: rgb(9, 245, 166);
+    border-right: 2px solid rgb(51, 162, 125);
+    display: none;
+}
 #health-bg {
     position: absolute;
     top: 15px;
+    left: 15px;
+    height: 20px;
+    width: 0px;
+    transition: width 1s ease-out;
+    background-color: #032;
+    opacity: 0.1;
+    z-index: 1;
+    pointer-events: none;
+    display: none;
+}
+
+/* #damage-bar {
+    position: absolute;
+    top: 0px;
+    left: 15px;
+    height: 6px;
+    width: 0px;
+    transition: width 0.3s linear;
+    opacity: 1;
+    z-index: 2;
+    pointer-events: none;
+    background-color: #f03;
+    border: 1px solid #701;
+    display: none;
+}
+
+#defense-bar {
+    position: absolute;
+    top: 9px;
+    left: 15px;
+    height: 5px;
+    width: 0px;
+    transition: width 0.3s linear;
+    opacity: 1;
+    z-index: 2;
+    pointer-events: none;
+    background-color: #fff;
+    border: 1px solid #333;
+    display: none;
+}
+#health {
+    position: absolute;
+    top: 16px;
+    left: 15px;
+    height: 20px;
+    width: 0px;
+    transition: width 1s ease-out;    z-index: 2;
+    pointer-events: none;
+    background-color: #0fa;
+    border: 2px solid rgb(51, 162, 125);
+    border-radius: 8px;
+    display: none;
+}
+#health-bg {
+    position: absolute;
+    top: 18px;
     left: 15px;
     height: 20px;
     width: 0px;
@@ -523,35 +667,23 @@ summary {
     opacity: 0.1;
     z-index: 1;
     pointer-events: none;
+    border-radius: 8px;
     display: none;
-}
+} */
 
-#health {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    height: 20px;
-    width: 0px;
-    transition: width 1s ease-out;
-    opacity: 0.6;
-    z-index: 2;
-    pointer-events: none;
-    background-color: #f00;
-}
-
-.low-health {
+/* .low-health {
     animation: blink 250ms infinite alternate;
 }
 
 @keyframes blink {
     from {
-        opacity: 0.9;
+        opacity: 1;
     }
 
     to {
-        opacity: 0.2;
+        opacity: 0.6;
     }
-}
+} */
 
 /* background on title page */
 #fade-out {
@@ -567,12 +699,13 @@ summary {
 
 #guns {
     position: absolute;
-    top: 40px;
+    top: 82px;
     left: 15px;
     z-index: 2;
     font-size: 23px;
     color: #222;
-    background-color: rgba(255, 255, 255, 0.4);
+    /* background-color: rgba(255, 255, 255, 0.4); */
+    background-color: rgba(255, 255, 255, 0.2);
     line-height: 120%;
     user-select: none;
     pointer-events: none;
@@ -583,8 +716,8 @@ summary {
 
 #field {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 45px;
+    left: 15px;
     z-index: 2;
     font-size: 23px;
     color: #000;
@@ -601,7 +734,7 @@ summary {
 
 #tech {
     position: absolute;
-    top: 60px;
+    top: 15px;
     right: 15px;
     z-index: 2;
     font-size: 20px;
@@ -769,6 +902,7 @@ summary {
     padding: 0.5px;
     font-weight: 100;
 }
+
 .color-cancel {
     background-color: var(--card-color);
     border: 0.15em #444 solid;
@@ -812,6 +946,7 @@ summary {
     display: inline-block;
     margin-bottom: -0.3em;
 }
+
 .circle-grid-skin {
     width: 1.25em;
     height: 1.25em;
@@ -821,10 +956,11 @@ summary {
     opacity: 0.8;
     border: 0.08em solid #222;
     position: absolute;
-    top:-0.05em;
-    left:0em;
+    top: -0.05em;
+    left: 0em;
     margin-bottom: -0.3em;
 }
+
 .circle-grid-skin-eye {
     width: 0.18em;
     height: 0.18em;
@@ -837,6 +973,7 @@ summary {
     left: 0.9em;
     margin-bottom: -0.3em;
 }
+
 .junk {
     background-color: hsl(254, 44%, 75%);
     border-radius: 25%;
@@ -874,6 +1011,7 @@ summary {
     opacity: 0.85;
     margin-bottom: -3px;
 }
+
 .heal-circle-energy {
     width: 0.95em;
     height: 0.95em;
@@ -976,7 +1114,7 @@ summary {
 }
 
 .color-coupling {
-    text-shadow: 0px 0px 1.5px #0cf; 
+    text-shadow: 0px 0px 1.5px #0cf;
     letter-spacing: 1px;
     font-weight: 100;
 }
@@ -1020,20 +1158,24 @@ summary {
     border: none;
     background-color: var(--card-color);
 }
+
 .flipX {
     animation: 14s anim-flipX linear infinite;
 }
+
 @keyframes anim-flipX {
     0% {
-      transform: rotateX(0.5turn);
+        transform: rotateX(0.5turn);
     }
+
     50% {
-      transform: rotateX(1turn);
+        transform: rotateX(1turn);
     }
+
     100% {
-      transform: rotateX(0.5turn);
+        transform: rotateX(0.5turn);
     }
-  }
+}
 
 @keyframes fieldColorCycle {
     0% {

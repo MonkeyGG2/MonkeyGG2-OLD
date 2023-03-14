@@ -256,6 +256,7 @@ const m = {
             y: Math.max(-10, Math.min(m.standingOn.velocity.y, 10)) //cap velocity contribution from blocks you are standing on to 10 in the vertical
         });
     },
+    moverX: 0, //used to tell the player about moving platform x velocity
     groundControl() {
         //check for crouch or jump
         if (m.crouch) {
@@ -265,35 +266,30 @@ const m = {
         } else if (input.up && m.buttonCD_jump + 20 < m.cycle && m.yOffWhen.stand > 23) {
             m.jump()
         }
-
+        const moveX = player.velocity.x - m.moverX //account for mover platforms
         if (input.left) {
-            if (player.velocity.x > -2) {
+            if (moveX > -2) {
                 player.force.x -= m.Fx * 1.5
             } else {
                 player.force.x -= m.Fx
             }
             // }
         } else if (input.right) {
-            if (player.velocity.x < 2) {
+            if (moveX < 2) {
                 player.force.x += m.Fx * 1.5
             } else {
                 player.force.x += m.Fx
             }
         } else {
             const stoppingFriction = 0.92; //come to a stop if no move key is pressed
-            Matter.Body.setVelocity(player, {
-                x: player.velocity.x * stoppingFriction,
-                y: player.velocity.y * stoppingFriction
-            });
+            Matter.Body.setVelocity(player, { x: m.moverX * 0.08 + player.velocity.x * stoppingFriction, y: player.velocity.y * stoppingFriction });
         }
-        //come to a stop if fast 
-        if (player.speed > 4) {
+
+        if (Math.abs(moveX) > 4) { //come to a stop if fast     // if (player.speed > 4) { //come to a stop if fast 
             const stoppingFriction = (m.crouch) ? 0.65 : 0.89; // this controls speed when crouched
-            Matter.Body.setVelocity(player, {
-                x: player.velocity.x * stoppingFriction,
-                y: player.velocity.y * stoppingFriction
-            });
+            Matter.Body.setVelocity(player, { x: m.moverX * (1 - stoppingFriction) + player.velocity.x * stoppingFriction, y: player.velocity.y * stoppingFriction });
         }
+        m.moverX = 0 //reset the level mover offset
     },
     airControl() {
         //check for coyote time jump
@@ -302,11 +298,7 @@ const m = {
 
         //check for short jumps   //moving up   //recently pressed jump  //but not pressing jump key now
         if (m.buttonCD_jump + 60 > m.cycle && !(input.up) && m.Vy < 0) {
-            Matter.Body.setVelocity(player, {
-                //reduce player y-velocity every cycle
-                x: player.velocity.x,
-                y: player.velocity.y * 0.94
-            });
+            Matter.Body.setVelocity(player, { x: player.velocity.x, y: player.velocity.y * 0.94 }); //reduce player y-velocity every cycle
         }
 
         if (input.left) {
@@ -463,6 +455,8 @@ const m = {
             m.alive = false;
             simulation.paused = true;
             m.health = 0;
+            document.getElementById("defense-bar").style.display = "none"; //hide defense
+            document.getElementById("damage-bar").style.display = "none"
             m.displayHealth();
             document.getElementById("text-log").style.display = "none"
             document.getElementById("fade-out").style.opacity = 0.9; //slowly fade to 90% white on top of canvas
@@ -518,11 +512,11 @@ const m = {
         // health display is a x^1.5 rule to make it seem like the player has lower health, this makes the player feel more excitement
         id.style.width = Math.floor(300 * m.maxHealth * Math.pow(m.health / m.maxHealth, 1.4)) + "px";
         //css animation blink if health is low
-        if (m.health < 0.3) {
-            id.classList.add("low-health");
-        } else {
-            id.classList.remove("low-health");
-        }
+        // if (m.health < 0.3) {
+        //     id.classList.add("low-health");
+        // } else {
+        //     id.classList.remove("low-health");
+        // }
     },
     addHealth(heal) {
         if (!tech.isEnergyHealth) {
@@ -542,7 +536,9 @@ const m = {
 
     defaultFPSCycle: 0, //tracks when to return to normal fps
     immuneCycle: 0, //used in engine
-    harmReduction() {
+    lastCalculatedDamage: 0, //used to decided if damage bar needs to be redrawn  (in simulation.checks)
+    lastCalculatedDefense: 0, //used to decided if defense bar needs to be redrawn  (in simulation.checks)
+    defense() {
         let dmg = 1
         dmg *= m.fieldHarmReduction
         // if (!tech.isFlipFlopOn && tech.isFlipFlopHealth) dmg *= 0.5
@@ -554,11 +550,11 @@ const m = {
         if (tech.isImmortal) dmg *= 0.67
         if (tech.isSlowFPS) dmg *= 0.8
         if (tech.energyRegen === 0) dmg *= 0.34
-        if (tech.healthDrain) dmg *= 1 + 3.33 * tech.healthDrain //tech.healthDrain = 0.03 at one stack //cause more damage
+        // if (tech.healthDrain) dmg *= 1 + 3.33 * tech.healthDrain //tech.healthDrain = 0.03 at one stack //cause more damage
         if (m.fieldMode === 0 || m.fieldMode === 3) dmg *= 0.73 ** m.coupling
         if (tech.isLowHealthDefense) dmg *= 1 - Math.max(0, 1 - m.health) * 0.8
         if (tech.isHarmReduceNoKill && m.lastKillCycle + 300 < m.cycle) dmg *= 0.33
-        if (tech.squirrelFx !== 1) dmg *= 1 - 3 * (tech.squirrelFx - 1) / 5 //cause more damage
+        if (tech.squirrelFx !== 1) dmg *= Math.pow(0.7, (tech.squirrelFx - 1) / 0.4) //cause more damage
         if (tech.isAddBlockMass && m.isHolding) dmg *= 0.15
         if (tech.isSpeedHarm && player.speed > 0.1) dmg *= 1 - Math.min(player.speed * 0.0165, 0.66)
         if (tech.isHarmReduce && input.field && m.fieldCDcycle < m.cycle) dmg *= 0.25
@@ -568,7 +564,11 @@ const m = {
         if (tech.isNoFireDefense && m.cycle > m.fireCDcycle + 120) dmg *= 0.3
         if (tech.isTurret && m.crouch) dmg *= 0.34;
         if (tech.isFirstDer && b.inventory[0] === b.activeGun) dmg *= 0.85 ** b.inventory.length
-        return dmg
+        if (tech.isEnergyHealth) {
+            return Math.pow(dmg, 0.13) //defense has less effect
+        } else {
+            return dmg
+        }
     },
     rewind(steps) { // m.rewind(Math.floor(Math.min(599, 137 * m.energy)))
         if (tech.isRewindGrenade) {
@@ -708,7 +708,6 @@ const m = {
             }
         }
         if (tech.isEnergyHealth) {
-            dmg *= Math.pow(m.harmReduction(), 0.13) //defense has less effect
             m.energy -= 0.9 * dmg / Math.sqrt(simulation.healScale) //scale damage with heal reduction difficulty
             if (m.energy < 0 || isNaN(m.energy)) { //taking deadly damage
                 if (tech.isDeathAvoid && powerUps.research.count && !tech.isDeathAvoidedThisLevel) {
@@ -736,7 +735,7 @@ const m = {
                 return;
             }
         } else {
-            dmg *= m.harmReduction()
+            dmg *= m.defense()
             m.health -= dmg;
             if (m.health < 0 || isNaN(m.health)) {
                 if (tech.isDeathAvoid && powerUps.research.count > 0 && !tech.isDeathAvoidedThisLevel) { //&& Math.random() < 0.5
@@ -1855,8 +1854,8 @@ const m = {
     },
     setMaxEnergy() {
         // (m.fieldMode === 0 || m.fieldMode === 1) * 0.4 * m.coupling +
-        m.maxEnergy = (tech.isMaxEnergyTech ? 0.5 : 1) + tech.bonusEnergy + tech.healMaxEnergyBonus + tech.harmonicEnergy + 2 * tech.isGroundState + 3 * tech.isRelay * tech.isFlipFlopOn * tech.isRelayEnergy + 0.6 * (m.fieldUpgrades[m.fieldMode].name === "standing wave")
-        // if (tech.isEnergyHealth) m.maxEnergy *= Math.sqrt(m.harmReduction())
+        m.maxEnergy = (tech.isMaxEnergyTech ? 0.5 : 1) + tech.bonusEnergy + tech.healMaxEnergyBonus + tech.harmonicEnergy + 2 * tech.isGroundState + 3 * tech.isRelay * tech.isFlipFlopOn * tech.isRelayEnergy + 0.66 * (m.fieldUpgrades[m.fieldMode].name === "standing wave")
+        // if (tech.isEnergyHealth) m.maxEnergy *= Math.sqrt(m.defense())
         simulation.makeTextLog(`<span class='color-var'>m</span>.<span class='color-f'>maxEnergy</span> <span class='color-symbol'>=</span> ${(m.maxEnergy.toFixed(2))}`)
     },
     fieldMeterColor: "#0cf",
@@ -2106,7 +2105,8 @@ const m = {
                     const solid = function(that) {
                         const dx = that.position.x - player.position.x;
                         const dy = that.position.y - player.position.y;
-                        if (that.speed < 3 && dx * dx + dy * dy > 10000 && that !== m.holdingTarget) {
+                        // if (that.speed < 3 && dx * dx + dy * dy > 10000 && that !== m.holdingTarget) {
+                        if (dx * dx + dy * dy > 10000 && that !== m.holdingTarget) {
                             that.collisionFilter.category = cat.body; //make solid
                             that.collisionFilter.mask = cat.player | cat.map | cat.body | cat.bullet | cat.mob | cat.mobBullet; //can hit player now
                         } else {
@@ -2549,14 +2549,14 @@ const m = {
             name: "standing wave",
             //<strong>deflecting</strong> protects you in every <strong>direction</strong>
             description: `<strong>3</strong> oscillating <strong>shields</strong> are permanently active
-            <br><strong>+60</strong> max <strong class='color-f'>energy</strong>
+            <br><strong>+66</strong> max <strong class='color-f'>energy</strong>
             <br>generate <strong>6</strong> <strong class='color-f'>energy</strong> per second`,
             drainCD: 0,
             effect: () => {
                 m.fieldBlockCD = 0;
                 m.blockingRecoil = 2 //4 is normal
-                m.fieldRange = 175
-                m.fieldShieldingScale = (tech.isStandingWaveExpand ? 0.9 : 1.3) * Math.pow(0.6, (tech.harmonics - 2))
+                m.fieldRange = 185
+                m.fieldShieldingScale = (tech.isStandingWaveExpand ? 0.9 : 1.6) * Math.pow(0.6, (tech.harmonics - 2))
                 // m.fieldHarmReduction = 0.66; //33% reduction
 
                 m.harmonic3Phase = () => { //normal standard 3 different 2-d circles
@@ -3923,41 +3923,16 @@ const m = {
                         }
                     }
                     this.drawRegenEnergyCloaking()
-                    //show sneak attack status 
+                    //show sneak attack status
                     // if (m.cycle > m.lastKillCycle + 240) {
                     // if (m.sneakAttackCharge > 0) {
-                    if (m.sneakAttackCycle + Math.min(120, 0.7 * (m.cycle - m.enterCloakCycle)) > m.cycle) {
-
-
-
-
-                        // ctx.strokeStyle = "rgba(0,0,0,0.2)"
-                        // ctx.lineWidth = 1
-                        // ctx.fillStyle = "rgba(0,0,0,0.02)"
-                        // for (let i = 0; i < 4; i++) {
-                        //     ctx.beginPath();
-                        //     ctx.ellipse(m.pos.x, m.pos.y, 50, 30, 0.2 * m.cycle + i * Math.PI / 4, 0, 2 * Math.PI);
-                        //     ctx.stroke()
-                        //     // ctx.fill();
-                        // }
-                        ctx.strokeStyle = "rgba(0,0,0,0.5)" //m.fieldMeterColor; //"rgba(255,255,0,0.2)" //ctx.strokeStyle = `rgba(0,0,255,${0.5+0.5*Math.random()})`
-                        ctx.beginPath();
-                        ctx.arc(simulation.mouseInGame.x, simulation.mouseInGame.y, 16, 0, 2 * Math.PI);
-                        // ctx.lineWidth = 3
-                        ctx.fillStyle = "rgba(0,0,0,0.2)"
-                        ctx.fill();
-
-
-                        // const unit = Vector.add(m.pos, Vector.rotate({ x: 45, y: 0 }, 2 * Math.PI * Math.random()))
-                        // simulation.drawList.push({ //add dmg to draw queue
-                        //     x: unit.x,
-                        //     y: unit.y,
-                        //     radius: 4 + 10 * Math.random(),
-                        //     color: 'rgba(0, 0, 0, 0.1)',
-                        //     time: 15
-                        // });
-
-                    }
+                    // if (m.sneakAttackCycle + Math.min(120, 0.7 * (m.cycle - m.enterCloakCycle)) > m.cycle) {
+                    //     ctx.strokeStyle = "rgba(0,0,0,0.5)" //m.fieldMeterColor; //"rgba(255,255,0,0.2)" //ctx.strokeStyle = `rgba(0,0,255,${0.5+0.5*Math.random()})`
+                    //     ctx.beginPath();
+                    //     ctx.arc(simulation.mouseInGame.x, simulation.mouseInGame.y, 16, 0, 2 * Math.PI);
+                    //     ctx.fillStyle = "rgba(0,0,0,0.2)"
+                    //     ctx.fill();
+                    // }
                 }
             }
         },
