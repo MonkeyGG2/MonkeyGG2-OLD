@@ -6,7 +6,7 @@ const spawn = {
         "orbitalBoss", "historyBoss", "shooterBoss", "cellBossCulture", "bomberBoss", "spiderBoss", "launcherBoss", "laserTargetingBoss",
         "powerUpBoss", "powerUpBossBaby", "streamBoss", "pulsarBoss", "spawnerBossCulture", "grenadierBoss", "growBossCulture", "blinkBoss",
         "snakeSpitBoss", "laserBombingBoss", "blockBoss", "revolutionBoss", "slashBoss", "shieldingBoss",
-        "timeSkipBoss", "dragonFlyBoss", "beetleBoss", "sneakBoss"
+        "timeSkipBoss", "dragonFlyBoss", "beetleBoss", "sneakBoss", "mantisBoss"
     ],
     bossTypeSpawnOrder: [], //preset list of boss names calculated at the start of a run by the randomSeed
     bossTypeSpawnIndex: 0, //increases as the boss type cycles
@@ -976,6 +976,8 @@ const spawn = {
                                 // m.displayHealth();
                                 document.getElementById("health").style.display = "none"
                                 document.getElementById("health-bg").style.display = "none"
+                                document.getElementById("defense-bar").style.display = "none"
+                                document.getElementById("damage-bar").style.display = "none"
                                 document.getElementById("text-log").style.display = "none"
                                 document.getElementById("fade-out").style.opacity = 1; //slowly fades out
                                 // build.shareURL(false)
@@ -2528,7 +2530,7 @@ const spawn = {
         me.friction = 1
         me.frictionStatic = 1
         me.restitution = 0;
-        me.delay = 100 + 40 * simulation.CDScale;
+        me.delay = 120 + 40 * simulation.CDScale;
         Matter.Body.rotate(me, Math.random() * Math.PI);
         spawn.shield(me, x, y, 1);
         me.onDeath = function() {
@@ -3029,15 +3031,16 @@ const spawn = {
         mobs.spawn(x, y, 5, radius, "#6ba");
         let me = mob[mob.length - 1];
         me.babyList = [] //list of mobs that are apart of this boss
-        Matter.Body.setDensity(me, 0.001); //extra dense //normal is 0.001 //makes effective life much larger  and damage on collision
-        me.damageReduction = 0.15 / (tech.isScaleMobsWithDuplication ? 1 + tech.duplicationChance() : 1) //normal is 1,  most bosses have 0.25
+        Matter.Body.setDensity(me, 0.0015); //extra dense //normal is 0.001 //makes effective life much larger  and damage on collision
+        me.damageReduction = 0.13 / (tech.isScaleMobsWithDuplication ? 1 + tech.duplicationChance() : 1) //normal is 1,  most bosses have 0.25
         me.isBoss = true;
+
         me.friction = 0;
-        me.frictionAir = 0.0067;
+        me.frictionAir = 0.006;
         me.g = 0.0002; //required if using this.gravity
-        me.seePlayerFreq = 300;
-        const springStiffness = 0.00008; //simulation.difficulty
-        const springDampening = 0.01;
+        me.seePlayerFreq = 31;
+        const springStiffness = 0.00003; //simulation.difficulty
+        const springDampening = 0.0002;
         me.springTarget = {
             x: me.position.x,
             y: me.position.y
@@ -3076,8 +3079,9 @@ const spawn = {
             ctx.arc(this.cons2.pointA.x, this.cons2.pointA.y, 6, 0, 2 * Math.PI);
             ctx.fillStyle = "#222";
             ctx.fill();
-            this.seePlayerCheck()
-            // this.seePlayerByHistory()
+            // this.seePlayerCheck()
+            this.seePlayerByHistory()
+            this.invulnerabilityCountDown--
             if (this.isInvulnerable) {
                 ctx.beginPath();
                 let vertices = this.vertices;
@@ -3095,9 +3099,16 @@ const spawn = {
                 ctx.lineWidth = 13 + 5 * Math.random();
                 ctx.strokeStyle = `rgba(255,255,255,${0.5+0.2*Math.random()})`;
                 ctx.stroke();
-            } else if (this.invulnerabilityCountDown > 0) {
-                this.invulnerabilityCountDown--
-            } else {
+                if (this.invulnerabilityCountDown < 0) {
+                    this.invulnerabilityCountDown = 110
+                    this.isInvulnerable = false
+                    this.damageReduction = this.startingDamageReduction
+                    for (let i = 0; i < this.babyList.length; i++) {
+                        if (this.babyList[i].alive) this.babyList[i].damageReduction = this.startingDamageReduction
+                    }
+                }
+            } else if (this.invulnerabilityCountDown < 0) {
+                this.invulnerabilityCountDown = 120 + 9 * simulation.difficulty
                 this.isInvulnerable = true
                 if (this.damageReduction) this.startingDamageReduction = this.damageReduction
                 this.damageReduction = 0
@@ -3109,7 +3120,7 @@ const spawn = {
                 }
             }
             // set new values of the ends of the spring constraints
-            const stepRange = 1200
+            const stepRange = 700
             if (this.seePlayer.recall && Matter.Query.ray(map, this.position, this.seePlayer.position).length === 0) {
                 if (!(simulation.cycle % (this.seePlayerFreq * 2))) {
                     const unit = Vector.normalise(Vector.sub(this.seePlayer.position, this.position))
@@ -3118,13 +3129,6 @@ const spawn = {
                     this.springTarget.y = goal.y;
                     this.cons.length = -200;
                     this.cons2.length = 100 + 1.5 * this.radius;
-
-                    this.isInvulnerable = false
-                    this.invulnerabilityCountDown = 80 + Math.max(0, 70 - simulation.difficulty * 0.5)
-                    this.damageReduction = this.startingDamageReduction
-                    for (let i = 0; i < this.babyList.length; i++) {
-                        if (this.babyList[i].alive) this.babyList[i].damageReduction = this.startingDamageReduction
-                    }
                 } else if (!(simulation.cycle % this.seePlayerFreq)) {
                     const unit = Vector.normalise(Vector.sub(this.seePlayer.position, this.position))
                     const goal = Vector.add(this.position, Vector.mult(unit, stepRange))
@@ -3132,13 +3136,6 @@ const spawn = {
                     this.springTarget2.y = goal.y;
                     this.cons.length = 100 + 1.5 * this.radius;
                     this.cons2.length = -200;
-
-                    this.isInvulnerable = false
-                    this.invulnerabilityCountDown = 80 + Math.max(0, 70 - simulation.difficulty)
-                    this.damageReduction = this.startingDamageReduction
-                    for (let i = 0; i < this.babyList.length; i++) {
-                        if (this.babyList[i].alive) this.babyList[i].damageReduction = this.startingDamageReduction
-                    }
                 }
             } else {
                 this.torque = this.lookTorque * this.inertia;
@@ -3231,7 +3228,7 @@ const spawn = {
             babyMob.fill = "rgb(68, 102, 119)"
             babyMob.isBoss = true;
             // Matter.Body.setDensity(babyMob, 0.001); //extra dense //normal is 0.001 //makes effective life much larger and increases damage
-            babyMob.damageReduction = this.startingDamageReduction
+            babyMob.damageReduction = this.startingDamageReduction * 0.8
             babyMob.collisionFilter.mask = cat.bullet | cat.player //can't touch other mobs //cat.map | cat.body |
             babyMob.delay = 60 + 55 * simulation.CDScale + Math.floor(Math.random() * 20);
             babyMob.strikeRange = 400
@@ -4131,13 +4128,13 @@ const spawn = {
         Matter.Body.rotate(me, Math.PI * 0.1);
         Matter.Body.setDensity(me, 0.002); //extra dense //normal is 0.001 //makes effective life much larger
         me.isBoss = true;
-        me.damageReduction = 0.035 / (tech.isScaleMobsWithDuplication ? 1 + tech.duplicationChance() : 1)
+        me.damageReduction = 0.034 / (tech.isScaleMobsWithDuplication ? 1 + tech.duplicationChance() : 1)
 
         me.frictionStatic = 0;
         me.friction = 0;
         me.memory = 240
-        me.seePlayerFreq = 60
-        me.blinkRange = 235
+        me.seePlayerFreq = 55
+        me.blinkRange = 250
         if (0.5 < Math.random()) {
             me.grenadeDelay = 260
             me.blinkRange *= 1.5
@@ -4166,7 +4163,6 @@ const spawn = {
             powerUps.spawnBossPowerUp(this.position.x, this.position.y)
         }
         me.do = function() {
-            // this.armor();
             this.seePlayerByHistory(40)
             if (this.nextBlinkCycle < simulation.cycle && this.seePlayer.yes) { //teleport towards the player
                 this.nextBlinkCycle = simulation.cycle + this.delay;
@@ -4958,6 +4954,7 @@ const spawn = {
         mobs.spawn(x, y, 16, radius, "rgb(255,255,255)");
         let me = mob[mob.length - 1];
         me.isBoss = true;
+        me.isReactorBoss = true;
         me.inertia = Infinity; //no rotation
         me.burstFireFreq = 22 + Math.floor(13 * simulation.CDScale)
         me.burstTotalPhases = 3 + Math.floor(1.4 / simulation.CDScale)
@@ -5061,6 +5058,7 @@ const spawn = {
         let me = mob[mob.length - 1];
         // Matter.Body.rotate(me, 2 * Math.PI * Math.random());
         me.isBoss = true;
+        me.isReactorBoss = true;
         Matter.Body.setDensity(me, 0.001); //normal is 0.001
         me.damageReduction = 0.04 / (tech.isScaleMobsWithDuplication ? 1 + tech.duplicationChance() : 1)
         me.startingDamageReduction = me.damageReduction
@@ -5219,6 +5217,7 @@ const spawn = {
         let me = mob[mob.length - 1];
         Matter.Body.rotate(me, 2 * Math.PI * Math.random());
         me.isBoss = true;
+        me.isReactorBoss = true;
         Matter.Body.setDensity(me, 0.003); //normal is 0.001
         me.damageReduction = 0.1 / (tech.isScaleMobsWithDuplication ? 1 + tech.duplicationChance() : 1)
         me.startingDamageReduction = me.damageReduction
@@ -5300,7 +5299,7 @@ const spawn = {
         let me = mob[mob.length - 1];
         Matter.Body.rotate(me, 2 * Math.PI * Math.random());
         me.isBoss = true;
-
+        me.isReactorBoss = true;
         me.inertia = Infinity;
         me.frictionAir = 0.01
         me.restitution = 1
@@ -5735,7 +5734,7 @@ const spawn = {
                         y: this.position.y,
                         radius: 3000,
                         color: `rgba(0, 0, 0,${1-0.1*i})`,
-                        time: (i + 1) * 3
+                        time: (i + 2) * 4
                     });
                 }
                 //teleport to near the end of player history
