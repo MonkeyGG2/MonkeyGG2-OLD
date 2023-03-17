@@ -235,6 +235,31 @@
             const toggleSwitch = document.getElementById("themebox");
             toggleSwitch.addEventListener('change', switchTheme, false);
 
+            var list = document.getElementById("subpageList");
+
+            // Attach event listener to the <a> element within each <li> element
+            list.addEventListener("click", function(event) {
+            if (event.target.tagName.toLowerCase() === "a") {
+                if (window.top.location.href != "about:blank") {
+                // Open a new tab with about:blank
+                        var url = event.target.getAttribute("href");
+                        win = window.open();
+                        win.document.body.style.margin = "0";
+                        win.document.body.style.height = "100vh";
+                        var iframe = win.document.createElement("iframe");
+                        iframe.style.border = "none";
+                        iframe.style.width = "100%";
+                        iframe.style.height = "100%";
+                        iframe.style.margin = "0";
+                        iframe.referrerpolicy = "no-referrer";
+                        iframe.allow = "fullscreen";
+                        iframe.src = url.toString();
+                        win.document.body.appendChild(iframe);
+                        window.location.replace(localStorage.getItem("cloneURL"));
+                }
+            }
+            });
+
             </script>
 
 	<div id="contact">
