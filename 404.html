@@ -44,6 +44,7 @@
       min-height: 50px;
       animation: typing 2s steps(22), blink .5s step-end infinite alternate;
       border-right: 3px solid #009400;
+      z-index: 1;
     }
     
     @keyframes blink {
@@ -329,6 +330,10 @@
         clip-path:polygon(0 -20%,100% -20%,100% 0%,0 0);
       }
       }
+
+      h6 {
+        z-index: 1;
+      }
     
       a {
         padding: 10px 20px;
@@ -344,7 +349,16 @@
         filter: brightness(90%);
       }
 
+      img {
+        height: 80%;
+        position: absolute;
+        z-index: 0;
+      }
+
     </style>
+    <div class="logo">
+      <img src="demongg2.gif"/>
+    </div>
     <div class="glitch">
         <div class="line">Error 404</div>
         <div class="line">Error 404</div>
