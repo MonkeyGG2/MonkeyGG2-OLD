@@ -18,7 +18,8 @@
   }
 
   html {
-    overflow: hidden;
+    overflow: scroll;
+    overflow-x: hidden;
     scrollbar-width: none;
   }
   
