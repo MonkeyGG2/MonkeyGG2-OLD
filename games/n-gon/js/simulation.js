@@ -1,7 +1,7 @@
 // game Object ********************************************************
 //*********************************************************************
 const simulation = {
-    loop() {}, //main game loop, gets set to normal or testing loop
+    loop() { }, //main game loop, gets set to normal or testing loop
     normalLoop() {
         simulation.gravity();
         Engine.update(engine, simulation.delta);
@@ -591,16 +591,16 @@ const simulation = {
         const swapPeriod = 150
         const len = 30
         for (let i = 0; i < len; i++) {
-            setTimeout(function() {
-                simulation.wipe = function() { //set wipe to have trails
-                    ctx.fillStyle = `rgba(221,221,221,${i*i*0.0005 +0.0025})`;
+            setTimeout(function () {
+                simulation.wipe = function () { //set wipe to have trails
+                    ctx.fillStyle = `rgba(221,221,221,${i * i * 0.0005 + 0.0025})`;
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                 }
             }, (i) * swapPeriod);
         }
 
-        setTimeout(function() {
-            simulation.wipe = function() { //set wipe to normal
+        setTimeout(function () {
+            simulation.wipe = function () { //set wipe to normal
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
         }, len * swapPeriod);
@@ -637,7 +637,7 @@ const simulation = {
     // }
     // requestAnimationFrame(loop);
     // },
-    wipe() {}, //set in simulation.startGame
+    wipe() { }, //set in simulation.startGame
     gravity() {
         function addGravity(bodies, magnitude) {
             for (var i = 0; i < bodies.length; i++) {
@@ -661,7 +661,7 @@ const simulation = {
 
         simulation.clearTimeouts();
         simulation.onTitlePage = true;
-        document.getElementById("splash").onclick = function() {
+        document.getElementById("splash").onclick = function () {
             simulation.startGame();
         };
         document.getElementById("choose-grid").style.visibility = "hidden"
@@ -784,7 +784,7 @@ const simulation = {
         // m.maxEnergy = 1
         // m.energy = 1
         input.isPauseKeyReady = true
-        simulation.wipe = function() { //set wipe to normal
+        simulation.wipe = function () { //set wipe to normal
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
         m.hole.isOn = false
@@ -865,7 +865,7 @@ const simulation = {
         requestAnimationFrame(cycle); //starts game loop
     },
     clearTimeouts() {
-        let id = window.setTimeout(function() {}, 0);
+        let id = window.setTimeout(function () { }, 0);
         while (id--) {
             window.clearTimeout(id); // will do nothing if no timeout with id is present
         }
@@ -942,6 +942,24 @@ const simulation = {
         m.drop();
         m.hole.isOn = false;
         simulation.drawList = [];
+
+        if (tech.isHealAttract && m.alive) { //send health power ups to the next level
+            let healCount = 0
+            for (let i = 0, len = powerUp.length; i < len; i++) {
+                if (powerUp[i].name === "heal" && Vector.magnitudeSquared(Vector.sub(powerUp[i].position, m.pos)) < 1000000) healCount++
+            }
+            //respawn health in animation frame
+            let respawnHeal = () => {
+                if (healCount > 0) {
+                    requestAnimationFrame(respawnHeal);
+                    if (!simulation.paused && !simulation.isChoosing) {
+                        healCount--
+                        powerUps.directSpawn(level.enter.x + 50 + 100 * (Math.random() - 0.5), level.enter.y - 60 + 100 * (Math.random() - 0.5), "heal");
+                    }
+                }
+            }
+            requestAnimationFrame(respawnHeal);
+        }
 
         if (tech.isDronesTravel && m.alive) {
             //count drones
@@ -1137,31 +1155,16 @@ const simulation = {
     // },
     checks() {
         if (!(m.cycle % 15)) { //4 times a second
-            //update defense bar
-            const defense = m.defense()
+            const defense = m.defense()             //update defense bar
             if (m.lastCalculatedDefense !== defense) {
                 document.getElementById("defense-bar").style.width = Math.floor(300 * m.maxHealth * (1 - defense)) + "px";
-
-                // if (m.lastCalculatedDefense === 1) document.getElementById("defense-bar").style.display = "inline"
-                // if (defense === 1) document.getElementById("defense-bar").style.display = "none"
-                // Math.pow(m.defense(), 0.13)
                 m.lastCalculatedDefense = defense
-                // console.log(defense)
             }
-
-            //update damage bar
-            const damage = tech.damageFromTech()
+            const damage = tech.damageFromTech()             //update damage bar
             if (m.lastCalculatedDamage !== damage) {
-                canvas.width
-                // document.getElementById("damage-bar").style.width = Math.floor(Math.atan(damage - 1) / 6.28 * canvas.width) + "px";
-                document.getElementById("damage-bar").style.height = Math.floor(Math.atan(damage - 1) / 3.14 * canvas.height) + "px";
-
+                document.getElementById("damage-bar").style.height = Math.floor(Math.atan(0.25 * damage - 0.25) / 1.65 * canvas.height) + "px";
                 m.lastCalculatedDamage = damage
-                console.log(damage)
             }
-
-
-
         }
         if (!(m.cycle % 60)) { //once a second
             //energy overfill 
@@ -1211,7 +1214,17 @@ const simulation = {
             if (isNaN(player.position.x)) m.death();
             if (m.lastKillCycle + 300 > m.cycle) { //effects active for 5 seconds after killing a mob
                 if (tech.isEnergyRecovery && m.immuneCycle < m.cycle) m.energy += m.maxEnergy * 0.05
-                if (tech.isHealthRecovery) m.addHealth(0.005 * m.maxHealth)
+                if (tech.isHealthRecovery) {
+                    const heal = 0.005 * m.maxHealth
+                    m.addHealth(heal)
+                    simulation.drawList.push({ //add dmg to draw queue
+                        x: m.pos.x,
+                        y: m.pos.y,
+                        radius: Math.sqrt(heal) * 150,
+                        color: "rgba(0,255,200,0.6)",
+                        time: 8
+                    });
+                }
             }
 
             if (!(m.cycle % 420)) { //once every 7 seconds
@@ -1226,7 +1239,7 @@ const simulation = {
                 }
                 if (tech.cyclicImmunity && m.immuneCycle < m.cycle + tech.cyclicImmunity) m.immuneCycle = m.cycle + tech.cyclicImmunity; //player is immune to damage for 60 cycles
 
-                fallCheck = function(who, save = false) {
+                fallCheck = function (who, save = false) {
                     let i = who.length;
                     while (i--) {
                         if (who[i].position.y > simulation.fallHeight) {
@@ -1589,9 +1602,9 @@ const simulation = {
             outHTML += "<div>" + simulation.constructMapString[i] + "</div>"
         }
         console.log(out)
-        navigator.clipboard.writeText(out).then(function() {
+        navigator.clipboard.writeText(out).then(function () {
             /* clipboard successfully set */
-        }, function() {
+        }, function () {
             /* clipboard write failed */
             console.log('copy failed')
         });
