@@ -1,13 +1,37 @@
 ******************************************************** NEXT PATCH **************************************************
 
-added defense bar to HUD
-new community map commandeer by Desboot
+new favicon
+heal power up overheals don't consume the entire heal power up
 
+accretion works with all fields except wormhole
+  (only because wormhole eat up heals so it's bad)
+  spawns 6 -> 3 heals
+
+pilot wave 1 -> 2 extra power up choices
+standing wave 66 -> 150 max energy
+electronegativity  0.1% -> 0.15% energy per energy  (10->15% damage at 100 energy)
+
+a few more images
 bug fixes
 
 *********************************************************** TODO *****************************************************
 
-switch to prettier formatter or remove beautify
+tech: thorns?
+
+extend accretion to all fields
+  run the code in power ups
+
+tech: using research spawns a heal and ammo
+
+Tech: relativity
+  Simulation speed scales with movement speed. When still, time moves at 0.4 speed, at full walking speed it’s 1. (So if you’re falling or something and you move faster the simulation will be faster than usual)
+  Also a damage and/or defense boost to make it worth using
+
+Tech: Turbine - Energy generation is proportional to your speed up to +X% energy generation at 40 speed 
+Tech: "Electric Reactive Armor": Defense increases by 2% for each 1 energy generation you have
+
+wormhole tech - teleport away mobs with mass below 3 when they get too near the player
+    short CD, small energy cost, only mobs below a mass
 
 extend brainstorming animation timers to fps cap?
   will it be smoother or choppier?
@@ -22,58 +46,11 @@ level element - mover, transport
 extend uncertainty to superballs
   maybe make aiming them more random?
 
-live updating defense and damage HUD?
-  makes more sense for defense
-  for damage many effects only apply to one type of damage so it would show up
-  update frequency
-    per s
-    every cycle? (only if canvas)
-  don't include difficulty effects
-  draw in canvas or html?
-    add border for readability
-    a number
-    bars
-      horizontal
-      vertical
-    circles
-  defense
-    color: grey, white
-    scales from 0-1
-    wrapped around health bar like armor
-      what about mass-energy which has no health bar
-    at defense = 1 outlines health bar fully
-  health bar
-    color: keep red (green?)
-      red is the same as mob health bars
-  damage
-    color: red if not used for health
-    scales from 1-infinity maps to 0->1
-      1-1/(1+damage)
-diagetic UI Elements
-  ammo number?
-    doesn't text look choppy when camera moves?
-  health bar could be rendered similarly to energy bar
-    what about 2 bezier curves on left and right of player head that looks like 1/3 circleRadiusScale
-      rotate the curves as the head rotates
-    what about 2 bezier both above player
-      as the total energy and health increases the curses could asymptotically approach a maximum length as max energy/health goes to infinity
-
-
-foam gun could have a knock back effect
-  maybe with pressure vessel?
-
 perfect diamagnatism could bounce on mobs, or even map elements?
   could work like a rocket jump?
 
-field tech:  negative mass, wormhole?
-  tech: do 60% damage when not touching ground
-  tech: 50% defense when not touching ground
-
 Tech: Von Neuman probes - Drones will consume blocks to replicate themselves
   it's a little too similar to the drone repair tech, but I kinda like it better.  drones that eat blocks and spit out more drones is cool 
-
-when gaining ammo have the ammo test quickly count up by Math.floor(1/20x) of the total ammo given
-  maybe bold, flash the text for a second after
 
 tech: parry - immune to harm for 0.25-0.5 seconds after pressing field button
   needs a 5 second CD?
@@ -94,7 +71,6 @@ tech - after standing wave runs out of energy from blocking, gain a buff
   buff: defense, damage?
   aoe damage like railgun
     push mobs away
-
 
 level: lock
   should there be something in the top part of the map?
@@ -1234,6 +1210,7 @@ if pause is pressed while selecting power ups, display pause menu on top of sele
 ***past style themes***
   field emitter - bipedal white robot spherical gun turret on bird legs
       damaged dirty white robot spherical gun turret on bird legs in the style of Solarpunk
+      a white spherical bipedal mech standing motionless while black lines travel quickly in the background, minimalist style --no arms --v5
   standing wave - concentric transparent blue geometric circles science  
   perfect diamagnetism - physics magnetic field chalk diagram 
   time dilation - graphic of a hyperbolic equation Luminogram
@@ -1242,16 +1219,18 @@ if pause is pressed while selecting power ups, display pause menu on top of sele
   metamaterial cloaking - Scientific photography by Miki Asai,   by Bruce Munro
   molecular assembler - by Laurie Greasley 16-bit Isometric 
   wormhole - by Tim White
+  pilot wave - 
 
   nail gun - Screenprint
   shotgun - blueprint by Dan McPharlin
-  grenades, missiles, explosions - by Victo Ngai
-  spores - by Ernst Haeckel
+  grenades, missiles, explosions - vibrant fireball explosion sonic shockwave ring art by Victo Ngai --ar 3:2 --v 5 --s 750
+  spores - turquoise black spores on a white background full color scientific anatomy by Ernst Haeckel
   drones - tilt-shift photography
   super balls - By Akari Toriyama
   wave - sound wave oscilloscope by Paul Catherall,   concentric circles by Paul Catherall 
+    Barbara Takenaga's painting depicting a clean sound wave on aoscilloscope device --ar 3:2 --v 5
   foam - black blobs Ink doodle
-  harpoon - by Eiichiro Oda
+  harpoon - iron harpoon on a rope weapon art white background by Eiichiro Oda --no fish --ar 3:2 --v 5 --s 750
   mine - by Dan McPharlin
   laser - complex optical scientific equipment
 
