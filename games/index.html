@@ -56,7 +56,7 @@
         <div id="stars3"></div>
         <div class="alert">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            Check out the new proxy!
+            Save your game progress now!
         </div>
         <h1>Games</h1>
         <div style="font-size: 0;">
@@ -212,7 +212,32 @@
         </ul>
 
         <h2 id="settings"><a href="../misc/settings">Settings</a></h2>
+        <h2 id="gameSave"><a onclick="openPanel()">Game Save</a></h2>
         <h2>Theme Switch</h2>
+        <div id="panel" class="panel">
+            <div class="panel-content">
+                <span class="close" onclick="closePanel()">&times;</span>
+                <p>Save Your Game Data</p>
+                <button class="panel-button" onclick="downloadMainSave()">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="Interface / Download">
+                        <path id="Vector" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" stroke="var(--second-bg-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        </svg>
+                    Download
+                </button>
+
+                <button class="panel-button" onclick="uploadMainSave()">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 8L12 16" stroke="var(--second-bg-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 11L12.087 8.08704V8.08704C12.039 8.03897 11.961 8.03897 11.913 8.08704V8.08704L9 11" stroke="var(--second-bg-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 15L3 16L3 19C3 20.1046 3.89543 21 5 21L19 21C20.1046 21 21 20.1046 21 19L21 16L21 15" stroke="var(--second-bg-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    Upload
+                </button>
+                <p class="uploadResult"></p>
+            </div>
+        </div>
 
             <div class="switch-wrapper">
                 <label class="switch" for="themebox">
@@ -261,11 +286,20 @@
             }
             });
 
-            </script>
+            function openPanel() {
+                document.getElementById("panel").style.display = "block";
+                document.documentElement.style.overflow = "hidden"
+            }
 
+            function closePanel() {
+                document.getElementById("panel").style.display = "none";
+                document.documentElement.style.overflow = "scroll"
+            }
+
+            </script>
 	<div id="contact">
    		<span>
-			If you would like to contact us talk to us at <a href="https://revolt.chat">revolt.chat</a> (our usernames are Wavey and BluePotato102)
+			If you would like to contact us talk to us at <a href="https://revolt.chat">revolt.chat</a> (our usernames are Wavey and BluePotato102) or on our <a href="https://discord.com/yPYyZ78qCB">discord server</a>
 		</span>
 	</div>
 

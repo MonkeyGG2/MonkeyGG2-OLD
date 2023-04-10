@@ -225,6 +225,128 @@ function refreshPage() {
     location.reload();
 }
 
+var cjs = document.createElement("script");
+cjs.src = "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js";
+document.head.appendChild(cjs);
+
+function getMainSave() {
+    var mainSave = {};
+  
+  
+    localStorageSave = Object.entries(localStorage);
+  
+    localStorageSave = btoa(JSON.stringify(localStorageSave));
+  
+    mainSave.localStorage = localStorageSave;
+  
+    cookiesSave = document.cookie;
+  
+    cookiesSave = btoa(cookiesSave);
+  
+    mainSave.cookies = cookiesSave;
+  
+    mainSave = btoa(JSON.stringify(mainSave));
+  
+    mainSave = CryptoJS.AES.encrypt(mainSave, "save").toString();
+
+    console.log(mainSave);
+  
+    return mainSave;
+  }
+  
+  function downloadMainSave() {
+    var data = new Blob([getMainSave()]);
+    var dataURL = URL.createObjectURL(data);
+  
+    var fakeElement = document.createElement("a");
+    fakeElement.href = dataURL;
+    fakeElement.download = "monkey.data";
+    fakeElement.click();
+    URL.revokeObjectURL(dataURL);
+  }
+
+  function getMainSaveFromUpload(data) {
+    data = CryptoJS.AES.decrypt(data, "save").toString(CryptoJS.enc.Utf8);
+  
+    var mainSave = JSON.parse(atob(data));
+    console.log(mainSave);
+    var mainLocalStorageSave = JSON.parse(atob(mainSave.localStorage));
+    var cookiesSave = atob(mainSave.cookies);
+  
+    for (let item in mainLocalStorageSave) {
+      localStorage.setItem(mainLocalStorageSave[item][0], mainLocalStorageSave[item][1]);
+    }
+  
+    document.cookie = cookiesSave;
+  }
+  
+  function uploadMainSave() {
+    var hiddenUpload = document.createElement("input");
+    hiddenUpload.type = "file";
+    hiddenUpload.accept = ".data";
+    document.body.appendChild(hiddenUpload);
+    hiddenUpload.click();
+  
+    hiddenUpload.addEventListener("change", function (e) {
+      var files = e.target.files;
+      var file = files[0];
+  
+      if (!file) {
+        return;
+      }
+  
+      var reader = new FileReader();
+  
+      reader.onload = function (e) {
+        getMainSaveFromUpload(e.target.result);
+  
+        var uploadResult = document.querySelector(".uploadResult");
+        uploadResult.innerText = "Uploaded save!";
+        uploadResult.style.display = "initial";
+        setTimeout(function () {
+          uploadResult.style.display = "none";
+        }, 3000);
+      };
+  
+      reader.readAsText(file);
+
+      document.body.removeChild(hiddenUpload);
+    });
+  }
+
+  function injectGSI() {
+    var script = document.createElement('script');
+    script.src = 'https://accounts.google.com/gsi/client';
+    script.onload = function() {
+        client = google.accounts.oauth2.initTokenClient({
+            client_id: '744658251770-8jrvp8v9dkb9n9cq1a8mia9enteno4uj.apps.googleusercontent.com',
+            scope: 'https://www.googleapis.com/auth/drive.appdata',
+            callback: (tokenResponse) => {
+              access_token = tokenResponse.access_token;
+            },
+          });
+      };
+    document.head.appendChild(script);
+  }
+
+  function getToken() {
+    client.requestAccessToken();
+  }
+
+  function revokeToken() {
+    google.accounts.oauth2.revoke(access_token, () => {console.log('access token revoked')});
+  }
+
+  function uploadData() {
+
+  }
+
+const gsiTopURL = "https://www.googleapis.com/drive/v3";
+var client;
+var access_token;
+injectGSI()
+
+
 if (localStorage.getItem("cloneURL") == null) {
     localStorage.setItem("cloneURL", "https://mail.google.com");
 }
