@@ -302,9 +302,8 @@ function getMainSave() {
   
         var uploadResult = document.querySelector(".uploadResult");
         uploadResult.innerText = "Uploaded save!";
-        uploadResult.style.display = "initial";
         setTimeout(function () {
-          uploadResult.style.display = "none";
+          uploadResult.innerText = "";
         }, 3000);
       };
   
@@ -313,38 +312,6 @@ function getMainSave() {
       document.body.removeChild(hiddenUpload);
     });
   }
-
-  function injectGSI() {
-    var script = document.createElement('script');
-    script.src = 'https://accounts.google.com/gsi/client';
-    script.onload = function() {
-        client = google.accounts.oauth2.initTokenClient({
-            client_id: '744658251770-8jrvp8v9dkb9n9cq1a8mia9enteno4uj.apps.googleusercontent.com',
-            scope: 'https://www.googleapis.com/auth/drive.appdata',
-            callback: (tokenResponse) => {
-              access_token = tokenResponse.access_token;
-            },
-          });
-      };
-    document.head.appendChild(script);
-  }
-
-  function getToken() {
-    client.requestAccessToken();
-  }
-
-  function revokeToken() {
-    google.accounts.oauth2.revoke(access_token, () => {console.log('access token revoked')});
-  }
-
-  function uploadData() {
-
-  }
-
-const gsiTopURL = "https://www.googleapis.com/drive/v3";
-var client;
-var access_token;
-injectGSI()
 
 
 if (localStorage.getItem("cloneURL") == null) {
