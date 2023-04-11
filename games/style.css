@@ -199,7 +199,3 @@ p.panel-content {
 .panel-button:hover {
   background-color: var(--hover-color);
 }
-
-.uploadResult {
-  background-color: #00fe36;
-}
