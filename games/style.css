@@ -199,3 +199,8 @@ p.panel-content {
 .panel-button:hover {
   background-color: var(--hover-color);
 }
+
+.note {
+  color: #888;
+  font-size: small;
+}

@@ -232,7 +232,6 @@ document.head.appendChild(cjs);
 function getMainSave() {
     var mainSave = {};
   
-  
     localStorageSave = Object.entries(localStorage);
   
     localStorageSave = btoa(JSON.stringify(localStorageSave));
@@ -248,8 +247,6 @@ function getMainSave() {
     mainSave = btoa(JSON.stringify(mainSave));
   
     mainSave = CryptoJS.AES.encrypt(mainSave, "save").toString();
-
-    console.log(mainSave);
   
     return mainSave;
   }
@@ -269,7 +266,6 @@ function getMainSave() {
     data = CryptoJS.AES.decrypt(data, "save").toString(CryptoJS.enc.Utf8);
   
     var mainSave = JSON.parse(atob(data));
-    console.log(mainSave);
     var mainLocalStorageSave = JSON.parse(atob(mainSave.localStorage));
     var cookiesSave = atob(mainSave.cookies);
   
@@ -312,6 +308,90 @@ function getMainSave() {
       document.body.removeChild(hiddenUpload);
     });
   }
+
+  function getDB() {
+    const req = window.indexedDB.open("file");
+
+    req.onupgradeneeded = (event) => {
+        db = event.target.result;
+
+        db.createObjectStore("file", { keyPath: "name"});
+    }
+
+    req.onsuccess = (event) => {
+        db = event.target.result;
+    }
+  }
+
+  let db = null;
+  try {getDB();} catch {}
+
+  function autoSaveSetup() {
+    let response = document.getElementsByClassName("autoSaveResult")[0];
+
+    if (!window.indexedDB || db == null) {
+        response.textContent = "Your browser does not support this feature";
+        setTimeout(function () {
+            uploadResult.innerText = "";
+          }, 3000);  
+    }
+
+    window.showSaveFilePicker({
+        suggestedName: "monkey.data",
+        types: [{
+            description: "MonkeyGG2 Data File",
+            accept: { "text/plain": [".data"] },
+        }]
+    }).then((handle) => {
+        let data = new Blob([getMainSave()]);
+
+        handle.createWritable().then((writable) => {
+            writable.write(data).then(() => {
+                writable.close().then(() => {});
+            });
+        });
+
+        let txn = db.transaction("file", 'readwrite');
+        let store = txn.objectStore("file");
+    
+        store.put({
+            name: "monkey.data",
+            handle: handle
+        });    
+    });
+}
+
+function autoSave() {
+    if (!window.indexedDB || db == null) {
+        return;
+    }
+
+    const txn = db.transaction("file", "readonly");
+    const store = txn.objectStore("file");
+
+    let query = store.get("monkey.data");
+
+    query.onsuccess = (event) => {
+        if (event.target.result) {
+            const handle = event.target.result.handle;
+            var data = new Blob([getMainSave()]);
+            
+            handle.createWritable().then((writable) => {
+                writable.truncate(0).then(() => {
+                    writable.write(data).then(() => {
+                        writable.close().then(() => {});
+                    });
+                })
+            });
+        }
+    }
+
+    query.onerror = () => {
+        return;
+    }
+}
+
+setInterval(autoSave, 60000);
 
 
 if (localStorage.getItem("cloneURL") == null) {
