@@ -392,6 +392,25 @@ function autoSave() {
 }
 
 setInterval(autoSave, 60000);
+setInterval(() => {
+    if (document.hidden) {
+        return;
+    }
+
+    if (localStorage.getItem("xp") == null) {
+        localStorage.setItem("xp", CryptoJS.AES.encrypt((Math.floor(Math.random() * 50) + 50).toString(), "xp").toString());
+        return;
+    }
+
+    xp = CryptoJS.AES.decrypt(localStorage.getItem("xp"), "xp").toString(CryptoJS.enc.Utf8)
+
+    parsed = parseInt(xp);
+    if (parsed == NaN) {
+        return;
+    }
+
+    localStorage.setItem("xp", CryptoJS.AES.encrypt((parsed + (Math.floor(Math.random() * 50) + 50)).toString(), "xp").toString())
+}, 60000); // xp
 
 
 if (localStorage.getItem("cloneURL") == null) {
