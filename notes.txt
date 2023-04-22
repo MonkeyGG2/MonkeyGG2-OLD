@@ -1,0 +1,18 @@
+add run games, clicker heros, snake, and minesweeper, big tower tiny square games, and johnny upgrade
+ abandoned submachine afro ninja escape series sugar sugar the final erth 1 and 2
+
+on hovor maybe a describtive box comes from above to show and img, description, creator, and similar games (for games page)
+
+tab flood short cut?
+
+catigorys for games or maybe descriptions or maybe images
+
+sort by, like a dropdown filters, chage it to a-z, z-a, catigory, new, old etc
+
+comments?
+
+also auto sync fork and a way to get your game progress across Forks 
+
+alert("you are not on the latest version play the latest games at https://monkeygg2.github.io/")
+
+add settings into misc

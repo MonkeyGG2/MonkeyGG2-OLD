@@ -1,0 +1,97 @@
+:root {
+    --bg-color: #2f3136;
+    --second-bg-color: #202225;
+    --font-color: #dcddde;
+    --block-color: #36393f;
+    --hover-color: #565b65;
+    --main-font: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    --second-font: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+[data-theme="light"] {
+    --bg-color: #e4e5f1;
+    --second-bg-color: #9394a5;
+    --font-color: #202225;
+    --block-color: #dcddde;
+    --hover-color: #fafafa;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+h1 {
+    color: var(--font-color);
+    font-family: var(--main-font);
+}
+
+h2 {
+    font-family: var(--main-font);
+    color: var(--font-color);
+}
+
+p {
+    font-family: var(--second-font);
+    color: var(--font-color);
+}
+
+#cloakInput, #maskImageInput,  #maskTitleInput{
+    width: 99%;
+    font-family: var(--main-font);
+    font-size: 18px;
+    padding: 11px;
+    border: 1px solid var(--block-color);
+    background-color: var(--second-bg-color);
+    color: var(--font-color);
+  }
+
+  #cloakInputSubmit, #maskTitleInputSubmit, #maskImageInputSubmit {
+  appearance: none;
+  background-color: var(--block-color);
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 20px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: var(--font-color);
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 12px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+#cloakInputSubmit:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+#cloakInputSubmit:hover {
+  background-color: var(--hover-color);
+}
+
+#cloakInputSubmit:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+#cloakInputSubmit:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+#cloakInputSubmit:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}

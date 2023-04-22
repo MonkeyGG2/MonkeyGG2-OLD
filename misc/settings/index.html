@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>                
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-7L02W3ZMS5');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335"
+     crossorigin="anonymous"></script>
+    <link href="./style.css" rel="stylesheet"/>
+    <link href="./slider.css" rel="stylesheet"/>
+    <script text="text/javascript" src="/global.js" defer></script>
+    <title>MonkeyGG2 Settings</title>
+</head>
+<body>
+    <div id="homeButton"></div>
+    <script>
+
+    </script>
+    <h1>Settings</h1>
+
+    <h2>Light/Dark Mode Switch</h2>
+    <p>Switch between Light and Dark mode. Default theme is Dark because Light mode burns my eyes, but apparently people like Light mode so idk here u go.</p>
+    <div class="switch-wrapper">
+        <label class="switch" for="themebox">
+            <input type="checkbox" id="themebox" />
+            <div class="slider round"></div>
+        </label>
+    </div>
+
+    <h2>Auto Cloak</h2>
+    <p>Auto Cloak automatically redirects to another website and opens your page in an #about:blank page. It will clear any trace of you visiting this website in your browser history, unless if you have used this website without cloak before, or if you close the original tab too early.</p>
+    <div class="switch-wrapper">
+        <label class="switch" for="cloakbox">
+            <input type="checkbox" id="cloakbox"/>
+            <div class="slider round"></div>
+        </label>
+        <em id="cloak-status"></em>
+    </div>
+
+    <h2>Cloak URL</h2>
+    <p>When cloaking, the original page opened will redirect to the URL inserted below. The default is https://mail.google.com (gmail).</p>
+    <input type="text" id="cloakInput" placeholder="https://mail.google.com OR mail.google.com OR www.google.com" pattern="^(https:\/\/)?([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+.*)$" onkeypress="checkIfEnter(event, 'cloakurl')"/>
+    <em id="errorMsg"></em>
+    <button id="cloakInputSubmit" onclick="cloakURL()">Submit</button>
+
+    <h2>Auto Mask</h2>
+    <p>Auto Mask automaticlly masks the title and favicon of a page to look like another, even with cloak</p>
+    <div class="switch-wrapper">
+        <label class="switch" for="maskbox">
+            <input type="checkbox" id="maskbox"/>
+            <div class="slider round"></div>
+        </label>
+        <em id="mask-status"></em>
+    </div>
+
+    <h2>Mask Title</h2>
+    <p>Title of a page when masking, default is <b>My Drive - Google Drive</b> (google drives)</p>
+    <input type="text" id="maskTitleInput" placeholder="Enter title of page here" onkeypress="checkIfEnter(event, 'masktitle')"/>
+    <em id="errorMsg"></em>
+    <button id="maskTitleInputSubmit" onclick="maskTitle()">Submit</button>
+
+    <h2>Image URL</h2>
+    <p>Favicon/image at the top of the page when masking, default is google drives</p>
+    <input type="text" id="maskImageInput" placeholder="Insert image image url here" pattern="^(https:\/\/)?([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+.*)$" onkeypress="checkIfEnter(event, 'maskimg')"/>
+    <em id="errorMsg"></em>
+    <button id="maskImageInputSubmit" onclick="maskURL()">Submit</button>
+
+    <script type="text/javascript" src="./settings.js"></script>
+ </body>

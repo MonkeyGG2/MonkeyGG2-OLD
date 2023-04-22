@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-7L02W3ZMS5');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5648726754785335" crossorigin="anonymous"></script>
+    <title>Error 404</title>
+    <link href="/404.css" rel="stylesheet">
+</head>
+
+<body>
+  <div>
+      <img src="demongg2.gif"/>
+  </div>
+    <div class="glitch">
+        <div class="line">Error 404</div>
+        <div class="line">Error 404</div>
+        <div class="line">Error 404</div>
+        <div class="line">Error 404</div>
+        <div class="line">Error 404</div>
+        <div class="line">Error 404</div>
+        <div class="line">Error 404</div>
+        <div class="line">Error 404</div>
+        <div class="line">Error 404</div>
+    </div>
+    <span class="wisedom"></span>
+    <h6><a href="/">Return home?</a></h6>
+    <script>
+        const wiseness = ["Press CTRL+C to cloak your current tab","Press CTRL+M to mask your current tab", "Press CTRL+B to go back to the home page", "Join our discord server!", "Make sure to enable popups for automatic cloak", "Why are you here?"]
+        const element = document.getElementsByClassName('wisedom')[0];
+        const button = document.getElementsByTagName('a')[0];
+        
+    let currentTextIndex = 0;
+    let charIndex = 0;
+    
+    function type() {
+      let text = wiseness[currentTextIndex];
+      let typeSpeed = 100;
+    
+      if (charIndex < text.length) {
+        element.innerHTML += text.charAt(charIndex);
+        charIndex++;
+        setTimeout(type, typeSpeed);
+      } else {
+        setTimeout(deleteText, 3000); // wait 1 second before deleting the text
+      }
+    }
+    
+    function deleteText() {
+      let text = wiseness[currentTextIndex];
+      let deleteSpeed = 100;
+    
+      if (charIndex > 0) {
+        element.innerHTML = text.substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(deleteText, deleteSpeed);
+      } else {
+        currentTextIndex = (currentTextIndex + 1) % wiseness.length;
+        charIndex = 0;
+        setTimeout(type, 3000);
+      }
+    }
+    
+    setTimeout(type, 2000);
+    </script>
+</body>
+
+</html>

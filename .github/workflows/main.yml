@@ -1,0 +1,55 @@
+name: Update forks
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
+
+jobs:
+  update_forks:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Run shell script
+      run: |
+        # Function to compare version numbers
+        version_gt() {
+          test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1";
+        }
+
+        # Array to store the version numbers
+        versions=()
+
+        # Read each line from the forks.txt file
+        while read -r line; do
+          # Get the version number from the URL
+          version=$(curl -LSs "$line/version.txt" | grep "[0-9]\.[0-9]\.[0-9]" || echo "0.0.0")
+          # Add the version number to the array
+          versions+=( "$version" )
+        done < forks.txt
+
+        # Sort the version numbers in the array
+        sorted=( $(printf '%s\n' "${versions[@]}" | sort -Vr) )
+
+        # Print to sorted.txt
+        :>sorted.txt
+        for ver in "${sorted[@]}"; do
+          echo "$ver" >> sorted.txt
+        done        
+    - name: Push changes
+      run: |
+        git config user.email "github-actions"
+        git config user.name "Github Actions"
+        git add sorted.txt
+        git commit -m "sorted forks"
+        git push
+        
+    - name: Debugging
+      run: |
+        echo "Current working directory: $(pwd)"
+        ls -al
