@@ -1,72 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>                
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7L02W3ZMS5"></script>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>MonkeyGG2 Proxy</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                width: 100vw;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <iframe id="frame" style="border: none; width: 100%; height: 100%; margin: 0;" referrerpolicy="no-referrer" allowfullscreen></iframe>
+    </body>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        const frame = document.getElementById("frame");
+        const urlParams = new URLSearchParams(window.location.search);
+        let r = ['https://ultraviolet.ivanpeel.repl.co', 'https://ultraviolet.chautruong8.repl.co', 'https://ultraviolet-5.koenwilliamson.repl.co']
+            .map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value);
 
-    gtag('config', 'G-7L02W3ZMS5');
+        for (i in r) {
+            fetch(r[i]).then((r) => {
+                if (iframe.src == null && r.ok) {
+                    frame.src = r[i];
+                };
+            })
+        }
+        
+        alert('If the proxy doesn\'t work then refresh the page or all the proxies are not working. Most of these proxies are not mine since it is getting more difficult to create proxies.');
     </script>
-    <title>Proxy</title>
-    <link rel="stylesheet" href="style.css"/>
-    <script src="/global.js"></script>
-</head>
-<body>
-    <h1>Proxies</h1>
-    <div class="row">
-        <div class="column">
-            <a href="./iframes.html?url=https%3A%2F%2Fvioletgg1.glitch.me%2F">
-                <div class="card">
-                    <h5>VioletGG1</h5>
-                </div>
-            </a>
-        </div>
-        <div class="column">
-            <a href="./iframes.html?url=https%3A%2F%2Fvioletgg2.glitch.me%2F">
-                <div class="card">
-                    <h5>VioletGG2</h5>
-                </div>
-            </a>
-        </div>
-        <div class="column">
-            <a href="./iframes.html?url=https%3A%2F%2Fvioletgg3.glitch.me%2F">
-                <div class="card">
-                    <h5>VioletGG3</h5>
-                </div>
-            </a>
-        </div>
-        <div class="column">
-            <a href="./iframes.html?url=https%3A%2F%2Fvioletgg4.glitch.me%2F">
-                <div class="card">
-                    <h5>VioletGG4</h5>
-                </div>
-            </a>
-        </div>
-        <div class="column">
-            <a href="./iframes.html?url=https%3A%2F%2Fvioletgg5.glitch.me%2F">
-                <div class="card">
-                    <h5>VioletGG5</h5>
-                </div>
-            </a>
-        </div>
-        <div class="column">
-            <a href="./iframes.html">
-                <div class="card">
-                    <h5>Random Proxy</h5>
-                </div>
-            </a>
-        </div>
-        <div class="column">
-            <a href="../test-proxy/">
-                <div class="card">
-                    <h5>VioletGG±1</h5>
-                    <p>WARNING: This is a test proxy. It may or may not work.</p>
-                </div>
-            </a>
-        </div>
-    </div>
-</body>
+    <script src="/global.js" defer></script>
 </html>
