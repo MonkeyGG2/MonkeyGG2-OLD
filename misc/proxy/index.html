@@ -14,6 +14,7 @@
                 overflow: hidden;
             }
         </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     </head>
     <body>
         <iframe id="frame" style="border: none; width: 100%; height: 100%; margin: 0;" referrerpolicy="no-referrer" allowfullscreen></iframe>
@@ -21,20 +22,24 @@
     <script>
         const frame = document.getElementById("frame");
         const urlParams = new URLSearchParams(window.location.search);
-        let r = ['https://ultraviolet.ivanpeel.repl.co', 'https://ultraviolet.chautruong8.repl.co', 'https://ultraviolet-5.koenwilliamson.repl.co']
+        let r = ['aHR0cHM6Ly91bHRyYXZpb2xldC5pdmFucGVlbC5yZXBsLmNv', 'aHR0cHM6Ly91bHRyYXZpb2xldC0yLnpheWFuamJhaWcucmVwbC5jbw==', 'aHR0cHM6Ly91bHRyYXZpb2xldC01LmtvZW53aWxsaWFtc29uLnJlcGwuY28=']
             .map(value => ({ value, sort: Math.random() }))
             .sort((a, b) => a.sort - b.sort)
-            .map(({ value }) => value);
+            .map(({ value }) => CryptoJS.enc.Base64.parse(value).toString(CryptoJS.enc.Utf8));
 
-        for (i in r) {
-            fetch(r[i]).then((r) => {
-                if (iframe.src == null && r.ok) {
-                    frame.src = r[i];
-                };
-            })
-        }
+        current_index = 0;
+
+        frame.src = r[current_index]; 
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() == 'z' && e.ctrlKey) {
+                e.preventDefault();
+                current_index = (current_index+1)%(r.length);
+                frame.src = r[current_index];
+            }
+        });
         
-        alert('If the proxy doesn\'t work then refresh the page or all the proxies are not working. Most of these proxies are not mine since it is getting more difficult to create proxies.');
+        alert('If the proxy doesn\'t work or it shows a "run at replit" page then press "ctrl+z". Most of these proxies are not mine since it is getting more difficult to create proxies.');
     </script>
     <script src="/global.js" defer></script>
 </html>
