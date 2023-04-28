@@ -6,23 +6,20 @@
         <title>MonkeyGG2 Proxy</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body {
-                margin: 0;
-                height: 100vh;
-                width: 100vw;
-                overflow: hidden;
-            }
-        </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <iframe id="frame" style="border: none; width: 100%; height: 100%; margin: 0;" referrerpolicy="no-referrer" allowfullscreen></iframe>
+        <button id="b">Switch Proxy</button>
+        <div>
+            <iframe id="frame" style="border: none; width: 100%; height: 100%; margin: 0;" referrerpolicy="no-referrer" allowfullscreen></iframe>
+        </div>
     </body>
     <script>
         const frame = document.getElementById("frame");
         const urlParams = new URLSearchParams(window.location.search);
-        let r = ['aHR0cHM6Ly91bHRyYXZpb2xldC5pdmFucGVlbC5yZXBsLmNv', 'aHR0cHM6Ly91bHRyYXZpb2xldC0yLnpheWFuamJhaWcucmVwbC5jbw==', 'aHR0cHM6Ly91bHRyYXZpb2xldC01LmtvZW53aWxsaWFtc29uLnJlcGwuY28=']
+        const button = document.getElementById("b");
+        const r = ['aHR0cHM6Ly91bHRyYXZpb2xldC5pdmFucGVlbC5yZXBsLmNv', 'aHR0cHM6Ly91bHRyYXZpb2xldC0yLnpheWFuamJhaWcucmVwbC5jbw==', 'aHR0cHM6Ly91bHRyYXZpb2xldC01LmtvZW53aWxsaWFtc29uLnJlcGwuY28=', 'aHR0cHM6Ly91bHRyYXZpb2xldC1nbGl0Y2guZ2xpdGNoLm1l', 'aHR0cHM6Ly91di1ha2EtdWx0cmF2aW9sZXQuZ2xpdGNoLm1lLw==', 'aHR0cHM6Ly9hZHJxemludWx0cmF2aW9sZXQuZ2xpdGNoLm1lLw==']
             .map(value => ({ value, sort: Math.random() }))
             .sort((a, b) => a.sort - b.sort)
             .map(({ value }) => CryptoJS.enc.Base64.parse(value).toString(CryptoJS.enc.Utf8));
@@ -31,15 +28,11 @@
 
         frame.src = r[current_index]; 
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key.toLowerCase() == 'z' && e.ctrlKey) {
-                e.preventDefault();
-                current_index = (current_index+1)%(r.length);
-                frame.src = r[current_index];
-            }
+        button.addEventListener("click", () => {
+            current_index = (current_index+1)%(r.length);
+            frame.src = r[current_index];
         });
         
-        alert('If the proxy doesn\'t work or it shows a "run at replit" page then press "ctrl+z". Most of these proxies are not mine since it is getting more difficult to create proxies.');
     </script>
     <script src="/global.js" defer></script>
 </html>
