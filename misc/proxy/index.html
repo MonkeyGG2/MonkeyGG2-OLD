@@ -6,7 +6,6 @@
         <title>MonkeyGG2 Proxy</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -22,7 +21,7 @@
         const r = ['aHR0cHM6Ly91bHRyYXZpb2xldC5pdmFucGVlbC5yZXBsLmNv', 'aHR0cHM6Ly91bHRyYXZpb2xldC0yLnpheWFuamJhaWcucmVwbC5jbw==', 'aHR0cHM6Ly91bHRyYXZpb2xldC01LmtvZW53aWxsaWFtc29uLnJlcGwuY28=', 'aHR0cHM6Ly91bHRyYXZpb2xldC1nbGl0Y2guZ2xpdGNoLm1l', 'aHR0cHM6Ly91di1ha2EtdWx0cmF2aW9sZXQuZ2xpdGNoLm1lLw==']
             .map(value => ({ value, sort: Math.random() }))
             .sort((a, b) => a.sort - b.sort)
-            .map(({ value }) => CryptoJS.enc.Base64.parse(value).toString(CryptoJS.enc.Utf8));
+            .map(({ value }) => atob(value));
         console.log(r);
 
         current_index = 0;
