@@ -20,8 +20,8 @@
         const urlParams = new URLSearchParams(window.location.search);
         const button = document.getElementById("b");
         const r = ['aHR0cHM6Ly91bHRyYXZpb2xldC5pdmFucGVlbC5yZXBsLmNv', 'aHR0cHM6Ly91bHRyYXZpb2xldC0yLnpheWFuamJhaWcucmVwbC5jbw==', 'aHR0cHM6Ly91bHRyYXZpb2xldC01LmtvZW53aWxsaWFtc29uLnJlcGwuY28=', 'aHR0cHM6Ly91bHRyYXZpb2xldC1nbGl0Y2guZ2xpdGNoLm1l', 'aHR0cHM6Ly91di1ha2EtdWx0cmF2aW9sZXQuZ2xpdGNoLm1lLw==']
-            //.map(value => ({ value, sort: Math.random() }))
-            //.sort((a, b) => a.sort - b.sort)
+            .map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
             .map(({ value }) => CryptoJS.enc.Base64.parse(value).toString(CryptoJS.enc.Utf8));
         console.log(r);
 
