@@ -25,21 +25,54 @@
             while (!confirm('By pressing OK I agree that "i is stoopid"')) { }
             alert('Thank you for confirming you are stoopid');
         }
+
         function searchSort() {
             var input, filter, ul, li, a, i;
             input = document.getElementById("searchBar");
-            filter = input.value.toUpperCase();
+            filter = input.value.toLowerCase();
             ul = document.getElementById("subpageList");
             li = ul.getElementsByTagName("li");
+
             for (i = 0; i < li.length; i++) {
                 a = li[i].getElementsByTagName("a")[0];
-                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                if (levenshteinDistance(filter, a.innerHTML.toLowerCase().slice(0, filter.length-1)) <= 4 || a.innerHTML.toLowerCase().indexOf(filter) > -1) {
                     li[i].style.display = "";
                 } else {
                     li[i].style.display = "none";
                 }
             }
         }
+
+        function levenshteinDistance(str1, str2) {
+            const m = str1.length;
+            const n = str2.length;
+            const dp = [];
+
+            for (let i = 0; i <= m; i++) {
+                dp[i] = [i];
+            }
+
+            for (let j = 1; j <= n; j++) {
+                dp[0][j] = j;
+            }
+
+            for (let i = 1; i <= m; i++) {
+                for (let j = 1; j <= n; j++) {
+                if (str1[i - 1] === str2[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.min(
+                    dp[i - 1][j], // deletion
+                    dp[i][j - 1], // insertion
+                    dp[i - 1][j - 1] // substitution
+                    ) + 1;
+                }
+                }
+            }
+
+            return dp[m][n];
+            }
+
         function randomGame() {
             var games = document.getElementById("subpageList").getElementsByTagName("li");
             var links = []
