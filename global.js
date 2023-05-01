@@ -443,23 +443,7 @@ if (localStorage.getItem("mask") == 'true'){
 
 // c = clone, b = back, m = mask, y = reload, f = go to search bar
 document.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 'c' && e.ctrlKey) {
-        e.preventDefault();
-        makeclone();
-    }
-    else if (e.key.toLowerCase() === 'b' && e.ctrlKey) {
-        e.preventDefault();
-        returnHome()
-    }
-    else if (e.key.toLowerCase() === 'm' && e.ctrlKey) {
-        e.preventDefault();
-        mask();
-    }
-    else if (e.key.toLowerCase() === 'y' && e.ctrlKey) {
-        e.preventDefault();
-        window.location.reload(true);
-    }
-    else if (e.key.toLowerCase() === 'f' && e.ctrlKey) {
+    if (e.key.toLowerCase() === 'f' && e.ctrlKey) {
         var search = document.getElementById("searchBar");
         if (search){
             e.preventDefault();
@@ -467,53 +451,71 @@ document.addEventListener('keydown', (e) => {
             search.select();
         }
     }
-    else if (e.key.toLowerCase() === 'v' && e.ctrlKey) {
-        e.preventDefault();
-        if (document.getElementById("screen-overlay")){
-            var element = document.getElementById("screen-overlay"); 
-            element.parentNode.removeChild(element);
-        }else{
-            var a, b, c;
-            c = "https://www.bing.com/";
-            b = document.createElement("iframe");
-            b.setAttribute("src", c);
-            b.setAttribute("id", "screen-overlay");
-            b.setAttribute("style", "position: fixed; width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999999999; background-color: #fff;");
-            a=document.getElementsByTagName("body")[0];
-            a.appendChild(b);
+    if (e.ctrlKey && e.shiftKey) {
+        if (e.key.toLowerCase() === 'c') {
+            e.preventDefault();
+            makeclone();
         }
-    }
-    else if (e.key.toLowerCase() === 'a' && e.ctrlKey) {
-        e.preventDefault();
-        DELAY = 0.1;
-        var autoClickerStyleElement = document.createElement("style");
-        autoClickerStyleElement.innerHTML = "*{cursor: crosshair !important;}";
-        document.body.appendChild(autoClickerStyleElement);
-
-        function addClicker(e) {
-        if (!e.isTrusted) {
-            return;
+        else if (e.key.toLowerCase() === 'b') {
+            e.preventDefault();
+            returnHome()
         }
-        if (e.target.classList.contains("auto-clicker-target")) {
-            e.target.classList.remove("auto-clicker-target");
-        } else {
-            e.target.classList.add("auto-clicker-target");
+        else if (e.key.toLowerCase() === 'm') {
+            e.preventDefault();
+            mask();
         }
-        document.body.removeChild(autoClickerStyleElement);
-        document.body.removeEventListener("click", addClicker);
-        e.preventDefault();
-        autoClick(e.target);
+        else if (e.key.toLowerCase() === 'y') {
+            e.preventDefault();
+            window.location.reload(true);
         }
-
-        function autoClick(element) {
-        if (element.classList.contains("auto-clicker-target")) {
-            element.click();
-            setTimeout(function() {
-            autoClick(element);
-            }, DELAY);
+        else if (e.key.toLowerCase() === 'v') {
+            e.preventDefault();
+            if (document.getElementById("screen-overlay")){
+                var element = document.getElementById("screen-overlay"); 
+                element.parentNode.removeChild(element);
+            }else{
+                var a, b, c;
+                c = "https://www.bing.com/";
+                b = document.createElement("iframe");
+                b.setAttribute("src", c);
+                b.setAttribute("id", "screen-overlay");
+                b.setAttribute("style", "position: fixed; width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999999999; background-color: #fff;");
+                a=document.getElementsByTagName("body")[0];
+                a.appendChild(b);
+            }
         }
-        }
-        document.body.addEventListener("click", addClicker, 0);
+        else if (e.key.toLowerCase() === 'a') {
+            e.preventDefault();
+            DELAY = 0.1;
+            var autoClickerStyleElement = document.createElement("style");
+            autoClickerStyleElement.innerHTML = "*{cursor: crosshair !important;}";
+            document.body.appendChild(autoClickerStyleElement);
+    
+            function addClicker(e) {
+            if (!e.isTrusted) {
+                return;
+            }
+            if (e.target.classList.contains("auto-clicker-target")) {
+                e.target.classList.remove("auto-clicker-target");
+            } else {
+                e.target.classList.add("auto-clicker-target");
+            }
+            document.body.removeChild(autoClickerStyleElement);
+            document.body.removeEventListener("click", addClicker);
+            e.preventDefault();
+            autoClick(e.target);
+            }
+    
+            function autoClick(element) {
+            if (element.classList.contains("auto-clicker-target")) {
+                element.click();
+                setTimeout(function() {
+                autoClick(element);
+                }, DELAY);
+            }
+            }
+            document.body.addEventListener("click", addClicker, 0);
+        }    
     }
 });
 if (!document.getElementsByTagName("link")) {
