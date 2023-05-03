@@ -35,7 +35,7 @@
 
             for (i = 0; i < li.length; i++) {
                 a = li[i].getElementsByTagName("a")[0];
-                if (levenshteinDistance(filter, a.innerHTML.toLowerCase().slice(0, filter.length-1)) <= 3 || a.innerHTML.toLowerCase().indexOf(filter) > -1) {
+                if (levenshteinDistance(filter, a.innerHTML.toLowerCase().slice(0, filter.length-1)) <= 3 && a.innerHTML.length > 3 || a.innerHTML.toLowerCase().indexOf(filter) > -1) {
                     li[i].style.display = "";
                 } else {
                     li[i].style.display = "none";
