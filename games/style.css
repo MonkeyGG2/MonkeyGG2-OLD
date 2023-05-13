@@ -57,6 +57,7 @@ h2 a {
 
 h2 a:hover {
   background-color: var(--hover-color);
+  cursor: pointer;
 }
 
 #searchBar {
@@ -198,6 +199,7 @@ p.panel-content {
 
 .panel-button:hover {
   background-color: var(--hover-color);
+  cursor: pointer;
 }
 
 .note {
