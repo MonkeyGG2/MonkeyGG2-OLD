@@ -18,7 +18,7 @@
         const frame = document.getElementById("frame");
         const urlParams = new URLSearchParams(window.location.search);
         const button = document.getElementById("b");
-        const r = ['aHR0cHM6Ly91bHRyYXZpb2xldC5pdmFucGVlbC5yZXBsLmNv', 'aHR0cHM6Ly91bHRyYXZpb2xldC01LmtvZW53aWxsaWFtc29uLnJlcGwuY28=', 'aHR0cHM6Ly91bHRyYXZpb2xldC1nbGl0Y2guZ2xpdGNoLm1l', 'aHR0cHM6Ly91di1ha2EtdWx0cmF2aW9sZXQuZ2xpdGNoLm1lLw==',   'aHR0cHM6Ly91bHRyYWlvbGV0LW5vZGUtMS5hbGxlbm1jbWlsbG9uLnJlcGwuY28v', 'aHR0cHM6Ly9tZmMtbXktZmF2b3JpdGUtY2hpY2tlbi5rYXlkc2FuZHN0cm9tMS5yZXBsLmNvLw==', 'aHR0cHM6Ly91bHRyYXZpb2xldC0xMy5kYW1hcmVvbmdvdWRlYTIucmVwbC5jby8=', 'aHR0cHM6Ly91bHRyYXZpb2xldC50cmV2b3Jyb2RnZXJzLnJlcGwuY28v', 'aHR0cHM6Ly9oZW5yeXMtcHJveHkubHBwYmoucmVwbC5jby8=', 'aHR0cHM6Ly9qZXN0ZXJjYS5hbXlsaWFkZXdpdHQucmVwbC5jby8=']
+        const r = ['aHR0cHM6Ly91bHRyYXZpb2xldC5pdmFucGVlbC5yZXBsLmNv', 'aHR0cHM6Ly91bHRyYXZpb2xldC01LmtvZW53aWxsaWFtc29uLnJlcGwuY28=', 'aHR0cHM6Ly91bHRyYXZpb2xldC1nbGl0Y2guZ2xpdGNoLm1l', 'aHR0cHM6Ly91di1ha2EtdWx0cmF2aW9sZXQuZ2xpdGNoLm1lLw==',   'aHR0cHM6Ly91bHRyYWlvbGV0LW5vZGUtMS5hbGxlbm1jbWlsbG9uLnJlcGwuY28v', 'aHR0cHM6Ly9tZmMtbXktZmF2b3JpdGUtY2hpY2tlbi5rYXlkc2FuZHN0cm9tMS5yZXBsLmNvLw==', 'aHR0cHM6Ly91bHRyYXZpb2xldC0xMy5kYW1hcmVvbmdvdWRlYTIucmVwbC5jby8=', 'aHR0cHM6Ly91bHRyYXZpb2xldC50cmV2b3Jyb2RnZXJzLnJlcGwuY28v', 'aHR0cHM6Ly9oZW5yeXMtcHJveHkubHBwYmoucmVwbC5jby8=', 'aHR0cHM6Ly9qZXN0ZXJjYS5hbXlsaWFkZXdpdHQucmVwbC5jby8=', 'aHR0cHM6Ly9nYXQ4d2F5LnR5dGVjaDAzOC5jb20v']
             .map(value => ({ value, sort: Math.random() }))
             .sort((a, b) => a.sort - b.sort)
             .map(({ value }) => atob(value));
