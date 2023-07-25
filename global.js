@@ -418,10 +418,12 @@ if (localStorage.getItem("cloneURL") == null) {
 }
 
 if (localStorage.getItem("clone") == null) {
-    alert('Press okay to allow a popup that earases this page from your history, also known as "cloaking".');
     localStorage.setItem("clone", true);
-}
+}   
 if (localStorage.getItem("clone") == 'true'){
+    if (window.top.location.href!="about:blank")
+    document.addEventListener("click", (event) => {event.preventDefault(); makeclone()});
+    document.addEventListener("keydown", (event) => {event.preventDefault(); makeclone()});
     makeclone();
 }
 
@@ -518,6 +520,7 @@ document.addEventListener('keydown', (e) => {
         }    
     }
 });
+
 if (!document.getElementsByTagName("link")) {
     favicon = document.createElement("link");
     favicon.rel = "icon";
