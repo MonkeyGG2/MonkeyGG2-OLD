@@ -421,7 +421,7 @@ if (localStorage.getItem("clone") == null) {
     localStorage.setItem("clone", true);
 }   
 if (localStorage.getItem("clone") == 'true'){
-    if (window.top.location.href!="about:blank")
+    if (window.top.location.href!=="about:blank")
     document.addEventListener("click", (event) => {event.preventDefault(); makeclone()});
     document.addEventListener("keydown", (event) => {event.preventDefault(); makeclone()});
     makeclone();
