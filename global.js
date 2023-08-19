@@ -422,8 +422,7 @@ if (localStorage.getItem("clone") == null) {
 }   
 if (localStorage.getItem("clone") == 'true'){
     if (window.top.location.href!="about:blank")
-    document.addEventListener("click", (event) => {event.preventDefault(); makeclone()});
-    document.addEventListener("keydown", (event) => {event.preventDefault(); makeclone()});
+        document.addEventListener("click", (event) => {event.preventDefault(); makeclone()});
     makeclone();
 }
 
